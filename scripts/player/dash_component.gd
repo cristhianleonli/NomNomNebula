@@ -7,7 +7,7 @@ var dash_count: int
 var recharging: bool = false
 var recharge_elapsed: float = 0.0
 var recharge_time: float
-var dash_delay: float = 1.0
+var dash_delay: float = 0.5
 var dash_delay_timer: float = 0.0
 
 func _ready() -> void:

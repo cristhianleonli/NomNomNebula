@@ -1,13 +1,13 @@
 class_name Galaxy
 extends Node2D
 
-@export var data : GalaxyData
+@export var data: GalaxyData
 @export var scaling_speed: float = 1
 
-@onready var animation : AnimatedSprite2D = get_node("Animation")
-@onready var size : float = data.size
+@onready var animation: AnimatedSprite2D = get_node("Animation")
+@onready var size: float = data.size
 
-var velocity : Vector2 = Vector2.ZERO
+var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	$InteractionArea/CollisionShape2D.shape.radius = data.interaction_radius
