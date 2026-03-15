@@ -59,6 +59,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0vfqx")
 script = ExtResource("4_0vfqx")
 
 [node name="WasdPanel" type="Panel" parent="CanvasLayer" unique_id=432980763]
+visible = false
 offset_left = 113.0
 offset_top = 48.0
 offset_right = 182.0
