@@ -3,6 +3,7 @@ extends Resource
 
 @export_category("UI")
 @export var click: AudioSetting
+@export var hover: AudioSetting
 
 @export_category("Dash")
 @export var dash: AudioSetting

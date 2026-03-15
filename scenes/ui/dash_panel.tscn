@@ -50,10 +50,18 @@ value = 41.29
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=785799344]
 layout_mode = 0
-offset_left = 25.999996
+offset_left = 11.000002
 offset_top = -19.0
-offset_right = 90.0
+offset_right = 75.0
 offset_bottom = 45.0
 scale = Vector2(0.325, 0.325)
 texture = ExtResource("2_ble8e")
 expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=365482104]
+layout_mode = 0
+offset_left = 33.0
+offset_top = -14.0
+offset_right = 73.0
+theme_override_font_sizes/font_size = 12
+text = "Burst"

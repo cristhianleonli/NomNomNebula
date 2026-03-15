@@ -8,36 +8,45 @@
 [ext_resource type="AudioStream" uid="uid://c2ec7w6563y2n" path="res://audio/sounds/Spark 14.wav" id="4_va0tg"]
 [ext_resource type="AudioStream" uid="uid://cs0jf3rbilywe" path="res://audio/sounds/Shield Device 1 Stop.wav" id="4_xqoq0"]
 [ext_resource type="AudioStream" uid="uid://donptr6hkusrk" path="res://audio/sounds/Shield Device 2 Start.wav" id="6_s34iw"]
+[ext_resource type="AudioStream" uid="uid://bpb36h71m85n0" path="res://audio/sounds/Ratchet_Click_1.mp3" id="7_s34iw"]
 
 [sub_resource type="Resource" id="Resource_a6wuk"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("2_1sgt3")
-pitch_randomness = 0.5
+volume_db = 5.0
+pitch_randomness = 0.1
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_ndm53"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("3_va0tg")
 volume_db = -5.0
-pitch_randomness = 0.5
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_w1bj7"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("4_xqoq0")
-volume_db = -3.0
+volume_db = -8.0
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_xqoq0"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("4_va0tg")
 volume_db = -3.0
+pitch_randomness = 0.1
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_d16nq"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("6_s34iw")
 volume_db = -3.0
+metadata/_custom_type_script = "uid://cjikpvjnra8yr"
+
+[sub_resource type="Resource" id="Resource_lelip"]
+script = ExtResource("1_ixyf6")
+source = ExtResource("7_s34iw")
+volume_db = -5.0
+pitch_randomness = 0.1
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_va0tg"]
@@ -49,6 +58,7 @@ metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 [resource]
 script = ExtResource("1_nflnj")
 click = SubResource("Resource_a6wuk")
+hover = SubResource("Resource_lelip")
 dash = SubResource("Resource_ndm53")
 dash_error = SubResource("Resource_xqoq0")
 dash_empty = SubResource("Resource_w1bj7")
