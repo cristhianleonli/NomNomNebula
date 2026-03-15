@@ -1,9 +1,12 @@
 extends Node
 
+const POINTER_C: Resource = preload("uid://b085nphr6bvo4")
+
 @onready var version_label: Label = $CanvasLayer/Panel/VersionLabel
 
 func _ready() -> void:
 	SceneManager.fade_in()
+	Input.set_custom_mouse_cursor(POINTER_C)
 	#AudioManager.play_music(AudioManager.tracks.title_music)
 	
 	_setup_ui()

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://exsf0igc7o8v"]
 
 [ext_resource type="Script" uid="uid://cc2n5h16db6yg" path="res://scripts/ui/dash_panel.gd" id="1_x53hx"]
+[ext_resource type="Texture2D" uid="uid://dlceat5pxal78" path="res://resources/Art/keyboard_space.png" id="2_ble8e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ble8e"]
 bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.61960787)
@@ -46,3 +47,13 @@ offset_bottom = 36.0
 theme_override_font_sizes/font_size = 10
 theme_override_styles/fill = SubResource("StyleBoxFlat_x53hx")
 value = 41.29
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=785799344]
+layout_mode = 0
+offset_left = 25.999996
+offset_top = -19.0
+offset_right = 90.0
+offset_bottom = 45.0
+scale = Vector2(0.325, 0.325)
+texture = ExtResource("2_ble8e")
+expand_mode = 1

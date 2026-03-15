@@ -5,4 +5,5 @@ extends Node
 
 func _ready() -> void:
 	dash_panel.setup(player_test.get_dash_count())
+	
 	SceneManager.fade_in()

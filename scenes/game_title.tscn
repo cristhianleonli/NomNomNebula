@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://xw5t2uhf8057"]
 
 [ext_resource type="Script" uid="uid://bje3wu1qqmsyh" path="res://scripts/game_title.gd" id="1_ke8lo"]
-[ext_resource type="Texture2D" uid="uid://xs064oduc2xk" path="res://resources/icons/ic_human_made.png" id="2_db77j"]
-[ext_resource type="Texture2D" uid="uid://b0x7d3nctq4im" path="res://resources/canvas_guide.png" id="3_ljt7x"]
+[ext_resource type="Texture2D" uid="uid://xs064oduc2xk" path="res://resources/Art/icons/ic_human_made.png" id="2_db77j"]
+[ext_resource type="Texture2D" uid="uid://b0x7d3nctq4im" path="res://resources/Art/canvas_guide.png" id="3_ljt7x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke8lo"]
 

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dmfm4cm8u2nbi"]
 
 [ext_resource type="Script" uid="uid://bc4t2ev56ebnm" path="res://scripts/game_world.gd" id="1_0biqy"]
-[ext_resource type="Texture2D" uid="uid://pqcffqxgufsf" path="res://resources/guide_tilemap.png" id="2_6c6v5"]
+[ext_resource type="Texture2D" uid="uid://pqcffqxgufsf" path="res://resources/Art/guide_tilemap.png" id="2_6c6v5"]
 [ext_resource type="PackedScene" uid="uid://ot3b6jppp04d" path="res://scenes/player_test.tscn" id="2_47u71"]
 [ext_resource type="PackedScene" uid="uid://exsf0igc7o8v" path="res://scenes/ui/dash_panel.tscn" id="3_ywgp6"]
 [ext_resource type="Script" uid="uid://cxkmvv3xyv3iv" path="res://scripts/minimap.gd" id="4_0vfqx"]

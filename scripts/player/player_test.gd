@@ -4,7 +4,7 @@ extends Node2D
 @onready var dash_component: DashComponent = $DashComponent
 
 @export var forward_speed: float = 10
-@export var dash_speed: float = 50
+@export var dash_speed: float = 30
 @export var turn_speed: float = 10
 
 var velocity: Vector2 = Vector2.ZERO
