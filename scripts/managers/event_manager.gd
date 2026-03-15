@@ -5,6 +5,8 @@ extends Node
 
 #region GameClock
 signal on_world_ready
+
+signal on_galaxy_collided(data: GalaxyData)
 #endregion
 
 @warning_ignore_restore("unused_signal")

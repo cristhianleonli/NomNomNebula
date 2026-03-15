@@ -79,3 +79,6 @@ offset_top = 680.0
 offset_right = 77.0
 offset_bottom = 715.0
 text = "v-.-.-"
+
+[connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/ExitButton" to="." method="_on_exit_button_pressed"]
