@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("turn_left"):
-		rotation += -turn_speed * delta
+		rotation -= turn_speed * delta
 	if Input.is_action_pressed("turn_right"):
 		rotation += turn_speed * delta
 	
@@ -35,6 +35,7 @@ func try_dash(_delta: float) -> void:
 		var dir_vec: Vector2 = Utils.rotation_to_vector(rotation)
 		velocity += dir_vec * dash_speed
 		dash_component.use_dash()
+		EventManager.on_camera_shake.emit()
 	else:
 		EventManager.on_dash_error.emit()
 		dash_component.dash_error()
