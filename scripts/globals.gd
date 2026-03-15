@@ -2,6 +2,7 @@ extends Node
 
 ## Player Data ##
 var current_save: SaveGame = null
+var current_score: int
 
 ##player global reference
 var player : Player
