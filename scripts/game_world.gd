@@ -1,7 +1,7 @@
 extends Node
 
 @onready var dash_panel: DashPanel = $CanvasLayer/DashPanel
-@onready var player_test: Player = $PlayerTest
+@onready var player: Player = $Player
 @onready var pause_menu: PauseMenu = $CanvasLayer/PauseMenu
 @onready var pause_button: Button = $CanvasLayer/PauseButton
 @onready var animation_component: AnimationComponent = $AnimationComponent
@@ -10,7 +10,7 @@ extends Node
 var current_score: int = 10
 
 func _ready() -> void:
-	dash_panel.setup(player_test.get_dash_count())
+	dash_panel.setup(player.get_dash_count())
 	
 	game_over_button.pressed.connect(_on_game_over)
 	pause_menu.on_resume.connect(_handle_toggle_pause)

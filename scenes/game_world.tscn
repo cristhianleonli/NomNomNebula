@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bc4t2ev56ebnm" path="res://scripts/game_world.gd" id="1_0biqy"]
 [ext_resource type="Texture2D" uid="uid://pqcffqxgufsf" path="res://resources/Art/guide_tilemap.png" id="2_6c6v5"]
-[ext_resource type="PackedScene" uid="uid://ot3b6jppp04d" path="res://scenes/game_scenes/player_test.tscn" id="2_47u71"]
+[ext_resource type="PackedScene" uid="uid://ot3b6jppp04d" path="res://scenes/game_scenes/player.tscn" id="2_47u71"]
 [ext_resource type="Script" uid="uid://bo0y5ea02unt7" path="res://scripts/animation_component.gd" id="2_odt01"]
 [ext_resource type="PackedScene" uid="uid://exsf0igc7o8v" path="res://scenes/ui/dash_panel.tscn" id="3_ywgp6"]
 [ext_resource type="Script" uid="uid://cxkmvv3xyv3iv" path="res://scripts/minimap.gd" id="4_0vfqx"]
@@ -49,14 +49,14 @@ tile_set = SubResource("TileSet_pdbwf")
 position = Vector2(72, 5)
 scale = Vector2(0.5, 0.5)
 
-[node name="PlayerTest" parent="." unique_id=1205687715 instance=ExtResource("2_47u71")]
-position = Vector2(35, 33)
+[node name="Player" parent="." unique_id=1205687715 instance=ExtResource("2_47u71")]
+position = Vector2(-32, 40)
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1474096558 node_paths=PackedStringArray("target") groups=["main_camera"]]
 position = Vector2(35, 33)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("13_6ll7h")
-target = NodePath("../PlayerTest")
+target = NodePath("../Player")
 follow_reduction_factor = 0.6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=73551857]

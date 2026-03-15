@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ot3b6jppp04d"]
 
 [ext_resource type="Texture2D" uid="uid://d0i2dq4b2ljw2" path="res://icon.svg" id="1_a8v3n"]
-[ext_resource type="Script" uid="uid://by8bmmu5nu88p" path="res://scripts/player/player_test.gd" id="1_fdpfy"]
+[ext_resource type="Script" uid="uid://by8bmmu5nu88p" path="res://scripts/player/player.gd" id="1_fdpfy"]
 [ext_resource type="Script" uid="uid://c1npqec65kjpn" path="res://scripts/player/vel_direction_arrow.gd" id="2_6p80c"]
 [ext_resource type="Script" uid="uid://u0bc1marrjav" path="res://scripts/player/dash_component.gd" id="4_8ut53"]
 [ext_resource type="Script" uid="uid://cdsyiosey41jg" path="res://scripts/player/stabilization_component.gd" id="5_2ue4q"]
@@ -19,7 +19,7 @@ fill_to = Vector2(0.8652174, 0.21304348)
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lhng"]
 radius = 22.090721
 
-[node name="PlayerTest" type="Node2D" unique_id=1205687715]
+[node name="Player" type="Node2D" unique_id=1205687715]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_fdpfy")
 forward_speed = 100.0
