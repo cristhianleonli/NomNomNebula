@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bje3wu1qqmsyh" path="res://scripts/game_title.gd" id="1_ke8lo"]
 [ext_resource type="Texture2D" uid="uid://xs064oduc2xk" path="res://resources/icons/ic_human_made.png" id="2_db77j"]
+[ext_resource type="Texture2D" uid="uid://b0x7d3nctq4im" path="res://resources/canvas_guide.png" id="3_ljt7x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke8lo"]
 
@@ -18,67 +19,71 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ke8lo")
 
+[node name="GuideBG" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1792984943]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("3_ljt7x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=1416375453]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 59.0
+offset_right = 63.0
+offset_bottom = 139.0
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer" unique_id=184369723]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "START"
+
+[node name="CreditsButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer" unique_id=2103535409]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "CREDITS"
+
+[node name="SettungsButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1533022336]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "SETTINGS"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1997179881]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "EXIT"
+
 [node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=591377701]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 54.0
-offset_bottom = 156.0
+offset_bottom = 52.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 55
 text = "GALACTIC GROWTH"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Panel" unique_id=184369723]
-layout_mode = 0
-offset_left = 121.0
-offset_top = 409.0
-offset_right = 190.0
-offset_bottom = 440.0
-text = "START"
-
-[node name="CreditsButton" type="Button" parent="CanvasLayer/Panel" unique_id=2103535409]
-layout_mode = 0
-offset_left = 121.0
-offset_top = 455.0
-offset_right = 190.0
-offset_bottom = 486.0
-text = "CREDITS"
-
-[node name="SettungsButton" type="Button" parent="CanvasLayer/Panel" unique_id=1533022336]
-layout_mode = 0
-offset_left = 121.0
-offset_top = 502.0
-offset_right = 193.0
-offset_bottom = 533.0
-text = "SETTINGS"
-
-[node name="ExitButton" type="Button" parent="CanvasLayer/Panel" unique_id=1997179881]
-layout_mode = 0
-offset_left = 121.0
-offset_top = 549.0
-offset_right = 203.0
-offset_bottom = 580.0
-text = "EXIT"
-
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel" unique_id=43577506]
 layout_mode = 0
-offset_left = 1203.0
-offset_top = 640.0
-offset_right = 1264.0
-offset_bottom = 701.0
+offset_left = 299.0
+offset_top = 159.0
+offset_right = 315.0
+offset_bottom = 175.0
 texture = ExtResource("2_db77j")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="VersionLabel" type="Label" parent="CanvasLayer/Panel" unique_id=421910889]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 680.0
-offset_right = 77.0
-offset_bottom = 715.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -12.0
+offset_right = 45.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
 text = "v-.-.-"
+vertical_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

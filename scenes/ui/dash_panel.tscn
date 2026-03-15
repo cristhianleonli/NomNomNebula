@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://exsf0igc7o8v"]
+
+[ext_resource type="Script" uid="uid://cc2n5h16db6yg" path="res://scripts/ui/dash_panel.gd" id="1_x53hx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ble8e"]
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.61960787)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x53hx"]
+
+[node name="DashPanel" type="Panel" unique_id=696284378]
+offset_right = 74.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ble8e")
+script = ExtResource("1_x53hx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=47428910]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 68.0
+offset_bottom = 18.0
+theme_override_constants/separation = 7
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer" unique_id=373525879]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer" unique_id=229990980]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="HBoxContainer" unique_id=1594163967]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="HBoxContainer" unique_id=1356179251]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1654695784]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 23.0
+offset_right = 70.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/fill = SubResource("StyleBoxFlat_x53hx")
+value = 41.29

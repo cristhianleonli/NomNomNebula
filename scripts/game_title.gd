@@ -4,7 +4,7 @@ extends Node
 
 func _ready() -> void:
 	SceneManager.fade_in()
-	AudioManager.play_music(AudioManager.tracks.title_music)
+	#AudioManager.play_music(AudioManager.tracks.title_music)
 	
 	_setup_ui()
 

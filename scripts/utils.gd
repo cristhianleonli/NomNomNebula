@@ -17,3 +17,6 @@ static func clear_node(node: Node) -> void:
 	for n: Node in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
+
+static func rotation_to_vector(angle:float) -> Vector2:
+	return Vector2(cos(angle), sin(angle))

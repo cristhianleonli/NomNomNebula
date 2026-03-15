@@ -1,7 +1,8 @@
 extends Node
 
-func _ready() -> void:
-	SceneManager.fade_in()
+@onready var dash_panel: DashPanel = $CanvasLayer/DashPanel
+@onready var player_test: Player = $PlayerTest
 
-func _process(delta: float) -> void:
-	pass
+func _ready() -> void:
+	dash_panel.setup(player_test.get_dash_count())
+	SceneManager.fade_in()
