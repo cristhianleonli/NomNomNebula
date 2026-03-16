@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_nccpp")
-name = "galaxy_1"
+uid = "g1"
 strength = 2
-interaction_radius = 80
+interaction_radius = 50
 metadata/_custom_type_script = "uid://bp640lhsn8ukq"

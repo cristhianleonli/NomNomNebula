@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_2onp5")
-name = "galaxy_2"
+uid = "g2"
 strength = 2
-interaction_radius = 80
+interaction_radius = 70
 metadata/_custom_type_script = "uid://bp640lhsn8ukq"

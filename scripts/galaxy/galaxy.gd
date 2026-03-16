@@ -8,11 +8,16 @@ extends Node2D
 @onready var size: float = data.size
 @onready var timer_label: Label = $TimerLabel
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var interaction_collision_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
 
 var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	$InteractionArea/CollisionShape2D.shape.radius = data.interaction_radius
+	# duplicate shape to make size unique per galaxy
+	var shape: CircleShape2D = interaction_collision_shape.shape.duplicate()
+	shape.radius = data.interaction_radius
+	interaction_collision_shape.shape = shape
+	
 	animation.play("main")
 
 func _process(delta: float) -> void:

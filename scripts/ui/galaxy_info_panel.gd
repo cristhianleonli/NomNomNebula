@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func present(data: GalaxyData) -> void:
 	self.visible = true
-	data_label.text = data.name
+	data_label.text = data.uid
 
 func dismiss() -> void:
 	self.visible = false

@@ -120,7 +120,7 @@ shader_parameter/haloColor = SubResource("GradientTexture2D_po1id")
 radius = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ky37o"]
-radius = 80.0
+radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4oih2"]
 

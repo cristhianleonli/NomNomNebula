@@ -10,6 +10,7 @@ extends Node
 
 var current_score: int = 10
 var tooltip_timer: Timer
+var tooltip_duration: float = 2.0
 
 func _ready() -> void:
 	Globals.player = player
@@ -38,7 +39,7 @@ func _process(_delta: float) -> void:
 func _setup_tooltip_timer() -> void:
 	tooltip_timer = Timer.new()
 	tooltip_timer.timeout.connect(_on_hide_tooltip_timeout)
-	tooltip_timer.wait_time = 3
+	tooltip_timer.wait_time = tooltip_duration
 	tooltip_timer.one_shot = false
 	add_child(tooltip_timer)
 	tooltip_timer.start()
