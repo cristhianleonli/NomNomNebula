@@ -1,3 +1,4 @@
+class_name GameWorld
 extends Node
 
 @onready var dash_panel: DashPanel = $CanvasLayer/DashPanel
@@ -7,6 +8,10 @@ extends Node
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var game_over_button: Button = $CanvasLayer/GameOverButton
 @onready var galaxy_info_panel: GalaxyInfoPanel = $CanvasLayer/GalaxyInfoPanel
+
+enum GameState {
+	ONGOING, PAUSED, FINISHED
+}
 
 var current_score: int = 10
 var tooltip_timer: Timer
@@ -26,9 +31,9 @@ func _ready() -> void:
 		animation_component.subtle_wobble(pause_button)
 	)
 	
+	EventManager.on_player_destabilized.connect(_on_game_over)
 	EventManager.on_tooltip_show.connect(_on_galaxy_tooltip_show)
 	EventManager.on_tooltip_hide.connect(_on_galaxy_tooltip_hide)
-	EventManager.on_game_over.connect(_on_game_over)
 	EventManager.on_galaxy_absorbed.connect(_on_galaxy_absorbed)
 	SceneManager.fade_in()
 
@@ -48,10 +53,17 @@ func _handle_toggle_pause() -> void:
 	if pause_menu.visible:
 		AudioManager.play_sfx(AudioManager.tracks.dismiss_ui)
 		pause_menu.dismiss()
+		
+		EventManager.on_game_state_changed.emit(GameState.ONGOING)
+		AudioManager.resume_music()
+		Engine.time_scale = 1.0
 	else:
 		pause_menu.present()
-		# TODO: Stop engine time, animations, etc
 		AudioManager.play_sfx(AudioManager.tracks.show_ui)
+		
+		EventManager.on_game_state_changed.emit(GameState.PAUSED)
+		AudioManager.pause_music()
+		Engine.time_scale = 0.0
 
 func _on_game_over() -> void:
 	if current_score > Globals.current_save.data.highest_score:

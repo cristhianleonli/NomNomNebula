@@ -20,27 +20,39 @@ func setup(max_dashes: int) -> void:
 	slot_count = max_dashes
 	remaning = max_dashes
 	
-	for node: Node in h_box_container.get_children():
-		node.visible = false
+	_refresh_slots()
+	_update()
+
+func set_max_dashes(amount: int) -> void:
+	slot_count = amount
 	
-	for i: int in range(slot_count):
-		h_box_container.get_child(i).visible = true
+	if remaning > slot_count:
+		remaning = slot_count
 	
+	_refresh_slots()
 	_update()
 
 func _process(_delta: float) -> void:
 	progress_bar.visible = is_recharging
+
+func _refresh_slots() -> void:
+	for node in h_box_container.get_children():
+		node.visible = false
 	
+	for i in range(min(slot_count, h_box_container.get_child_count())):
+		h_box_container.get_child(i).visible = true
+
 func _update() -> void:
-	for i: int in range(slot_count):
+	for i in range(min(slot_count, h_box_container.get_child_count())):
 		h_box_container.get_child(i).color = Color.WHITE
 		
-	for i: int in range(remaning):
-		h_box_container.get_child(i).visible = true
-		h_box_container.get_child(i).color = Color.GREEN
+	for i in range(min(remaning, h_box_container.get_child_count())):
+		var node = h_box_container.get_child(i)
+		node.visible = true
+		node.color = Color.GREEN
 
 func _on_dash_used() -> void:
-	remaning -= 1
+	remaning = max(remaning - 1, 0)
 	_update()
 	animation_component.subtle_wobble(texture_rect)
 

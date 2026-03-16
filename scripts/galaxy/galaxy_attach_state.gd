@@ -7,8 +7,8 @@ extends State
 
 @onready var target: Node2D = get_node("Target")
 @onready var camera: Camera2D = get_tree().get_first_node_in_group("main_camera")
-@onready var absorbing_timer: float = absorption_time_required
 
+var absorbing_timer: float
 var inner_radius: float = 50
 
 func enter() -> void:
@@ -16,6 +16,7 @@ func enter() -> void:
 	camera.set_target(target)
 	camera.target_zoom *= 0.5
 	galaxy.audio_player.play()
+	absorbing_timer = absorption_time_required
 
 func update(delta: float) -> void:
 	var force: Vector2 = calc_force(delta)
@@ -52,3 +53,4 @@ func exit() -> void:
 	camera.target_zoom *= 2
 	attraction_area.area_exited.disconnect(end_attraction_state)
 	galaxy.audio_player.stop()
+	absorbing_timer = absorption_time_required

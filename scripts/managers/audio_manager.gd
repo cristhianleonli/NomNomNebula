@@ -11,6 +11,9 @@ var music_player: AudioStreamPlayer
 var sfx_players: Array[AudioStreamPlayer] = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var fade_duration: float = 1.0
+var normal_cutoff: float = 20000.0
+var underwater_cutoff: float = 800.0
+var base_music_db: float = 0.0
 
 func _ready() -> void:
 	_setup_nodes()
@@ -33,7 +36,8 @@ func _setup_nodes() -> void:
 
 func play_music(setting: AudioSetting) -> void:
 	music_player.stream = setting.source
-	music_player.volume_db = -80.0
+	music_player.volume_db = setting.volume_db
+	base_music_db = music_player.volume_db
 	music_player.play()
 	
 	var tween: Tween = create_tween()
@@ -105,3 +109,19 @@ func configure_audio_server(_sfx_level: int, _music_level: int) -> void:
 	
 	AudioServer.set_bus_volume_db(sfx_bus_id, linear_to_db(sfx_level))
 	AudioServer.set_bus_volume_db(music_bus_id, linear_to_db(music_level))
+
+func pause_music() -> void:
+	var lowpass_effect_index: int = 0
+	var music_bus_index = AudioServer.get_bus_index("Music")
+	var effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(music_bus_index, lowpass_effect_index)
+	var tween: Tween = create_tween()
+	tween.tween_property(effect, "cutoff_hz", underwater_cutoff, 0.4)
+	music_player.volume_db = base_music_db - 3
+	
+func resume_music() -> void:
+	var lowpass_effect_index: int = 0
+	var music_bus_index = AudioServer.get_bus_index("Music")
+	var effect: AudioEffectLowPassFilter = AudioServer.get_bus_effect(music_bus_index, lowpass_effect_index)
+	var tween: Tween = create_tween()
+	tween.tween_property(effect, "cutoff_hz", normal_cutoff, 0.4)
+	music_player.volume_db = base_music_db

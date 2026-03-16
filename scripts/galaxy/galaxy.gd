@@ -13,6 +13,7 @@ extends Node2D
 var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	EventManager.on_game_state_changed.connect(_on_game_state_changed)
 	# duplicate shape to make size unique per galaxy
 	var shape: CircleShape2D = interaction_collision_shape.shape.duplicate()
 	shape.radius = data.interaction_radius
@@ -37,3 +38,12 @@ func _on_interaction_area_mouse_entered() -> void:
 
 func _on_interaction_area_mouse_exited() -> void:
 	EventManager.on_tooltip_hide.emit()
+
+func _on_game_state_changed(state: GameWorld.GameState) -> void:
+	match state:
+		GameWorld.GameState.ONGOING:
+			audio_player.play()
+		GameWorld.GameState.PAUSED:
+			audio_player.stop()
+		GameWorld.GameState.FINISHED:
+			audio_player.stop()

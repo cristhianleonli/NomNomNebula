@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bwgjk5vsqnrxm" path="res://resources/Art/icons/gear.png" id="11_ph1f2"]
 [ext_resource type="Script" uid="uid://cfujeq18btljh" path="res://scripts/main_camera.gd" id="13_6ll7h"]
 [ext_resource type="Script" uid="uid://1hy21bsnn0ng" path="res://scripts/ui/galaxy_info_panel.gd" id="17_oyepb"]
+[ext_resource type="PackedScene" uid="uid://jgiwhntmki7w" path="res://scenes/ui/stabilization_panel.tscn" id="18_xxaiy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bhwwd"]
 texture = ExtResource("2_6c6v5")
@@ -205,3 +206,5 @@ offset_bottom = 25.0
 theme_override_font_sizes/font_size = 7
 text = "Galaxy data"
 horizontal_alignment = 1
+
+[node name="StabilizationPanel" parent="CanvasLayer" unique_id=2092434660 instance=ExtResource("18_xxaiy")]

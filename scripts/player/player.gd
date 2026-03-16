@@ -6,13 +6,18 @@ extends Node2D
 @export var friction: float = 0.98
 
 @onready var dash_component: DashComponent = $DashComponent
+@onready var stabilization_component: StabilizationComponent = $StabilizationComponent
 
 var velocity: Vector2 = Vector2.ZERO
+var can_move: bool = true
 
 func _ready() -> void:
-	pass
+	EventManager.on_game_state_changed.connect(_on_game_state_changed)
 
 func _process(delta: float) -> void:
+	if not can_move:
+		return
+	
 	var input_dir: Vector2 = _get_input_direction()
 
 	if input_dir != Vector2.ZERO:
@@ -50,5 +55,14 @@ func get_dash_count() -> int:
 func apply_force(force) -> void:
 	velocity += force
 
-func absorb_galaxy(data: GalaxyData) -> void:
-	print(data)
+func absorb_galaxy(_data: GalaxyData) -> void:
+	stabilization_component.add_time(5.0)
+
+func _on_game_state_changed(state: GameWorld.GameState) -> void:
+	match state:
+		GameWorld.GameState.ONGOING:
+			can_move = true
+		GameWorld.GameState.PAUSED:
+			can_move = false
+		GameWorld.GameState.FINISHED:
+			can_move = false
