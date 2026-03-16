@@ -12,23 +12,21 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	var force: Vector2 = calc_force(delta)
-	#Globals.player.apply_force(force)
 	Globals.player.apply_force(force)
 	
 func calc_force(_delta: float) -> Vector2:
-	#var dif : Vector2 =  (galaxy.global_position -Globals.player.global_position).normalized()
-	#return dif * galaxy.data.strength / dif.length()
 	var offset: Vector2 = galaxy.global_position - Globals.player.global_position
 	var dist: float = offset.length()
 	var dir: Vector2 = offset.normalized()
 
 	var inner_radius: float = 20
+	var outer_force: float = galaxy.data.strength
 
-	if dist > inner_radius:
-		return dir * galaxy.data.strength
+	if dist < inner_radius:
+		var repel = (inner_radius - dist) / inner_radius
+		return -dir * outer_force * (4 + repel * 8)
 	else:
-		var repel_strength = (inner_radius - dist) * galaxy.data.strength * 2
-		return -dir * repel_strength
+		return dir * outer_force
 
 func end_attraction_state(_area: Area2D) -> void:
 	change_state.emit(self, "idle")

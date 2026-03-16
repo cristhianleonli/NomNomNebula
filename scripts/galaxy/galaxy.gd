@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	size = lerp(size, 1.0, scaling_speed * delta)
 	scale = Vector2(size, size)
-	position += velocity*delta
+	position += velocity * delta
 
 func apply_force(force:Vector2) ->void:
 	velocity += force
