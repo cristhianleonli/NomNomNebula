@@ -8,7 +8,7 @@ signal on_world_ready
 signal on_camera_shake
 signal on_game_over
 
-signal on_galaxy_collided(data: GalaxyData)
+signal on_galaxy_absorbed(data: GalaxyData)
 
 signal on_dash_used
 signal on_dash_error

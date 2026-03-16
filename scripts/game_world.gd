@@ -22,6 +22,7 @@ func _ready() -> void:
 	)
 	
 	EventManager.on_game_over.connect(_on_game_over)
+	EventManager.on_galaxy_absorbed.connect(_on_galaxy_absorbed)
 	SceneManager.fade_in()
 
 func _process(_delta: float) -> void:
@@ -47,3 +48,6 @@ func _on_game_over() -> void:
 
 func _handle_finish() -> void:
 	SceneManager.transition_to(Scenes.TITLE, false)
+
+func _on_galaxy_absorbed(data: GalaxyData) -> void:
+	player.absorb_galaxy(data)

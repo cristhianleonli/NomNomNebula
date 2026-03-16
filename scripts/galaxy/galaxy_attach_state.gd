@@ -14,6 +14,11 @@ func update(delta: float) -> void:
 	var force: Vector2 = calc_force(delta)
 	Globals.player.apply_force(force)
 	
+	if true: ##timer <= 0: # FIXME: remove
+		EventManager.on_galaxy_absorbed.emit(galaxy.data)
+		change_state.emit(self, "desintegrate")
+		return
+	
 func calc_force(_delta: float) -> Vector2:
 	var offset: Vector2 = galaxy.global_position - Globals.player.global_position
 	var dist: float = offset.length()

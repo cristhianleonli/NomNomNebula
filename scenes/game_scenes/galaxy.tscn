@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dkmph7m6e1a2x" path="res://scripts/state_machine.gd" id="3_nbxba"]
 [ext_resource type="Script" uid="uid://iccc1ul8qm2x" path="res://scripts/galaxy/galaxy_idle_state.gd" id="4_xxujj"]
 [ext_resource type="Script" uid="uid://sunbyn5fx5l1" path="res://scripts/galaxy/galaxy_attach_state.gd" id="6_pctnl"]
+[ext_resource type="Script" uid="uid://btwfig6s12las" path="res://scripts/galaxy/galaxy_desintegrate.gd" id="7_0t61a"]
 
 [sub_resource type="Resource" id="Resource_0t61a"]
 script = ExtResource("2_pctnl")
@@ -125,3 +126,7 @@ script = ExtResource("6_pctnl")
 galaxy = NodePath("../..")
 attraction_area = NodePath("../../InteractionArea")
 metadata/_custom_type_script = "uid://sunbyn5fx5l1"
+
+[node name="desintegrate" type="Node" parent="StateMachine" unique_id=2144533327]
+script = ExtResource("7_0t61a")
+metadata/_custom_type_script = "uid://btwfig6s12las"

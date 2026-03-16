@@ -82,3 +82,6 @@ func get_dash_count() -> int:
 	
 func apply_force(force) -> void:
 	velocity += force
+
+func absorb_galaxy(data: GalaxyData) -> void:
+	print(data)
