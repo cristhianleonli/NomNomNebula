@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var target_scene: String = ""
-var duration: float = 0.8
+var duration: float = 1.0
 var is_loading: bool = false
 var progress: Array = []
 var material: ShaderMaterial
@@ -11,13 +11,17 @@ var material: ShaderMaterial
 func _ready() -> void:
 	material = bg.material
 	 
+	if Flags.skip_scene_manager():
+		_skip_scene_manager()
+
+func _skip_scene_manager() -> void:
 	var main_scene_path: String = ProjectSettings.get_setting("application/run/main_scene")
 	if main_scene_path.begins_with("uid://"):
 		main_scene_path = ResourceUID.get_id_path(ResourceUID.text_to_id(main_scene_path))
 	var is_main_scene: bool = get_tree().current_scene.scene_file_path == main_scene_path
 	if not is_main_scene:
 		self.visible = false
-
+		
 func transition_to(scene: String) -> void:
 	target_scene = scene
 	fade_out(on_fade_out_finished)
