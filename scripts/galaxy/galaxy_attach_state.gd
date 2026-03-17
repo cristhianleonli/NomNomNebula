@@ -13,6 +13,7 @@ var inner_radius: float = 50
 
 func enter() -> void:
 	attraction_area.area_exited.connect(end_attraction_state)
+	EventManager.on_attraching_player.emit()
 	camera.set_target(target)
 	camera.target_zoom *= 0.5
 	galaxy.audio_player.play()

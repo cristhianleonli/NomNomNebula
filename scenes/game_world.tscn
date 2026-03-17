@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://jgiwhntmki7w" path="res://scenes/ui/stabilization_panel.tscn" id="18_xxaiy"]
 [ext_resource type="Script" uid="uid://c81dqmvah0kk" path="res://scripts/ui/stabilization_screen_fx.gd" id="19_mf52o"]
 [ext_resource type="Shader" uid="uid://d1clynis8x1u3" path="res://shaders/stabilization_screen.gdshader" id="20_iokjm"]
+[ext_resource type="PackedScene" uid="uid://b4bdh5vcocn4r" path="res://scenes/game_scenes/absortion_tutorial.tscn" id="21_fg3oe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bhwwd"]
 texture = ExtResource("2_6c6v5")
@@ -187,10 +188,10 @@ theme_override_font_sizes/font_size = 9
 text = "Force game over"
 
 [node name="GalaxyInfoPanel" type="Panel" parent="CanvasLayer" unique_id=893638207]
-offset_left = 114.0
-offset_top = 21.0
-offset_right = 200.0
-offset_bottom = 59.0
+offset_left = 102.0
+offset_top = 4.0
+offset_right = 188.0
+offset_bottom = 42.0
 script = ExtResource("17_oyepb")
 
 [node name="Label" type="Label" parent="CanvasLayer/GalaxyInfoPanel" unique_id=193440778]
@@ -237,3 +238,23 @@ mouse_filter = 2
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1110686936 instance=ExtResource("11_odt01")]
 visible = false
+
+[node name="AbsortionTutorial" type="Panel" parent="CanvasLayer" unique_id=2100812602]
+visible = false
+offset_left = 50.0
+offset_top = 54.0
+offset_right = 137.0
+offset_bottom = 99.0
+
+[node name="Label" type="Label" parent="CanvasLayer/AbsortionTutorial" unique_id=132770994]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 86.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 7
+text = "Must orbit the galaxy at a stable distance to absorb it
+"
+autowrap_mode = 2
+
+[node name="AbsortionTutorial" parent="." unique_id=1834393819 instance=ExtResource("21_fg3oe")]
