@@ -9,6 +9,8 @@ extends Node
 @onready var galaxy_info_panel: GalaxyInfoPanel = $CanvasLayer/GalaxyInfoPanel
 @onready var absortion_tutorial: Panel = $CanvasLayer/AbsortionTutorial
 @onready var main_camera: MainCamera = $MainCamera
+@onready var galaxy_spawner: GalaxySpawner = $GalaxySpawner
+#@onready var minimap: Minimap = $Minimap
 
 enum GameState {
 	ONGOING, PAUSED, FINISHED
@@ -35,6 +37,7 @@ func _ready() -> void:
 	)
 	
 	absortion_tutorial.visible = false
+	#minimap.set_galaxies(galaxy_spawner.get_visible_galaxies())
 	
 	EventManager.on_attracting_player.connect(_on_start_tutorial)
 	EventManager.on_player_destabilized.connect(_on_game_over)
@@ -51,6 +54,7 @@ func _process(_delta: float) -> void:
 		Engine.time_scale = 1.0
 		showing_absortion_tutorial = false
 		absortion_tutorial.visible = false
+	
 	_handle_player_wrapping()
 
 func _handle_player_wrapping() -> void:

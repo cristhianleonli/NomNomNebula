@@ -8,12 +8,13 @@ extends Node
 @onready var galaxy_5: Galaxy = $Galaxy5
 
 func _ready() -> void:
-	EventManager.on_galaxies_updated.emit({
-		"galaxies": [
-			galaxy,
-			galaxy_2,
-			galaxy_3,
-			galaxy_4,
-			galaxy_5
-		]
-	})
+	pass
+
+func get_visible_galaxies() -> Array:
+	return [
+		galaxy,
+		galaxy_2,
+		galaxy_3,
+		galaxy_4,
+		galaxy_5
+	]

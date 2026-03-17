@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ge3n0d66rcq8" path="res://scenes/game_scenes/galaxy.tscn" id="8_fg3oe"]
 [ext_resource type="Texture2D" uid="uid://dq7ue6vtdx1jb" path="res://resources/Art/icons/keyboard_a.png" id="8_ph1f2"]
 [ext_resource type="Texture2D" uid="uid://cqqm3gsucj7e6" path="res://resources/Art/icons/keyboard_d.png" id="9_odt01"]
+[ext_resource type="Texture2D" uid="uid://dhlotgbyppyj6" path="res://resources/Art/godot_logo.png" id="11_arcjp"]
 [ext_resource type="PackedScene" uid="uid://deemgxdklxpvu" path="res://scenes/ui/pause_menu.tscn" id="11_odt01"]
 [ext_resource type="Texture2D" uid="uid://bwgjk5vsqnrxm" path="res://resources/Art/icons/gear.png" id="11_ph1f2"]
 [ext_resource type="Script" uid="uid://1hy21bsnn0ng" path="res://scripts/ui/galaxy_info_panel.gd" id="17_oyepb"]
@@ -21,14 +22,13 @@
 [ext_resource type="Script" uid="uid://c81dqmvah0kk" path="res://scripts/ui/stabilization_screen_fx.gd" id="19_mf52o"]
 [ext_resource type="Script" uid="uid://bi43xj8ctf3ny" path="res://scripts/data/black_hole_data.gd" id="19_wgh4l"]
 [ext_resource type="Shader" uid="uid://d1clynis8x1u3" path="res://shaders/stabilization_screen.gdshader" id="20_iokjm"]
+[ext_resource type="Script" uid="uid://b7dq2ueha14dg" path="res://scripts/ui/stats_panel.gd" id="22_wgh4l"]
+[ext_resource type="Texture2D" uid="uid://6yo25fpoqpne" path="res://resources/Art/minimap_marker.png" id="24_0y38y"]
 
 [sub_resource type="Resource" id="Resource_arcjp"]
 script = ExtResource("19_wgh4l")
 interaction_radius = 200.0
 metadata/_custom_type_script = "uid://bi43xj8ctf3ny"
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vfqx"]
-bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iokjm"]
 
@@ -36,6 +36,10 @@ bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
 shader = ExtResource("20_iokjm")
 shader_parameter/intensity = 0.0
 shader_parameter/time_scale = 1.2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y38y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nmku"]
 
 [node name="GameWorld" type="Node2D" unique_id=1299650942]
 script = ExtResource("1_0biqy")
@@ -51,29 +55,28 @@ region_rect = Rect2(0, 0, 2000, 2000)
 script = ExtResource("2_odt01")
 
 [node name="Player" parent="." unique_id=1205687715 instance=ExtResource("2_47u71")]
-position = Vector2(-92, 141)
 
 [node name="BlackHole" parent="." unique_id=585464348 instance=ExtResource("19_iokjm")]
-position = Vector2(165, -83)
+position = Vector2(582, -106)
 data = SubResource("Resource_arcjp")
 
 [node name="GalaxySpawner" type="Node2D" parent="." unique_id=920155787]
 script = ExtResource("7_iokjm")
 
 [node name="Galaxy" parent="GalaxySpawner" unique_id=1049821020 instance=ExtResource("8_fg3oe")]
-position = Vector2(-214, 63)
+position = Vector2(-466, -86)
 
 [node name="Galaxy2" parent="GalaxySpawner" unique_id=891875615 instance=ExtResource("8_fg3oe")]
-position = Vector2(5, 254)
+position = Vector2(509, 397)
 
 [node name="Galaxy3" parent="GalaxySpawner" unique_id=516615975 instance=ExtResource("8_fg3oe")]
-position = Vector2(-312, 295)
+position = Vector2(-548, 446)
 
 [node name="Galaxy4" parent="GalaxySpawner" unique_id=1002740323 instance=ExtResource("8_fg3oe")]
-position = Vector2(-29, 61)
+position = Vector2(309, 330)
 
 [node name="Galaxy5" parent="GalaxySpawner" unique_id=123489204 instance=ExtResource("8_fg3oe")]
-position = Vector2(-175, 327)
+position = Vector2(-171, 470)
 
 [node name="MainCamera" parent="." unique_id=1322683729 node_paths=PackedStringArray("target") instance=ExtResource("19_fg3oe")]
 target = NodePath("../Player")
@@ -85,14 +88,6 @@ offset_left = 107.0
 offset_top = 138.0
 offset_right = 184.0
 offset_bottom = 176.0
-
-[node name="Minimap" type="Panel" parent="CanvasLayer" unique_id=846499147]
-offset_left = 256.0
-offset_top = 118.0
-offset_right = 314.0
-offset_bottom = 174.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0vfqx")
-script = ExtResource("4_0vfqx")
 
 [node name="WasdPanel" type="Panel" parent="CanvasLayer" unique_id=432980763]
 visible = false
@@ -243,3 +238,76 @@ theme_override_font_sizes/font_size = 7
 text = "Must orbit the galaxy at a stable distance to absorb it
 "
 autowrap_mode = 2
+
+[node name="Stats" type="Panel" parent="CanvasLayer" unique_id=662466889]
+offset_left = 4.0
+offset_top = 128.0
+offset_right = 75.0
+offset_bottom = 175.0
+script = ExtResource("22_wgh4l")
+
+[node name="Label" type="Label" parent="CanvasLayer/Stats" unique_id=1993111840]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 4
+text = "asdasd"
+
+[node name="Minmap" type="Panel" parent="CanvasLayer" unique_id=18628650]
+clip_children = 1
+offset_left = 276.0
+offset_top = 136.0
+offset_right = 316.0
+offset_bottom = 176.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0y38y")
+script = ExtResource("4_0vfqx")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Minmap" unique_id=1130124232]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.09411765, 0.09411765, 0.09411765, 1)
+
+[node name="Map" type="Panel" parent="CanvasLayer/Minmap" unique_id=2109627909]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -74.0
+offset_right = 125.0
+offset_bottom = 126.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5nmku")
+
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Minmap/Map" unique_id=1503752240]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.5
+offset_top = -10.0
+offset_right = 9.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_arcjp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerTexture" type="TextureRect" parent="CanvasLayer/Minmap" unique_id=1756743508]
+modulate = Color(0.2627451, 1, 1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_0y38y")
