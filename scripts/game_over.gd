@@ -24,4 +24,4 @@ func _setup_data() -> void:
 		return
 	
 	current_label.text = "Score: " + str(Globals.current_score)
-	highest_label.text = "Highest: " + str(save.data.highest_score)
+	highest_label.text = "Highest: " + str(save.highest_score)

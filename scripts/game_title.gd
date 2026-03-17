@@ -12,8 +12,8 @@ func _ready() -> void:
 	var save: SaveGame = _load_save()
 	
 	AudioManager.configure_audio_server(
-		save.data.sfx_level,
-		save.data.music_level
+		save.sfx_level,
+		save.music_level
 	)
 	
 	Globals.current_save = save
@@ -45,6 +45,7 @@ func _setup_ui() -> void:
 func _on_start_button_pressed() -> void:
 	SceneManager.transition_to(Scenes.WORLD)
 	AudioManager.play_sfx(AudioManager.tracks.click)
+	AudioManager.stop_music()
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()

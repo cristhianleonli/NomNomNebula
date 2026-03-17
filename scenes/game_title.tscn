@@ -9,7 +9,11 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o0nwa"]
 particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+emission_shape = 3
+emission_box_extents = Vector3(26.805, 123.29, 1)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0nwa"]
 
@@ -21,8 +25,10 @@ position = Vector2(160, 90)
 texture = ExtResource("2_o0nwa")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=137655603]
-visible = false
-position = Vector2(167, 89)
+position = Vector2(-31, 90)
+amount = 100
+lifetime = 80.0
+preprocess = 100.0
 process_material = SubResource("ParticleProcessMaterial_o0nwa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=271165557]

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://b4bdh5vcocn4r"]
-
-[ext_resource type="Script" uid="uid://d2p84sjbvu37x" path="res://scripts/absortion_tutorial.gd" id="1_m6qe3"]
-
-[node name="AbsortionTutorial" type="Node" unique_id=1834393819]
-script = ExtResource("1_m6qe3")

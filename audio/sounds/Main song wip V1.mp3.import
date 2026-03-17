@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dukrjox0dco1q"
+path="res://.godot/imported/Main song wip V1.mp3-ff66667949963f59b84a607a46c5fc4a.mp3str"
+
+[deps]
+
+source_file="res://audio/sounds/Main song wip V1.mp3"
+dest_files=["res://.godot/imported/Main song wip V1.mp3-ff66667949963f59b84a607a46c5fc4a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

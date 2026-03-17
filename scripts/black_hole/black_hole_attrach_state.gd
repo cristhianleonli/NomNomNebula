@@ -19,7 +19,7 @@ func enter() -> void:
 	timer = max_time
 	attraction_area.area_exited.connect(on_exited_area)
 	EventManager.on_dash_used.connect(on_player_dash_used)
-	EventManager.on_attraching_player.emit()
+	EventManager.on_attaching_player.emit()
 	camera.target_zoom = Vector2(0.4, 0.4)
 	camera.set_target(black_hole)
 

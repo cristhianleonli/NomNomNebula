@@ -19,3 +19,4 @@ extends Resource
 
 @export_category("Music")
 @export var title_music: AudioSetting
+@export var game_music: AudioSetting

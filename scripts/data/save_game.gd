@@ -1,9 +1,18 @@
 class_name SaveGame
 extends Resource
 
+@export_category("Admin")
 @export var version: int = 1
 @export var uid: String
 @export var created_at: String
 @export var updated_at: String
-@export var data: GameData
 @export var slot: int
+
+@export_category("Player")
+@export var total_elapsed_time: float = 0.0 # in seconds
+@export var highest_score: int = 0
+@export var is_first_time: bool = true
+
+@export_category("Audio")
+@export_range(0, 10, 1) var music_level: int = 5
+@export_range(0, 10, 1) var sfx_level: int = 5

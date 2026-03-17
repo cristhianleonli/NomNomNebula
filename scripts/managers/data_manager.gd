@@ -55,15 +55,15 @@ static func delete_save(save_id: String) -> void:
 	if FileAccess.file_exists(filepath):
 		DirAccess.remove_absolute(filepath)
 
-static func new_save_file(slot: int) -> SaveGame:
+static func new_save_file(slot: int, write: bool = true) -> SaveGame:
 	var save: SaveGame = SaveGame.new()
 	save.uid = Utils.gen_save_uid()
 	save.created_at = timestamp()
 	save.updated_at = save.created_at
-	save.data = GameData.new()
 	save.slot = slot
 	
-	write_save(save)
+	if write:
+		write_save(save)
 	
 	return save
 

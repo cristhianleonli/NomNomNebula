@@ -17,7 +17,7 @@ signal on_dash_fully_recovered
 signal on_dash_recover_progress(progress: float)
 
 signal on_player_absorbed
-signal on_attraching_player
+signal on_attaching_player
 signal on_player_destabilized
 signal on_stabilization_changed(data: Dictionary)
 signal on_stabilization_warning

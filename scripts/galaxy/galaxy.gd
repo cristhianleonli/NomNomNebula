@@ -8,7 +8,7 @@ extends Node2D
 @onready var timer_label: Label = $TimerLabel
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var interaction_collision_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
-@onready var vortex_effect : Sprite2D = $VortexEffect
+@onready var vortex_effect: Sprite2D = $VortexEffect
 
 var size: float
 var velocity: Vector2 = Vector2.ZERO
