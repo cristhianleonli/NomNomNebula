@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://qkqrrmo7u8ws" path="res://audio/audio_table.gd" id="1_nflnj"]
 [ext_resource type="AudioStream" uid="uid://b110a8113hg6b" path="res://audio/sounds/Device Toggle 04.wav" id="2_7rb6b"]
 [ext_resource type="AudioStream" uid="uid://vschk7arja7x" path="res://audio/sounds/dash_v1.wav" id="3_va0tg"]
-[ext_resource type="AudioStream" uid="uid://crkreoscmv1kf" path="res://audio/sounds/Ambient Music.wav" id="4_1sgt3"]
 [ext_resource type="AudioStream" uid="uid://bw7ryiieicpwa" path="res://audio/sounds/Device 5 Stop.wav" id="4_lelip"]
 [ext_resource type="AudioStream" uid="uid://r01so3ds2i34" path="res://audio/sounds/Spark 18.wav" id="5_lelip"]
 [ext_resource type="AudioStream" uid="uid://ncpmaii2ben3" path="res://audio/sounds/Device 5 Start.wav" id="6_7rb6b"]
@@ -13,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://b1gjtho0xxfqd" path="res://audio/sounds/Digital Click 12.wav" id="8_7rb6b"]
 [ext_resource type="AudioStream" uid="uid://mogetiy4d4i1" path="res://audio/sounds/Laser Saber 1_3.wav" id="8_lelip"]
 [ext_resource type="AudioStream" uid="uid://0xdt4tdyyt7m" path="res://audio/sounds/Abstract1.mp3" id="10_lelip"]
+[ext_resource type="AudioStream" uid="uid://cfac3xt8pe2uf" path="res://audio/sounds/main track 1 wip.mp3" id="13_7rb6b"]
 
 [sub_resource type="Resource" id="Resource_a6wuk"]
 script = ExtResource("1_ixyf6")
@@ -79,7 +79,7 @@ metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_va0tg"]
 script = ExtResource("1_ixyf6")
-source = ExtResource("4_1sgt3")
+source = ExtResource("13_7rb6b")
 volume_db = -5.0
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
