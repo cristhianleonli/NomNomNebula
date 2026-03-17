@@ -48,6 +48,24 @@ func _process(_delta: float) -> void:
 		Engine.time_scale = 1.0
 		showing_absortion_tutorial = false
 		absortion_tutorial.visible = false
+	_handle_player_wrapping()
+
+func _handle_player_wrapping() -> void:
+	return
+	var world_size: Vector2 = Vector2(2000, 2000)
+	var pos: Vector2 = player.global_position
+
+	if pos.x > world_size.x:
+		pos.x -= world_size.x
+	elif pos.x < 0:
+		pos.x += world_size.x
+
+	if pos.y > world_size.y:
+		pos.y -= world_size.y
+	elif pos.y < 0:
+		pos.y += world_size.y
+
+	player.global_position = pos
 
 func _on_start_tutorial():
 	if Globals.current_save.is_first_time:

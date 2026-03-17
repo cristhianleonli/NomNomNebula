@@ -37,6 +37,11 @@ texture = ExtResource("2_6c6v5")
 [sub_resource type="TileSet" id="TileSet_pdbwf"]
 sources/0 = SubResource("TileSetAtlasSource_bhwwd")
 
+[sub_resource type="Resource" id="Resource_arcjp"]
+script = ExtResource("19_wgh4l")
+interaction_radius = 200.0
+metadata/_custom_type_script = "uid://bi43xj8ctf3ny"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vfqx"]
 bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
 
@@ -46,11 +51,6 @@ bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
 shader = ExtResource("20_iokjm")
 shader_parameter/intensity = 0.0
 shader_parameter/time_scale = 1.2
-
-[sub_resource type="Resource" id="Resource_arcjp"]
-script = ExtResource("19_wgh4l")
-interaction_radius = 200.0
-metadata/_custom_type_script = "uid://bi43xj8ctf3ny"
 
 [node name="GameWorld" type="Node2D" unique_id=1299650942]
 script = ExtResource("1_0biqy")
@@ -73,6 +73,13 @@ tile_set = SubResource("TileSet_pdbwf")
 
 [node name="Player" parent="." unique_id=1205687715 instance=ExtResource("2_47u71")]
 position = Vector2(-92, 141)
+
+[node name="BlackHole" parent="." unique_id=585464348 instance=ExtResource("19_iokjm")]
+position = Vector2(165, -83)
+data = SubResource("Resource_arcjp")
+
+[node name="MainCamera" parent="." unique_id=1322683729 node_paths=PackedStringArray("target") instance=ExtResource("19_fg3oe")]
+target = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=73551857]
 
@@ -238,10 +245,3 @@ theme_override_font_sizes/font_size = 7
 text = "Must orbit the galaxy at a stable distance to absorb it
 "
 autowrap_mode = 2
-
-[node name="BlackHole" parent="." unique_id=585464348 instance=ExtResource("19_iokjm")]
-position = Vector2(165, -83)
-data = SubResource("Resource_arcjp")
-
-[node name="MainCamera" parent="." unique_id=1322683729 node_paths=PackedStringArray("target") instance=ExtResource("19_fg3oe")]
-target = NodePath("../Player")

@@ -24,7 +24,7 @@ script = ExtResource("1_ke8lo")
 position = Vector2(160, 90)
 texture = ExtResource("2_o0nwa")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=137655603]
+[node name="StarParticles" type="GPUParticles2D" parent="." unique_id=137655603]
 position = Vector2(-31, 90)
 amount = 100
 lifetime = 80.0
