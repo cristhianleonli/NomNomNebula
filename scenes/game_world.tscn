@@ -47,12 +47,41 @@ shader_parameter/time_scale = 1.2
 [node name="GameWorld" type="Node2D" unique_id=1299650942]
 script = ExtResource("1_0biqy")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1831694540]
+[node name="BackgroundContainer" type="Node2D" parent="." unique_id=538398810]
+
+[node name="Background" type="Sprite2D" parent="BackgroundContainer" unique_id=1831694540]
 texture_repeat = 2
-position = Vector2(-165, 46)
 texture = ExtResource("5_iokjm")
 region_enabled = true
-region_rect = Rect2(0, 0, 2000, 2000)
+region_rect = Rect2(0, 0, 1920, 1920)
+
+[node name="BgL" type="Sprite2D" parent="BackgroundContainer" unique_id=2056241051]
+texture_repeat = 2
+position = Vector2(-1920, 0)
+texture = ExtResource("5_iokjm")
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1920)
+
+[node name="BgR" type="Sprite2D" parent="BackgroundContainer" unique_id=1902507707]
+texture_repeat = 2
+position = Vector2(1920, 0)
+texture = ExtResource("5_iokjm")
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1920)
+
+[node name="BgU" type="Sprite2D" parent="BackgroundContainer" unique_id=1255667699]
+texture_repeat = 2
+position = Vector2(0, -1920)
+texture = ExtResource("5_iokjm")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 1920)
+
+[node name="BgD" type="Sprite2D" parent="BackgroundContainer" unique_id=1531849693]
+texture_repeat = 2
+position = Vector2(0, 1920)
+texture = ExtResource("5_iokjm")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 1920)
 
 [node name="AnimationComponent" type="Node2D" parent="." unique_id=1041619207]
 script = ExtResource("2_odt01")
@@ -225,9 +254,9 @@ autowrap_mode = 2
 
 [node name="Stats" type="Panel" parent="CanvasLayer" unique_id=662466889]
 offset_left = 4.0
-offset_top = 128.0
+offset_top = 125.0
 offset_right = 75.0
-offset_bottom = 175.0
+offset_bottom = 172.0
 script = ExtResource("22_wgh4l")
 
 [node name="Label" type="Label" parent="CanvasLayer/Stats" unique_id=1993111840]

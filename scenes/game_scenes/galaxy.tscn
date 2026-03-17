@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://b5nxg5x7mydn4" path="res://shaders/galaxy_distortion.gdshader" id="3_4oih2"]
 [ext_resource type="Script" uid="uid://dkmph7m6e1a2x" path="res://scripts/state_machine.gd" id="3_nbxba"]
 [ext_resource type="Texture2D" uid="uid://dk6percugxa6w" path="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 3.0.png" id="3_uaiqi"]
+[ext_resource type="Script" uid="uid://bn6wfo5m712rk" path="res://scripts/movement_wrap.gd" id="3_y80rp"]
 [ext_resource type="Script" uid="uid://iccc1ul8qm2x" path="res://scripts/galaxy/galaxy_idle_state.gd" id="4_xxujj"]
 [ext_resource type="Texture2D" uid="uid://d1w83g3n0qmim" path="res://resources/Art/Galaxy Sprite Sheets/Smaller galaxy 1.0.png" id="4_y80rp"]
 [ext_resource type="Texture2D" uid="uid://beslbylfv2lgf" path="res://resources/Art/Galaxy Sprite Sheets/Larger galaxy 1.0.png" id="5_dltvo"]
@@ -387,6 +388,9 @@ radius = 50.0
 [node name="Galaxy" type="Node2D" unique_id=1049821020]
 script = ExtResource("1_n7ltq")
 data = ExtResource("2_uaiqi")
+
+[node name="MovementWrap" type="Node2D" parent="." unique_id=1419832210]
+script = ExtResource("3_y80rp")
 
 [node name="InteractionAreaOuter" type="Sprite2D" parent="." unique_id=827481830]
 visible = false

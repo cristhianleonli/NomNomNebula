@@ -26,7 +26,7 @@ func update(delta: float) -> void:
 	var force: Vector2 = calc_force(delta)
 	
 	Globals.player.apply_force(force)
-	target.global_position = galaxy.global_position + _get_offset_to_player()* -1.0 * 0.5
+	target.global_position = galaxy.global_position + _get_offset_to_player() * -1.0 * 0.5
 
 	if not is_inside:
 		absorbing_timer -= delta
