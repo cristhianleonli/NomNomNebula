@@ -18,12 +18,10 @@ func _show_stats() -> void:
 	var video_mem: float = Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED)
 	var draw_calls: float = Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)
 
-	label.text = "FPS: %d\nStatic Mem: %.2f MB\nStatic Max: %.2f MB\nVRAM: %.2f MB\nDraw Calls: %d\nInput Scheme: %s" % [
+	label.text = "FPS: %d\nStatic Mem: %.2f MB\nStatic Max: %.2f MB\nVRAM: %.2f MB\nDraw Calls: %d" % [
 		fps,
 		mem_static / 1024.0 / 1024.0,
 		mem_static_max / 1024.0 / 1024.0,
 		video_mem / 1024.0 / 1024.0,
-		draw_calls,
-		"KBM"
-		#InputManager.Scheme.keys()[InputManager.current_scheme]
+		draw_calls
 	]

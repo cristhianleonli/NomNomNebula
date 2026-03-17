@@ -59,3 +59,9 @@ func _on_game_state_changed(state: GameWorld.GameState) -> void:
 		GameWorld.GameState.FINISHED:
 			#audio_player.stop()
 			pass
+
+func is_good_galaxy() -> bool:
+	return data.is_good_galaxy
+
+func uid() -> String:
+	return data.uid

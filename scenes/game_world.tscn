@@ -3,16 +3,18 @@
 [ext_resource type="Script" uid="uid://bc4t2ev56ebnm" path="res://scripts/game_world.gd" id="1_0biqy"]
 [ext_resource type="PackedScene" uid="uid://ot3b6jppp04d" path="res://scenes/game_scenes/player.tscn" id="2_47u71"]
 [ext_resource type="Script" uid="uid://bo0y5ea02unt7" path="res://scripts/animation_component.gd" id="2_odt01"]
+[ext_resource type="Script" uid="uid://7amxt2ic65vm" path="res://scripts/minimap_markers.gd" id="3_5nmku"]
 [ext_resource type="PackedScene" uid="uid://exsf0igc7o8v" path="res://scenes/ui/dash_panel.tscn" id="3_ywgp6"]
-[ext_resource type="Script" uid="uid://cxkmvv3xyv3iv" path="res://scripts/minimap.gd" id="4_0vfqx"]
 [ext_resource type="Texture2D" uid="uid://c08sriydsk3fv" path="res://resources/Art/Background tilemap.png" id="5_iokjm"]
 [ext_resource type="Texture2D" uid="uid://h8thuxv38bgh" path="res://resources/Art/icons/keyboard_s.png" id="6_u1jpj"]
 [ext_resource type="Script" uid="uid://p0weimq4puxh" path="res://scripts/galaxy_spawner.gd" id="7_iokjm"]
 [ext_resource type="Texture2D" uid="uid://b0ng54pfpsfq7" path="res://resources/Art/icons/keyboard_w.png" id="7_uh34q"]
 [ext_resource type="PackedScene" uid="uid://ge3n0d66rcq8" path="res://scenes/game_scenes/galaxy.tscn" id="8_fg3oe"]
 [ext_resource type="Texture2D" uid="uid://dq7ue6vtdx1jb" path="res://resources/Art/icons/keyboard_a.png" id="8_ph1f2"]
+[ext_resource type="Script" uid="uid://b57h78r6ydopc" path="res://scripts/minimap_camera.gd" id="8_y5rsn"]
+[ext_resource type="Resource" uid="uid://bt1bbrc3g1atx" path="res://scripts/galaxy/data/galaxy_2.tres" id="9_0y38y"]
+[ext_resource type="Texture2D" uid="uid://b0brg6q7c4jai" path="res://resources/Art/player_marker.png" id="9_kbri5"]
 [ext_resource type="Texture2D" uid="uid://cqqm3gsucj7e6" path="res://resources/Art/icons/keyboard_d.png" id="9_odt01"]
-[ext_resource type="Texture2D" uid="uid://dhlotgbyppyj6" path="res://resources/Art/godot_logo.png" id="11_arcjp"]
 [ext_resource type="PackedScene" uid="uid://deemgxdklxpvu" path="res://scenes/ui/pause_menu.tscn" id="11_odt01"]
 [ext_resource type="Texture2D" uid="uid://bwgjk5vsqnrxm" path="res://resources/Art/icons/gear.png" id="11_ph1f2"]
 [ext_resource type="Script" uid="uid://1hy21bsnn0ng" path="res://scripts/ui/galaxy_info_panel.gd" id="17_oyepb"]
@@ -23,12 +25,17 @@
 [ext_resource type="Script" uid="uid://bi43xj8ctf3ny" path="res://scripts/data/black_hole_data.gd" id="19_wgh4l"]
 [ext_resource type="Shader" uid="uid://d1clynis8x1u3" path="res://shaders/stabilization_screen.gdshader" id="20_iokjm"]
 [ext_resource type="Script" uid="uid://b7dq2ueha14dg" path="res://scripts/ui/stats_panel.gd" id="22_wgh4l"]
-[ext_resource type="Texture2D" uid="uid://6yo25fpoqpne" path="res://resources/Art/minimap_marker.png" id="24_0y38y"]
 
 [sub_resource type="Resource" id="Resource_arcjp"]
 script = ExtResource("19_wgh4l")
 interaction_radius = 200.0
 metadata/_custom_type_script = "uid://bi43xj8ctf3ny"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbri5"]
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5nmku"]
+viewport_path = NodePath("MinimapViewport")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iokjm"]
 
@@ -36,10 +43,6 @@ metadata/_custom_type_script = "uid://bi43xj8ctf3ny"
 shader = ExtResource("20_iokjm")
 shader_parameter/intensity = 0.0
 shader_parameter/time_scale = 1.2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y38y"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nmku"]
 
 [node name="GameWorld" type="Node2D" unique_id=1299650942]
 script = ExtResource("1_0biqy")
@@ -60,23 +63,25 @@ script = ExtResource("2_odt01")
 position = Vector2(582, -106)
 data = SubResource("Resource_arcjp")
 
+[node name="MinimapViewport" type="SubViewport" parent="." unique_id=1553471907]
+transparent_bg = true
+size = Vector2i(40, 40)
+
+[node name="MinimapMarkers" type="Node2D" parent="MinimapViewport" unique_id=126354874]
+script = ExtResource("3_5nmku")
+
+[node name="Camera2D" type="Camera2D" parent="MinimapViewport" unique_id=661071147]
+script = ExtResource("8_y5rsn")
+
 [node name="GalaxySpawner" type="Node2D" parent="." unique_id=920155787]
 script = ExtResource("7_iokjm")
 
 [node name="Galaxy" parent="GalaxySpawner" unique_id=1049821020 instance=ExtResource("8_fg3oe")]
-position = Vector2(-466, -86)
+position = Vector2(-228, -172)
 
-[node name="Galaxy2" parent="GalaxySpawner" unique_id=891875615 instance=ExtResource("8_fg3oe")]
-position = Vector2(509, 397)
-
-[node name="Galaxy3" parent="GalaxySpawner" unique_id=516615975 instance=ExtResource("8_fg3oe")]
-position = Vector2(-548, 446)
-
-[node name="Galaxy4" parent="GalaxySpawner" unique_id=1002740323 instance=ExtResource("8_fg3oe")]
-position = Vector2(309, 330)
-
-[node name="Galaxy5" parent="GalaxySpawner" unique_id=123489204 instance=ExtResource("8_fg3oe")]
-position = Vector2(-171, 470)
+[node name="Galaxy2" parent="GalaxySpawner" unique_id=2030794579 instance=ExtResource("8_fg3oe")]
+position = Vector2(213, -167)
+data = ExtResource("9_0y38y")
 
 [node name="MainCamera" parent="." unique_id=1322683729 node_paths=PackedStringArray("target") instance=ExtResource("19_fg3oe")]
 target = NodePath("../Player")
@@ -198,27 +203,6 @@ horizontal_alignment = 1
 
 [node name="StabilizationPanel" parent="CanvasLayer" unique_id=2092434660 instance=ExtResource("18_xxaiy")]
 
-[node name="StabilizationScreenFX" type="Panel" parent="CanvasLayer" unique_id=1651400057]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_iokjm")
-script = ExtResource("19_mf52o")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/StabilizationScreenFX" unique_id=2083616152]
-material = SubResource("ShaderMaterial_fg3oe")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1110686936 instance=ExtResource("11_odt01")]
 visible = false
 
@@ -256,48 +240,23 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 4
 text = "asdasd"
 
-[node name="Minmap" type="Panel" parent="CanvasLayer" unique_id=18628650]
-clip_children = 1
-offset_left = 276.0
-offset_top = 136.0
-offset_right = 316.0
-offset_bottom = 176.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_0y38y")
-script = ExtResource("4_0vfqx")
+[node name="MinimapPanel" type="Panel" parent="CanvasLayer" unique_id=1504764070]
+offset_left = 271.0
+offset_top = 134.0
+offset_right = 311.0
+offset_bottom = 174.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kbri5")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Minmap" unique_id=1130124232]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.09411765, 0.09411765, 0.09411765, 1)
-
-[node name="Map" type="Panel" parent="CanvasLayer/Minmap" unique_id=2109627909]
-layout_mode = 0
-offset_left = -75.0
-offset_top = -74.0
-offset_right = 125.0
-offset_bottom = 126.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_5nmku")
-
-[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Minmap/Map" unique_id=1503752240]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MinimapPanel" unique_id=1855945182]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -9.5
-offset_top = -10.0
-offset_right = 9.5
-offset_bottom = 10.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_arcjp")
-expand_mode = 1
-stretch_mode = 5
+texture = SubResource("ViewportTexture_5nmku")
 
-[node name="PlayerTexture" type="TextureRect" parent="CanvasLayer/Minmap" unique_id=1756743508]
-modulate = Color(0.2627451, 1, 1, 1)
+[node name="PlayerMarker" type="TextureRect" parent="CanvasLayer/MinimapPanel" unique_id=331728141]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -310,4 +269,25 @@ offset_right = 8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("24_0y38y")
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("9_kbri5")
+
+[node name="StabilizationScreenFX" type="Panel" parent="CanvasLayer" unique_id=1651400057]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iokjm")
+script = ExtResource("19_mf52o")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/StabilizationScreenFX" unique_id=2083616152]
+material = SubResource("ShaderMaterial_fg3oe")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

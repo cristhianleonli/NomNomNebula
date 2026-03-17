@@ -10,7 +10,7 @@ extends Node
 @onready var absortion_tutorial: Panel = $CanvasLayer/AbsortionTutorial
 @onready var main_camera: MainCamera = $MainCamera
 @onready var galaxy_spawner: GalaxySpawner = $GalaxySpawner
-#@onready var minimap: Minimap = $Minimap
+@onready var minimap_markers: MinimapMarkers = $MinimapViewport/MinimapMarkers
 
 enum GameState {
 	ONGOING, PAUSED, FINISHED
@@ -37,7 +37,7 @@ func _ready() -> void:
 	)
 	
 	absortion_tutorial.visible = false
-	#minimap.set_galaxies(galaxy_spawner.get_visible_galaxies())
+	minimap_markers.set_galaxies(galaxy_spawner.get_visible_galaxies())
 	
 	EventManager.on_attracting_player.connect(_on_start_tutorial)
 	EventManager.on_player_destabilized.connect(_on_game_over)
@@ -59,20 +59,20 @@ func _process(_delta: float) -> void:
 
 func _handle_player_wrapping() -> void:
 	return
-	var world_size: Vector2 = Vector2(2000, 2000)
-	var pos: Vector2 = player.global_position
-
-	if pos.x > world_size.x:
-		pos.x -= world_size.x
-	elif pos.x < 0:
-		pos.x += world_size.x
-
-	if pos.y > world_size.y:
-		pos.y -= world_size.y
-	elif pos.y < 0:
-		pos.y += world_size.y
-
-	player.global_position = pos
+	#var world_size: Vector2 = Vector2(2000, 2000)
+	#var pos: Vector2 = player.global_position
+#
+	#if pos.x > world_size.x:
+		#pos.x -= world_size.x
+	#elif pos.x < 0:
+		#pos.x += world_size.x
+#
+	#if pos.y > world_size.y:
+		#pos.y -= world_size.y
+	#elif pos.y < 0:
+		#pos.y += world_size.y
+#
+	#player.global_position = pos
 
 func _on_start_tutorial():
 	if Globals.current_save.is_first_time:
