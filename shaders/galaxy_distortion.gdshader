@@ -1,14 +1,10 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-uniform sampler2D screen : hint_screen_texture;
-
 uniform vec2 resolution = vec2(64, 64);
 uniform float colorResolution : hint_range(0.0, 100.0, 1.0) = 100.0; //Amount of colors per channel
 
-//Warp Uniforms
-uniform float distortionIntensity : hint_range(-10.0, 10.0, 0.1) = 1.0;
-uniform float spiralDistortionIntensity : hint_range(-10.0, 10.0, 0.1) = 1.0;
+//Hole Uniforms
 uniform float holeSize : hint_range(0.0, 0.5, 0.01) = 0.2;
 uniform sampler2D holeColor; //Use a gradient
 
@@ -30,11 +26,7 @@ vec2 toPolar(vec2 cartesian){
 void fragment() {
 	vec2 qUV = floor(UV * resolution) / resolution;
 
-	vec4 c = vec4(1.0);
 	float centerDis = distance(qUV, vec2(0.5, 0.5));
-	vec2 clipUV = UV * 2.0 - 1.0;
-	vec2 iResolution = 1.0 / TEXTURE_PIXEL_SIZE;
-	clipUV.x *= iResolution.x / iResolution.y;
 	vec2 offsetUV = vec2(qUV.x - 0.5, qUV.y - 0.5);
 	vec2 polarUV = toPolar(offsetUV);
 	polarUV.x *= rotations;
@@ -48,18 +40,18 @@ void fragment() {
 	halo.a *= smoothstep(0.0, 0.5, 0.5 - centerDis);
 	halo.rgb = ceil(halo.rgb * colorResolution) / colorResolution;
 
-	//Screen Warp
-	float ring = 1.0 - abs(length(clipUV));
-	ring = smoothstep(0.0, 1.0, ring);
-	vec2 offset = TEXTURE_PIXEL_SIZE * ring * normalize(clipUV);
-	vec2 spiralOffset = TEXTURE_PIXEL_SIZE * max(0.0, 0.5 - centerDis) * vec2(0.5 - polarTex.r);
-	vec4 s = texture(screen, SCREEN_UV + offset * distortionIntensity + spiralOffset * spiralDistortionIntensity);
-	c.rgb = mix(s.rgb, halo.rgb * 3.0, halo.a);
-
 	//Black Hole
 	float blackHole = smoothstep(holeSize - 0.05, holeSize, centerDis);
 	vec4 hc = texture(holeColor, vec2(smoothstep(0.0, holeSize, centerDis)));
+
+	// Combine: halo visible area + black hole center
+	vec4 c = vec4(0.0); // Start fully transparent
+	c.rgb = halo.rgb * 3.0;
+	c.a = halo.a;
+
+	// Mix in black hole color at the center
 	c.rgb = mix(c.rgb, hc.rgb, 1.0 - blackHole);
+	c.a = max(c.a, 1.0 - blackHole); // Black hole center is fully opaque
 
 	COLOR = c;
 }

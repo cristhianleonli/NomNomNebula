@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://iccc1ul8qm2x" path="res://scripts/galaxy/galaxy_idle_state.gd" id="4_xxujj"]
 [ext_resource type="Texture2D" uid="uid://d0i2dq4b2ljw2" path="res://icon.svg" id="5_nxljd"]
 [ext_resource type="Script" uid="uid://sunbyn5fx5l1" path="res://scripts/galaxy/galaxy_attach_state.gd" id="6_pctnl"]
-[ext_resource type="Script" uid="uid://btwfig6s12las" path="res://scripts/galaxy/galaxy_desintegrate.gd" id="7_0t61a"]
+[ext_resource type="Script" uid="uid://btwfig6s12las" path="res://scripts/galaxy/galaxy_desintegrate_state.gd" id="7_0t61a"]
 [ext_resource type="AudioStream" uid="uid://rdta85sr06yv" path="res://audio/sounds/Low Rumble Loop 3.wav" id="10_po1id"]
 
 [sub_resource type="Gradient" id="Gradient_ky37o"]
@@ -105,8 +105,6 @@ gradient = SubResource("Gradient_nxljd")
 shader = ExtResource("3_4oih2")
 shader_parameter/resolution = Vector2(32, 32)
 shader_parameter/colorResolution = 100.0
-shader_parameter/distortionIntensity = 1.0
-shader_parameter/spiralDistortionIntensity = 1.0
 shader_parameter/holeSize = 0.0
 shader_parameter/image = ExtResource("5_nxljd")
 shader_parameter/rotations = 1.0
