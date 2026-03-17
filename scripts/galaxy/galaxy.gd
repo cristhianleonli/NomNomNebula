@@ -1,6 +1,8 @@
 class_name Galaxy
 extends Node2D
 
+const VORTEX_MATERIAL: Resource = preload("uid://jske8d54cs0g")
+
 @export var data: GalaxyData
 @export var scaling_speed: float = 1
 
@@ -21,11 +23,13 @@ func _ready() -> void:
 	size = data.size
 	
 	#apply shader parameters
-	var halo : Gradient = Gradient.new()
+	var halo: Gradient = Gradient.new()
 	halo.set_color(0, data.halo_color1)
 	halo.set_color(1, data.halo_color2)
-	var tex : GradientTexture1D = GradientTexture1D.new()
+	var tex: GradientTexture1D = GradientTexture1D.new()
 	tex.gradient = halo
+	
+	vortex_effect.material = VORTEX_MATERIAL.duplicate()
 	vortex_effect.material.set_shader_parameter('haloColor', tex)
 	
 	animation.play(data.animation)

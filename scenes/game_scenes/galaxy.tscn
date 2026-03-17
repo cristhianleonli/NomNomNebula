@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dpqwcej6nfhgq" path="res://scripts/galaxy/galaxy.gd" id="1_n7ltq"]
 [ext_resource type="Texture2D" uid="uid://bi3ek0ijq6v3m" path="res://resources/Art/Galaxy Sprite Sheets/Larger galaxy 2.0.png" id="2_e83e5"]
 [ext_resource type="Resource" uid="uid://baxkohgisu4jk" path="res://scripts/galaxy/data/galaxy_1.tres" id="2_uaiqi"]
-[ext_resource type="Shader" uid="uid://b5nxg5x7mydn4" path="res://shaders/galaxy_distortion.gdshader" id="3_4oih2"]
 [ext_resource type="Script" uid="uid://dkmph7m6e1a2x" path="res://scripts/state_machine.gd" id="3_nbxba"]
 [ext_resource type="Texture2D" uid="uid://dk6percugxa6w" path="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 3.0.png" id="3_uaiqi"]
 [ext_resource type="Script" uid="uid://bn6wfo5m712rk" path="res://scripts/movement_wrap.gd" id="3_y80rp"]
@@ -357,26 +356,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_uaiqi"]
-offsets = PackedFloat32Array(0, 0.9402985)
-colors = PackedColorArray(0.69411767, 0.30588236, 0.06666667, 1, 0.85435706, 0, 0.11140437, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_y80rp"]
-gradient = SubResource("Gradient_uaiqi")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e83e5"]
-shader = ExtResource("3_4oih2")
-shader_parameter/resolution = Vector2(32, 32)
-shader_parameter/colorResolution = 100.0
-shader_parameter/holeSize = 0.0499999988824
-shader_parameter/image = ExtResource("5_nxljd")
-shader_parameter/rotations = 1.0
-shader_parameter/depth = 0.5
-shader_parameter/spiralIntensity = 1.0
-shader_parameter/shrinkSpeed = 0.2
-shader_parameter/roationSpeed = 0.1
-shader_parameter/haloColor = SubResource("GradientTexture1D_y80rp")
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0t61a"]
 radius = 40.0
 
@@ -409,7 +388,6 @@ animation = &"orange"
 frame_progress = 0.7738494
 
 [node name="VortexEffect" type="Sprite2D" parent="." unique_id=998042952]
-material = SubResource("ShaderMaterial_e83e5")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_nxljd")
 

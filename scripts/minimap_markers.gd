@@ -26,12 +26,6 @@ func set_galaxies(new_galaxies: Array) -> void:
 		if not galaxy_markers.has(id):
 			var marker: Sprite2D = Sprite2D.new()
 			marker.texture = MINIMAP_MARKER
-			
-			if galaxy.is_good_galaxy():
-				marker.modulate = Color.GREEN
-			else:
-				marker.modulate = Color.RED
-			
 			marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			marker.centered = true
 

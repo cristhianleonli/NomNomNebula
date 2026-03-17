@@ -86,6 +86,15 @@ region_rect = Rect2(0, 0, 5760, 1920)
 [node name="AnimationComponent" type="Node2D" parent="." unique_id=1041619207]
 script = ExtResource("2_odt01")
 
+[node name="Galaxy2" parent="." unique_id=2030794579 instance=ExtResource("8_fg3oe")]
+visible = false
+position = Vector2(213, -167)
+data = ExtResource("9_0y38y")
+
+[node name="Galaxy" parent="." unique_id=1049821020 instance=ExtResource("8_fg3oe")]
+visible = false
+position = Vector2(-228, -172)
+
 [node name="Player" parent="." unique_id=1205687715 instance=ExtResource("2_47u71")]
 
 [node name="BlackHole" parent="." unique_id=585464348 instance=ExtResource("19_iokjm")]
@@ -104,13 +113,6 @@ script = ExtResource("8_y5rsn")
 
 [node name="GalaxySpawner" type="Node2D" parent="." unique_id=920155787]
 script = ExtResource("7_iokjm")
-
-[node name="Galaxy" parent="GalaxySpawner" unique_id=1049821020 instance=ExtResource("8_fg3oe")]
-position = Vector2(-228, -172)
-
-[node name="Galaxy2" parent="GalaxySpawner" unique_id=2030794579 instance=ExtResource("8_fg3oe")]
-position = Vector2(213, -167)
-data = ExtResource("9_0y38y")
 
 [node name="MainCamera" parent="." unique_id=1322683729 node_paths=PackedStringArray("target") instance=ExtResource("19_fg3oe")]
 target = NodePath("../Player")
