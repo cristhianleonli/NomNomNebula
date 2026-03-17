@@ -13,8 +13,15 @@ signal on_finish
 var save: SaveGame
 
 func _ready() -> void:
-	resume_button.pressed.connect(func() -> void: on_resume.emit())
-	exit_button.pressed.connect(func() -> void: on_finish.emit())
+	resume_button.pressed.connect(func() -> void:
+		on_resume.emit()
+		AudioManager.play_sfx(AudioManager.tracks.click)
+	)
+	
+	exit_button.pressed.connect(func() -> void:
+		on_finish.emit()
+		AudioManager.play_sfx(AudioManager.tracks.click)
+	)
 	
 	if Flags.is_debug():
 		delete_button.pressed.connect(func() -> void:
@@ -57,6 +64,7 @@ func _subscribe_to_sliders() -> void:
 			save.music_level = int(music_slider.value)
 			DataManager.write_save(save)
 			AudioManager.configure_audio_server(save.sfx_level, save.music_level)
+			AudioManager.play_sfx(AudioManager.tracks.hover)
 	)
 	
 	effects_slider.drag_ended.connect(func(value_changed: bool) -> void:
@@ -64,4 +72,5 @@ func _subscribe_to_sliders() -> void:
 			save.sfx_level = int(effects_slider.value)
 			DataManager.write_save(save)
 			AudioManager.configure_audio_server(save.sfx_level, save.music_level)
+			AudioManager.play_sfx(AudioManager.tracks.hover)
 	)

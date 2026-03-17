@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ot3b6jppp04d"]
 
 [ext_resource type="Script" uid="uid://by8bmmu5nu88p" path="res://scripts/player/player.gd" id="1_fdpfy"]
+[ext_resource type="Script" uid="uid://i18xqufr6gud" path="res://scripts/player/player_movement.gd" id="3_bhlyf"]
 [ext_resource type="Script" uid="uid://bn6wfo5m712rk" path="res://scripts/movement_wrap.gd" id="4_0lqrc"]
 [ext_resource type="Script" uid="uid://u0bc1marrjav" path="res://scripts/player/dash_component.gd" id="4_8ut53"]
 [ext_resource type="Script" uid="uid://cdsyiosey41jg" path="res://scripts/player/stabilization_component.gd" id="5_2ue4q"]
@@ -21,6 +22,10 @@ radius = 22.090721
 [node name="Player" type="Node2D" unique_id=1205687715]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_fdpfy")
+
+[node name="PlayerMovement" type="Node2D" parent="." unique_id=1515665023 node_paths=PackedStringArray("player")]
+script = ExtResource("3_bhlyf")
+player = NodePath("..")
 
 [node name="MovementWrap" type="Node2D" parent="." unique_id=1647192220]
 script = ExtResource("4_0lqrc")

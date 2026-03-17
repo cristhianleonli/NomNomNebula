@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	
 	if shake_strength > 0:
 		position += get_random_offset()
-		shake_strength = lerpf(shake_strength, 0, 5.0*delta)
+		shake_strength = lerpf(shake_strength, 0, 5.0 * delta)
 		
 	position += (target.global_position - global_position)/follow_reduction_factor * delta
 	zoom = lerp(zoom, target_zoom, zoom_speed*delta)
