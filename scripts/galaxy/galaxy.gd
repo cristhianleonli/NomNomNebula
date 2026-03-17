@@ -6,7 +6,6 @@ extends Node2D
 
 @onready var animation: AnimatedSprite2D = get_node("Animation")
 @onready var timer_label: Label = $TimerLabel
-@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var interaction_collision_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
 @onready var vortex_effect: Sprite2D = $VortexEffect
 
@@ -52,8 +51,11 @@ func _on_interaction_area_mouse_exited() -> void:
 func _on_game_state_changed(state: GameWorld.GameState) -> void:
 	match state:
 		GameWorld.GameState.ONGOING:
-			audio_player.play()
+			#audio_player.play()
+			pass
 		GameWorld.GameState.PAUSED:
-			audio_player.stop()
+			#audio_player.stop()
+			pass
 		GameWorld.GameState.FINISHED:
-			audio_player.stop()
+			#audio_player.stop()
+			pass

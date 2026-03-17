@@ -1,3 +1,4 @@
+class_name MainCamera
 extends Camera2D
 
 var zoom_target : Vector2 = Vector2(1.0, 1.0)

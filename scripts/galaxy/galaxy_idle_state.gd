@@ -14,7 +14,7 @@ func update(_delta: float) -> void:
 	add_random_velocity()
 
 func start_attraction_state(_area: Area2D) -> void:
-	change_state.emit(self, "attach")
+	change_state.emit(self, "attract")
 
 func add_random_velocity() -> void:
 	var random_direction: float = randf_range(-PI, PI)

@@ -8,6 +8,7 @@ extends Node
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var galaxy_info_panel: GalaxyInfoPanel = $CanvasLayer/GalaxyInfoPanel
 @onready var absortion_tutorial: Panel = $CanvasLayer/AbsortionTutorial
+@onready var main_camera: MainCamera = $MainCamera
 
 enum GameState {
 	ONGOING, PAUSED, FINISHED
@@ -20,6 +21,8 @@ var showing_absortion_tutorial: bool = false
 
 func _ready() -> void:
 	Globals.player = player
+	Globals.game_camera = main_camera
+	
 	dash_panel.setup(player.get_dash_count())
 	
 	_setup_tooltip_timer()
@@ -33,7 +36,7 @@ func _ready() -> void:
 	
 	absortion_tutorial.visible = false
 	
-	EventManager.on_attaching_player.connect(_on_start_tutorial)
+	EventManager.on_attracting_player.connect(_on_start_tutorial)
 	EventManager.on_player_destabilized.connect(_on_game_over)
 	EventManager.on_tooltip_show.connect(_on_galaxy_tooltip_show)
 	EventManager.on_tooltip_hide.connect(_on_galaxy_tooltip_hide)

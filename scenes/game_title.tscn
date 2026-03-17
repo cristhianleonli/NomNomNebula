@@ -27,7 +27,7 @@ texture = ExtResource("2_o0nwa")
 [node name="StarParticles" type="GPUParticles2D" parent="." unique_id=137655603]
 position = Vector2(-31, 90)
 amount = 100
-lifetime = 80.0
+lifetime = 60.0
 preprocess = 100.0
 process_material = SubResource("ParticleProcessMaterial_o0nwa")
 

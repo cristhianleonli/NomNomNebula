@@ -8,6 +8,7 @@ const POINTER_C: Resource = preload("uid://b085nphr6bvo4")
 
 func _ready() -> void:
 	_load_save()
+	_clear_globals()
 	
 	var save: SaveGame = _load_save()
 	
@@ -27,6 +28,11 @@ func _ready() -> void:
 	
 	_setup_ui()
 
+func _clear_globals() -> void:
+	Globals.player = null
+	Globals.current_score = -1
+	Globals.game_camera = null
+	
 func _load_save() -> SaveGame:
 	var saves = DataManager.load_all_saves()
 	var save: SaveGame

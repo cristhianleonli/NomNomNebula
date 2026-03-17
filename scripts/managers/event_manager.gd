@@ -17,11 +17,12 @@ signal on_dash_fully_recovered
 signal on_dash_recover_progress(progress: float)
 
 signal on_player_absorbed
-signal on_attaching_player
+signal on_attracting_player
 signal on_player_destabilized
 signal on_stabilization_changed(data: Dictionary)
 signal on_stabilization_warning
 signal on_stabilization_warning_end
+signal on_galaxies_updated(data: Dictionary)
 #endregion
 
 @warning_ignore_restore("unused_signal")

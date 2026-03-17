@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dxmyt2nsf77jq" path="res://audio/sounds/Abstract2.mp3" id="7_d16nq"]
 [ext_resource type="AudioStream" uid="uid://bpb36h71m85n0" path="res://audio/sounds/Ratchet_Click_1.mp3" id="7_s34iw"]
 [ext_resource type="AudioStream" uid="uid://b1gjtho0xxfqd" path="res://audio/sounds/Digital Click 12.wav" id="8_7rb6b"]
-[ext_resource type="AudioStream" uid="uid://mogetiy4d4i1" path="res://audio/sounds/Laser Saber 1_3.wav" id="8_lelip"]
+[ext_resource type="AudioStream" uid="uid://c1xpbjn53xrdx" path="res://audio/sounds/Impact 3.wav" id="9_jnt4g"]
 [ext_resource type="AudioStream" uid="uid://dukrjox0dco1q" path="res://audio/sounds/Main song wip V1.mp3" id="10_jnt4g"]
 [ext_resource type="AudioStream" uid="uid://0xdt4tdyyt7m" path="res://audio/sounds/Abstract1.mp3" id="10_lelip"]
 [ext_resource type="AudioStream" uid="uid://cfac3xt8pe2uf" path="res://audio/sounds/main track 1 wip.mp3" id="13_7rb6b"]
@@ -25,7 +25,6 @@ metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 [sub_resource type="Resource" id="Resource_ndm53"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("3_jnt4g")
-volume_db = -5.0
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_w1bj7"]
@@ -62,8 +61,9 @@ metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_lqfd0"]
 script = ExtResource("1_ixyf6")
-source = ExtResource("8_lelip")
-pitch_randomness = 0.1
+source = ExtResource("9_jnt4g")
+volume_db = -5.0
+pitch_randomness = 0.05
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_uhasv"]
