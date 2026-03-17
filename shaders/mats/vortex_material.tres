@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d0i2dq4b2ljw2" path="res://icon.svg" id="2_iejts"]
 
 [sub_resource type="Gradient" id="Gradient_uaiqi"]
-offsets = PackedFloat32Array(0, 0.9402985)
-colors = PackedColorArray(0.69411767, 0.30588236, 0.06666667, 1, 0.85435706, 0, 0.11140437, 1)
+offsets = PackedFloat32Array(0, 0.8731343)
+colors = PackedColorArray(0.6333175, 0.3605915, 0.04308795, 1, 1, 0.56078434, 0.40784314, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_y80rp"]
 gradient = SubResource("Gradient_uaiqi")
@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_uaiqi")
 shader = ExtResource("1_1kh6u")
 shader_parameter/resolution = Vector2(32, 32)
 shader_parameter/colorResolution = 100.0
-shader_parameter/holeSize = 0.0499999988824
+shader_parameter/holeSize = 0.07999999821184
 shader_parameter/image = ExtResource("2_iejts")
 shader_parameter/rotations = 1.0
 shader_parameter/depth = 0.5

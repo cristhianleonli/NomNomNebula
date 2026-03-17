@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dpqwcej6nfhgq" path="res://scripts/galaxy/galaxy.gd" id="1_n7ltq"]
 [ext_resource type="Texture2D" uid="uid://bi3ek0ijq6v3m" path="res://resources/Art/Galaxy Sprite Sheets/Larger galaxy 2.0.png" id="2_e83e5"]
-[ext_resource type="Resource" uid="uid://baxkohgisu4jk" path="res://scripts/galaxy/data/galaxy_1.tres" id="2_uaiqi"]
+[ext_resource type="Script" uid="uid://bic5q004n1cfh" path="res://scripts/data/buff_debuff_data.gd" id="2_uaiqi"]
 [ext_resource type="Script" uid="uid://dkmph7m6e1a2x" path="res://scripts/state_machine.gd" id="3_nbxba"]
 [ext_resource type="Texture2D" uid="uid://dk6percugxa6w" path="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 3.0.png" id="3_uaiqi"]
 [ext_resource type="Script" uid="uid://bn6wfo5m712rk" path="res://scripts/movement_wrap.gd" id="3_y80rp"]
@@ -13,6 +13,11 @@
 [ext_resource type="Script" uid="uid://sunbyn5fx5l1" path="res://scripts/galaxy/galaxy_attach_state.gd" id="6_pctnl"]
 [ext_resource type="Texture2D" uid="uid://43825t84jvkq" path="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 2.0.png" id="6_pdkth"]
 [ext_resource type="Script" uid="uid://btwfig6s12las" path="res://scripts/galaxy/galaxy_desintegrate_state.gd" id="7_0t61a"]
+[ext_resource type="Material" uid="uid://jske8d54cs0g" path="res://shaders/mats/vortex_material.tres" id="9_y80rp"]
+
+[sub_resource type="Resource" id="Resource_y80rp"]
+script = ExtResource("2_uaiqi")
+metadata/_custom_type_script = "uid://bic5q004n1cfh"
 
 [sub_resource type="Gradient" id="Gradient_ky37o"]
 offsets = PackedFloat32Array(0.20481928, 1)
@@ -366,7 +371,7 @@ radius = 50.0
 
 [node name="Galaxy" type="Node2D" unique_id=1049821020]
 script = ExtResource("1_n7ltq")
-data = ExtResource("2_uaiqi")
+buff_debuff = SubResource("Resource_y80rp")
 
 [node name="MovementWrap" type="Node2D" parent="." unique_id=1419832210]
 script = ExtResource("3_y80rp")
@@ -384,14 +389,16 @@ texture = SubResource("GradientTexture2D_4oih2")
 [node name="Animation" type="AnimatedSprite2D" parent="." unique_id=1067041141]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_6ylll")
-animation = &"orange"
-frame_progress = 0.7738494
+animation = &"yellow"
+frame_progress = 0.53234327
 
 [node name="VortexEffect" type="Sprite2D" parent="." unique_id=998042952]
+material = ExtResource("9_y80rp")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_nxljd")
 
 [node name="InnerArea" type="Area2D" parent="." unique_id=1058516218]
+visible = false
 collision_layer = 4
 collision_mask = 2
 
@@ -399,6 +406,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_0t61a")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=685365449]
+visible = false
 collision_layer = 4
 collision_mask = 2
 
@@ -406,6 +414,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_ky37o")
 
 [node name="Center" type="Area2D" parent="." unique_id=352193348]
+visible = false
 scale = Vector2(1.545, 1.545)
 collision_layer = 4
 collision_mask = 2

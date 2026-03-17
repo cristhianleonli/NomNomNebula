@@ -2,25 +2,23 @@ class_name GalaxySpawner
 extends Node
 
 const GALAXY: Resource = preload("uid://ge3n0d66rcq8")
-const GALAXY_1 = preload("uid://baxkohgisu4jk")
-const GALAXY_2 = preload("uid://bt1bbrc3g1atx")
+
+const galaxies_variants_data = [preload("uid://baxkohgisu4jk"),
+						preload("uid://bt1bbrc3g1atx"),
+						preload("uid://g38kwgaypusv"),
+						preload("uid://53lwckvnjlyy"),
+						preload("uid://d3pqhf4o3i6n4")]
 
 var galaxies: Array = []
 
 func _ready() -> void:
-	var g1 = GALAXY.instantiate()
-	g1.position = Vector2(213, -167)
-	g1.data = GALAXY_1
+	for i in range(1):
+		var galaxy : Galaxy = GALAXY.instantiate()
+		galaxy.position = Vector2(200 + 300*i, -160)
+		galaxy.data = galaxies_variants_data[i]
+		add_child(galaxy)
+		galaxies.append(galaxy)
 	
-	var g2 = GALAXY.instantiate()
-	g2.position = Vector2(-228, -172)
-	g2.data = GALAXY_2
-	
-	add_child(g1)
-	add_child(g2)
-	
-	galaxies = [g1, g2]
-
 func get_visible_galaxies() -> Array:
 	return galaxies
 

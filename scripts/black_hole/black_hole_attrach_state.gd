@@ -5,34 +5,36 @@ extends State
 @export var black_hole : BlackHole
 @export var sprite : Sprite2D
 
-@onready var strenght : float = black_hole.data.strength
 @onready var max_time : float = black_hole.data.event_start_time
 @onready var camera: Camera2D = get_tree().get_first_node_in_group("main_camera")
 @onready var player: Player = get_tree().get_first_node_in_group("player")
 
+var strenght
 var timer
 var last_dash_used_time : float
 var strong_attrach_start_time : float
-var elapsed_time :  float = 0
+var elapsed_time : float
 
 func enter() -> void:
+	strenght = black_hole.data.strength
 	timer = max_time
+	elapsed_time = 0
+	
 	attraction_area.area_exited.connect(on_exited_area)
 	EventManager.on_dash_used.connect(on_player_dash_used)
 	EventManager.on_attracting_player.emit()
-	camera.target_zoom = Vector2(0.4, 0.4)
-	camera.set_target(black_hole)
+	
+	Globals.game_camera.target_zoom = Vector2(0.4, 0.4)
+	Globals.game_camera.set_target(black_hole)
 
 func update(delta: float) -> void:
-	timer -= delta
-	elapsed_time += delta
+	if timer >= 0:
+		timer -= delta
+		elapsed_time += delta
 	
 	if timer <= 0:
 		strong_attrach_start_time = Time.get_ticks_msec()/1000.0
-		strenght = 5.0
-		timer = max_time
-		elapsed_time = 0
-	print(strenght)
+		strenght = 15.0
 		
 	var force : Vector2 = calc_force()
 	Globals.player.apply_force(force)
@@ -46,12 +48,14 @@ func on_exited_area(_area:Area2D) -> void:
 func exit() -> void:
 	attraction_area.area_exited.disconnect(on_exited_area)
 	EventManager.on_dash_used.disconnect(on_player_dash_used)
-	camera.set_target(Globals.player)
+	
+	Globals.game_camera.set_target(Globals.player)
 	
 func calc_force() -> Vector2:
 	var offset: Vector2 = get_offset_to_player()
 	var dir: Vector2 = offset.normalized()
-	return dir * strenght/(offset.length()*0.01)
+	var distance = maxf(offset.length(), 5.0)
+	return dir * strenght/(distance*0.01)
 	
 func get_offset_to_player() -> Vector2:
 	return black_hole.global_position - Globals.player.global_position

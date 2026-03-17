@@ -19,7 +19,7 @@ func enter() -> void:
 			child.set_deferred("monitorable", false)
 
 	_play_disintegration_tween()
-	EventManager.on_galaxy_absorbed.emit(galaxy.data)
+	EventManager.on_galaxy_absorbed.emit(galaxy.data, galaxy.buff_debuff)
 
 func _play_disintegration_tween() -> void:
 	tween = galaxy.create_tween()

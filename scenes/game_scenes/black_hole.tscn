@@ -3,16 +3,11 @@
 [ext_resource type="Script" uid="uid://nkp4vejhsogg" path="res://scripts/black_hole/black_hole.gd" id="1_djh0g"]
 [ext_resource type="Texture2D" uid="uid://d0i2dq4b2ljw2" path="res://icon.svg" id="2_bd3hg"]
 [ext_resource type="Shader" uid="uid://b5nxg5x7mydn4" path="res://shaders/galaxy_distortion.gdshader" id="2_j2sgm"]
-[ext_resource type="Script" uid="uid://bi43xj8ctf3ny" path="res://scripts/data/black_hole_data.gd" id="2_j8733"]
 [ext_resource type="Texture2D" uid="uid://bqrf1vf5m2mh0" path="res://resources/Art/Galaxy Sprite Sheets/player galaxy.png" id="3_j8733"]
 [ext_resource type="Script" uid="uid://dkmph7m6e1a2x" path="res://scripts/state_machine.gd" id="3_wcccu"]
 [ext_resource type="Script" uid="uid://bwthvu36djjr5" path="res://scripts/black_hole/black_hole_idle_state.gd" id="4_af03i"]
 [ext_resource type="Script" uid="uid://dtpatowrx86mu" path="res://scripts/black_hole/black_hole_attrach_state.gd" id="5_6ssig"]
 [ext_resource type="Script" uid="uid://nb7owm6wnxtl" path="res://scripts/black_hole/black_hole_disabled_state.gd" id="9_87cyb"]
-
-[sub_resource type="Resource" id="Resource_87cyb"]
-script = ExtResource("2_j8733")
-metadata/_custom_type_script = "uid://bi43xj8ctf3ny"
 
 [sub_resource type="Gradient" id="Gradient_87cyb"]
 offsets = PackedFloat32Array(0.41791046, 1)
@@ -50,7 +45,6 @@ radius = 185.0108
 
 [node name="BlackHole" type="Node2D" unique_id=585464348]
 script = ExtResource("1_djh0g")
-data = SubResource("Resource_87cyb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=266289218]
 material = SubResource("ShaderMaterial_lfll1")
