@@ -35,6 +35,7 @@ func _ready() -> void:
 	pause_menu.on_finish.connect(_handle_finish)
 	pause_button.pressed.connect(func() -> void:
 		_handle_toggle_pause()
+		AudioManager.play_sfx(AudioManager.tracks.click)
 		animation_component.subtle_wobble(pause_button)
 	)
 	
@@ -51,7 +52,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
+		AudioManager.play_sfx(AudioManager.tracks.show_ui)
 		_handle_toggle_pause()
+	
 	if showing_absorption_tutorial and Input.is_action_just_pressed("dash"):
 		Engine.time_scale = 1.0
 		showing_absorption_tutorial = false
@@ -79,15 +82,11 @@ func _setup_tooltip_timer() -> void:
 
 func _handle_toggle_pause() -> void:
 	if pause_menu.visible:
-		AudioManager.play_sfx(AudioManager.tracks.dismiss_ui)
 		pause_menu.dismiss()
-		
 		EventManager.on_game_state_changed.emit(GameState.ONGOING)
 		Engine.time_scale = 1.0
 	else:
 		pause_menu.present()
-		AudioManager.play_sfx(AudioManager.tracks.show_ui)
-		
 		EventManager.on_game_state_changed.emit(GameState.PAUSED)
 		Engine.time_scale = 0.0
 

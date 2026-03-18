@@ -11,8 +11,6 @@ var music_player: AudioStreamPlayer
 var sfx_players: Array[AudioStreamPlayer] = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var fade_duration: float = 1.0
-var normal_cutoff: float = 20000.0
-var underwater_cutoff: float = 800.0
 var base_music_db: float = 0.0
 
 func _ready() -> void:

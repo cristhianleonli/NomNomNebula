@@ -4,8 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://xs064oduc2xk" path="res://resources/Art/icons/ic_human_made.png" id="2_db77j"]
 [ext_resource type="Texture2D" uid="uid://d2rdhv0ac2g1t" path="res://resources/UI/GG-MenuBG.png" id="2_o0nwa"]
 [ext_resource type="Texture2D" uid="uid://bsom30nxt55e2" path="res://resources/UI/GG-Panel.png" id="3_1bayt"]
-[ext_resource type="Texture2D" uid="uid://b0x7d3nctq4im" path="res://resources/Art/canvas_guide.png" id="3_ljt7x"]
 [ext_resource type="PackedScene" uid="uid://dmhkwqvc0qyc7" path="res://scenes/ui/main_button.tscn" id="5_o0nwa"]
+[ext_resource type="Texture2D" uid="uid://dbbkcf55bocy6" path="res://resources/UI/panel_solid.png" id="7_3o3s0"]
+[ext_resource type="Texture2D" uid="uid://b53onynrxfexa" path="res://resources/UI/arrow_right.png" id="7_aay0u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0nwa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aay0u"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o0nwa"]
 particle_flag_disable_z = true
@@ -15,23 +20,12 @@ initial_velocity_min = 5.0
 initial_velocity_max = 10.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0nwa"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3o3s0"]
-
 [node name="GameTitle" type="Node2D" unique_id=1992495304]
 script = ExtResource("1_ke8lo")
 
 [node name="GgMenuBg" type="Sprite2D" parent="." unique_id=2125538280]
 position = Vector2(160, 90)
 texture = ExtResource("2_o0nwa")
-
-[node name="StarParticles" type="GPUParticles2D" parent="." unique_id=137655603]
-position = Vector2(-31, 90)
-amount = 100
-lifetime = 60.0
-preprocess = 100.0
-process_material = SubResource("ParticleProcessMaterial_o0nwa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=271165557]
 
@@ -42,13 +36,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o0nwa")
-
-[node name="GuideBG" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1792984943]
-visible = false
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 180.0
-texture = ExtResource("3_ljt7x")
 
 [node name="GgPanel" type="Sprite2D" parent="CanvasLayer/Panel" unique_id=1744304373]
 position = Vector2(159, 112)
@@ -80,17 +67,6 @@ custom_title = "credits"
 layout_mode = 2
 custom_title = "exit"
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/Panel" unique_id=591377701]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 14.0
-offset_bottom = 66.0
-grow_horizontal = 2
-text = "GALACTIC GROWTH"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HumanMade" type="TextureRect" parent="CanvasLayer/Panel" unique_id=43577506]
 layout_mode = 0
 offset_left = 299.0
@@ -114,19 +90,151 @@ theme_override_font_sizes/font_size = 4
 text = "v-.-.-"
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Panel" unique_id=771917674]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Panel" unique_id=591377701]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 14.0
+offset_bottom = 66.0
+grow_horizontal = 2
+text = "GALACTIC GROWTH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsPanel" type="Panel" parent="CanvasLayer/Panel" unique_id=680753173]
 visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -79.0
+offset_right = 136.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aay0u")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Panel/CreditsPanel" unique_id=965005913]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3o3s0")
+texture = ExtResource("7_3o3s0")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Panel/Panel" unique_id=680753173]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 20.0
-offset_right = 260.0
-offset_bottom = 162.0
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/CreditsPanel" unique_id=927723228]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 41.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 14
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/CreditsPanel" unique_id=232170834]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -31.0
+offset_right = 98.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer" unique_id=1023660833]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer" unique_id=417000985]
+layout_mode = 2
+texture = ExtResource("7_aay0u")
+
+[node name="Label8" type="Label" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer" unique_id=2067994648]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Savannah Griffiths - Game Designer / 2D Artist"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer" unique_id=517289716]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer2" unique_id=1474529508]
+layout_mode = 2
+texture = ExtResource("7_aay0u")
+
+[node name="Label8" type="Label" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer2" unique_id=983763319]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Brandon Klotz - 2D Artist"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer" unique_id=1539799977]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer3" unique_id=322768060]
+layout_mode = 2
+texture = ExtResource("7_aay0u")
+
+[node name="Label8" type="Label" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer3" unique_id=1801675645]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Oliver B. - Composer"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer" unique_id=920244447]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer4" unique_id=49813148]
+layout_mode = 2
+texture = ExtResource("7_aay0u")
+
+[node name="Label8" type="Label" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer4" unique_id=1889115639]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Greyber Torrealba - Programmer"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer" unique_id=901032381]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer5" unique_id=786827979]
+layout_mode = 2
+texture = ExtResource("7_aay0u")
+
+[node name="Label8" type="Label" parent="CanvasLayer/Panel/CreditsPanel/VBoxContainer/HBoxContainer5" unique_id=487905608]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Cristhian Leon - Programmer"
+
+[node name="CloseCreditsButton" parent="CanvasLayer/Panel/CreditsPanel" unique_id=1513096471 instance=ExtResource("5_o0nwa")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -28.0
+offset_right = 25.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_title = "Close"
+
+[node name="StarParticles" type="GPUParticles2D" parent="CanvasLayer/Panel" unique_id=137655603]
+position = Vector2(-31, 90)
+amount = 100
+lifetime = 60.0
+preprocess = 100.0
+process_material = SubResource("ParticleProcessMaterial_o0nwa")

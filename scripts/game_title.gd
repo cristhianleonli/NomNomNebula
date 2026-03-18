@@ -6,6 +6,8 @@ const POINTER_C: Resource = preload("uid://b085nphr6bvo4")
 @onready var start_button: MainButton = $CanvasLayer/Panel/VBoxContainer/StartButton
 @onready var exit_button: MainButton = $CanvasLayer/Panel/VBoxContainer/ExitButton
 @onready var credits_button: MainButton = $CanvasLayer/Panel/VBoxContainer/CreditsButton
+@onready var credits_panel: Panel = $CanvasLayer/Panel/CreditsPanel
+@onready var close_credits_button: MainButton = $CanvasLayer/Panel/CreditsPanel/CloseCreditsButton
 
 func _ready() -> void:
 	_load_save()
@@ -20,6 +22,7 @@ func _ready() -> void:
 	
 	Globals.current_save = save
 	
+	credits_panel.visible = false
 	SceneManager.fade_in()
 	Input.set_custom_mouse_cursor(POINTER_C)
 	AudioManager.play_music(AudioManager.tracks.title_music)
@@ -27,6 +30,11 @@ func _ready() -> void:
 	start_button.pressed.connect(_on_start_button_pressed)
 	exit_button.pressed.connect(_on_exit_button_pressed)
 	credits_button.pressed.connect(_on_credits_button_pressed)
+	
+	close_credits_button.pressed.connect(func() -> void:
+		credits_panel.visible = false
+		AudioManager.play_sfx(AudioManager.tracks.click)
+	)
 	
 	_setup_ui()
 
@@ -50,13 +58,20 @@ func _load_save() -> SaveGame:
 func _setup_ui() -> void:
 	version_label.text = "v_" + ProjectSettings.get_setting("application/config/version")
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause") and credits_panel.visible:
+		credits_panel.visible = false
+		AudioManager.play_sfx(AudioManager.tracks.dismiss_ui)
+
 func _on_start_button_pressed() -> void:
 	SceneManager.transition_to(Scenes.WORLD)
 	AudioManager.play_sfx(AudioManager.tracks.click)
 	AudioManager.stop_music()
 
 func _on_exit_button_pressed() -> void:
+	AudioManager.play_sfx(AudioManager.tracks.click)
 	get_tree().quit()
 
 func _on_credits_button_pressed() -> void:
-	pass
+	AudioManager.play_sfx(AudioManager.tracks.click)
+	credits_panel.visible = true

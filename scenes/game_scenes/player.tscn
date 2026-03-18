@@ -7,7 +7,6 @@
 [ext_resource type="Shader" uid="uid://cf1k4yl3eu2e" path="res://shaders/player_shader.gdshader" id="4_qpgmy"]
 [ext_resource type="Texture2D" uid="uid://bqrf1vf5m2mh0" path="res://resources/Art/Galaxy Sprite Sheets/player galaxy.png" id="4_wxxbh"]
 [ext_resource type="Script" uid="uid://cdsyiosey41jg" path="res://scripts/player/stabilization_component.gd" id="5_2ue4q"]
-[ext_resource type="Texture2D" uid="uid://pqcffqxgufsf" path="res://resources/Art/guide_tilemap.png" id="5_eqovo"]
 [ext_resource type="Texture2D" uid="uid://d0i2dq4b2ljw2" path="res://icon.svg" id="6_wxxbh"]
 [ext_resource type="Texture2D" uid="uid://b53onynrxfexa" path="res://resources/UI/arrow_right.png" id="10_ttkvm"]
 [ext_resource type="Script" uid="uid://c1npqec65kjpn" path="res://scripts/player/vel_direction_arrow.gd" id="11_7iota"]
@@ -103,13 +102,15 @@ colors = PackedColorArray(0.49803922, 1, 1, 0, 1, 1, 1, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_eqovo"]
 gradient = SubResource("Gradient_n71xk")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ttkvm"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n71xk"]
 shader = ExtResource("4_qpgmy")
 shader_parameter/resolution = Vector2(32, 32)
 shader_parameter/colorResolution = 100.0
 shader_parameter/holeSize = 0.07999999821184
 shader_parameter/holeColor = SubResource("GradientTexture1D_eqovo")
-shader_parameter/image = ExtResource("5_eqovo")
+shader_parameter/image = SubResource("CompressedTexture2D_ttkvm")
 shader_parameter/rotations = 3.0
 shader_parameter/depth = 6.40000009536768
 shader_parameter/spiralIntensity = -2.09999988228052
