@@ -15,5 +15,5 @@ func _process(delta: float) -> void:
 
 func _on_center_area_entered(area: Area2D) -> void:
 	EventManager.on_player_absorbed.emit(self)
-	EventManager.on_camera_shake.emit(5.0, 2.0)
+	EventManager.on_camera_shake.emit(4.0, 2.0)
 	Globals.player.can_move = false

@@ -32,9 +32,6 @@ func update(delta: float) -> void:
 		absorbing_timer -= delta
 	else:
 		absorbing_timer = absorption_time_required
-		
-		if not was_inside_inner_radius:
-			AudioManager.play_sfx(AudioManager.tracks.galaxy_repel)
 	
 	was_inside_inner_radius = is_inside
 		

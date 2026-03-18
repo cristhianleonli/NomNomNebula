@@ -4,8 +4,11 @@ extends Node2D
 enum MovementType {
 	NORMAL, TANK, INVERTED
 }
-var movement_type_map = {MovementType.NORMAL: normal_movement,
-						MovementType.TANK: tank_movement}
+
+var movement_type_map: Dictionary = {
+	MovementType.NORMAL: normal_movement,
+	MovementType.TANK: tank_movement
+}
 						
 @export var player: Player
 @export var movement_indicator : Sprite2D
@@ -14,20 +17,32 @@ var movement_type_map = {MovementType.NORMAL: normal_movement,
 @export var friction: float = 0.98
 @export var current_movement_type: MovementType = MovementType.TANK
 
-var rotation_speed : float = 5
-var movement_angle : float = 0
-var speed : float = 300
+var rotation_speed: float = 5
+var movement_angle: float = 0
+var speed: float = 300
 
 func set_control_type(type: MovementType) -> void:
 	movement_indicator.visible = false
 	current_movement_type = type
+	
 	if type == MovementType.TANK:
 		movement_indicator.visible = true
-	# actually do something
 
 func _process(delta: float) -> void:
 	if not player.can_move:
 		return
+	
+	var input_dir: Vector2 = _get_input_direction()
+	if input_dir != Vector2.ZERO:
+		player.velocity += input_dir * acceleration * delta
+
+	if Input.is_action_just_pressed("dash"):
+		if player.can_dash():
+			if input_dir != Vector2.ZERO:
+				player.velocity += input_dir * player.dash_component.effective_speed
+				player.use_dash()
+		else:
+			player.use_dash_error()
 		
 	if player.can_control:
 		movement_type_map[current_movement_type].call(delta)

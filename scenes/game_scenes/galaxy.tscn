@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d1w83g3n0qmim" path="res://resources/Art/Galaxy Sprite Sheets/Smaller galaxy 1.0.png" id="4_y80rp"]
 [ext_resource type="Texture2D" uid="uid://beslbylfv2lgf" path="res://resources/Art/Galaxy Sprite Sheets/Larger galaxy 1.0.png" id="5_dltvo"]
 [ext_resource type="Texture2D" uid="uid://d0i2dq4b2ljw2" path="res://icon.svg" id="5_nxljd"]
-[ext_resource type="Script" uid="uid://sunbyn5fx5l1" path="res://scripts/galaxy/galaxy_attach_state.gd" id="6_pctnl"]
+[ext_resource type="Script" uid="uid://sunbyn5fx5l1" path="res://scripts/galaxy/galaxy_attract_state.gd" id="6_pctnl"]
 [ext_resource type="Texture2D" uid="uid://43825t84jvkq" path="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 2.0.png" id="6_pdkth"]
 [ext_resource type="Script" uid="uid://btwfig6s12las" path="res://scripts/galaxy/galaxy_desintegrate_state.gd" id="7_0t61a"]
 [ext_resource type="Material" uid="uid://jske8d54cs0g" path="res://shaders/mats/vortex_material.tres" id="9_y80rp"]
@@ -392,7 +392,6 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_nxljd")
 
 [node name="InnerArea" type="Area2D" parent="." unique_id=1058516218]
-visible = false
 collision_layer = 4
 collision_mask = 2
 
@@ -400,7 +399,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_0t61a")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=685365449]
-visible = false
 collision_layer = 4
 collision_mask = 2
 
@@ -408,7 +406,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_ky37o")
 
 [node name="Center" type="Area2D" parent="." unique_id=352193348]
-visible = false
 scale = Vector2(1.545, 1.545)
 collision_layer = 4
 collision_mask = 2

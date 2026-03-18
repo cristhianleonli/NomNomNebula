@@ -72,22 +72,22 @@ shape = SubResource("CircleShape2D_wcccu")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1472614268 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_wcccu")
-initial_state = NodePath("BlackHoleIdle")
+initial_state = NodePath("idle")
 metadata/_custom_type_script = "uid://dkmph7m6e1a2x"
 
-[node name="BlackHoleIdle" type="Node" parent="StateMachine" unique_id=1524967914 node_paths=PackedStringArray("attraction_area")]
+[node name="idle" type="Node" parent="StateMachine" unique_id=1524967914 node_paths=PackedStringArray("attraction_area")]
 script = ExtResource("4_af03i")
 attraction_area = NodePath("../../InteractionArea")
 metadata/_custom_type_script = "uid://bwthvu36djjr5"
 
-[node name="BlackHoleAttrach" type="Node" parent="StateMachine" unique_id=1740205127 node_paths=PackedStringArray("attraction_area", "black_hole", "sprite")]
+[node name="Attract" type="Node" parent="StateMachine" unique_id=1740205127 node_paths=PackedStringArray("attraction_area", "black_hole", "sprite")]
 script = ExtResource("5_6ssig")
 attraction_area = NodePath("../../InteractionArea")
 black_hole = NodePath("../..")
 sprite = NodePath("../../Sprite2D")
 metadata/_custom_type_script = "uid://dtpatowrx86mu"
 
-[node name="BlackHoleDisabled" type="Node" parent="StateMachine" unique_id=68756097]
+[node name="disabled" type="Node" parent="StateMachine" unique_id=68756097]
 script = ExtResource("9_87cyb")
 metadata/_custom_type_script = "uid://nb7owm6wnxtl"
 

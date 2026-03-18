@@ -3,9 +3,24 @@
 [ext_resource type="Script" uid="uid://quen3p5dq1bw" path="res://scripts/ui/main_button.gd" id="1_5a7nu"]
 [ext_resource type="Texture2D" uid="uid://b53onynrxfexa" path="res://resources/UI/arrow_right.png" id="2_vecgi"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5a7nu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vecgi"]
+
 [node name="MainButton" type="Button" unique_id=287327500]
 custom_minimum_size = Vector2(50, 15)
 theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_5a7nu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5a7nu")
 script = ExtResource("1_5a7nu")
 
 [node name="MarginContainer" type="PanelContainer" parent="." unique_id=1363251487]
@@ -16,6 +31,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vecgi")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=451190135]
 layout_mode = 2

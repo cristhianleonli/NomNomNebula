@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbbkcf55bocy6"
-path="res://.godot/imported/panel_solid.png-71b30666d6ec89241f120195e05e172e.ctex"
+uid="uid://omh2uc7kn5un"
+path="res://.godot/imported/Stabilization meter.png-9273f928707f9a2fb64cd9bc2af900e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Art/panel_solid.png"
-dest_files=["res://.godot/imported/panel_solid.png-71b30666d6ec89241f120195e05e172e.ctex"]
+source_file="res://resources/UI/Stabilization meter.png"
+dest_files=["res://.godot/imported/Stabilization meter.png-9273f928707f9a2fb64cd9bc2af900e9.ctex"]
 
 [params]
 

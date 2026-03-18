@@ -45,8 +45,8 @@ func apply_force(force: Vector2) ->void:
 func _on_center_area_entered(_area: Area2D) -> void:
 	Globals.player.velocity = Vector2.ZERO
 	Globals.player.apply_force((Globals.player.global_position - global_position).normalized() * 400)
-	EventManager.on_camera_shake.emit(6.0, 2.0)
-
+	EventManager.on_camera_shake.emit(4.0, 2.0)
+	AudioManager.play_sfx(AudioManager.tracks.galaxy_repel)
 
 func _on_interaction_area_mouse_entered() -> void:
 	EventManager.on_tooltip_show.emit(data)
@@ -55,16 +55,7 @@ func _on_interaction_area_mouse_exited() -> void:
 	EventManager.on_tooltip_hide.emit()
 
 func _on_game_state_changed(state: GameWorld.GameState) -> void:
-	match state:
-		GameWorld.GameState.ONGOING:
-			#audio_player.play()
-			pass
-		GameWorld.GameState.PAUSED:
-			#audio_player.stop()
-			pass
-		GameWorld.GameState.FINISHED:
-			#audio_player.stop()
-			pass
+	pass
 
 func is_good_galaxy() -> bool:
 	return data.is_good_galaxy

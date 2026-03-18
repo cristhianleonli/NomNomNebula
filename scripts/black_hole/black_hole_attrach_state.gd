@@ -1,19 +1,17 @@
-class_name BlackHoleAttrach
+class_name BlackHoleAttract
 extends State
 
 @export var attraction_area: Area2D
 @export var black_hole: BlackHole
-@export var sprite : Sprite2D
+@export var sprite: Sprite2D
 
-@onready var max_time : float = black_hole.data.event_start_time
-@onready var camera: Camera2D = get_tree().get_first_node_in_group("main_camera")
-@onready var player: Player = get_tree().get_first_node_in_group("player")
+@onready var max_time: float = black_hole.data.event_start_time
 
 var strenght: float
 var timer: float
-var last_dash_used_time : float
-var strong_attrach_start_time : float
-var elapsed_time : float
+var last_dash_used_time: float
+var strong_attract_start_time: float
+var elapsed_time: float
 
 func enter() -> void:
 	strenght = black_hole.data.strength
@@ -33,7 +31,7 @@ func update(delta: float) -> void:
 		elapsed_time += delta
 	
 	if timer <= 0:
-		strong_attrach_start_time = Time.get_ticks_msec()/1000.0
+		strong_attract_start_time = Time.get_ticks_msec()/1000.0
 		strenght = 15.0
 		
 	var force : Vector2 = calc_force()
@@ -43,7 +41,7 @@ func update(delta: float) -> void:
 	black_hole.timer_label.text = "%.2f" % timer
 
 func on_exited_area(_area:Area2D) -> void:
-	change_state.emit(self, "blackholeidle")
+	change_state.emit(self, "idle")
 	
 func exit() -> void:
 	attraction_area.area_exited.disconnect(on_exited_area)
@@ -55,14 +53,14 @@ func calc_force() -> Vector2:
 	var offset: Vector2 = get_offset_to_player()
 	var dir: Vector2 = offset.normalized()
 	var distance = maxf(offset.length(), 5.0)
-	return dir * strenght/(distance*0.01)
+	return dir * strenght / (distance*0.01)
 	
 func get_offset_to_player() -> Vector2:
 	return black_hole.global_position - Globals.player.global_position
 	
 func on_player_dash_used():
-	last_dash_used_time = Time.get_ticks_msec()/1000.0
-	if timer < 0.5 or abs(last_dash_used_time - strong_attrach_start_time) < 0.5:
-		change_state.emit(self, "blackholedisabled")
+	last_dash_used_time = Time.get_ticks_msec() / 1000.0
+	if timer < 0.5 or abs(last_dash_used_time - strong_attract_start_time) < 0.5:
+		change_state.emit(self, "disabled")
 		sprite.material.set_shader_parameter("holeSize", 0.0)
 		EventManager.on_shock_wave.emit(black_hole)

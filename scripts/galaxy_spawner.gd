@@ -29,10 +29,9 @@ func _ready() -> void:
 	for i in range(initial_galaxies):
 		_spawn_galaxy()
 	
-	EventManager.on_galaxies_updated.emit({"galaxies": galaxies})
+	EventManager.on_galaxies_updated.emit(galaxies)
 
 func _process(delta: float) -> void:
-	return
 	elapsed_time += delta
 	spawn_timer += delta
 
@@ -46,8 +45,10 @@ func _try_spawn() -> void:
 		_spawn_black_hole()
 	elif galaxies.size() < max_galaxies:
 		_spawn_galaxy()
+		EventManager.on_galaxies_updated.emit(galaxies)
 
 func _spawn_black_hole() -> void:
+	print("_spawn_black_hole")
 	var pos: Vector2 = _get_valid_position()
 	if pos == Vector2.ZERO:
 		return
@@ -66,7 +67,7 @@ func remove_black_hole(black_hole: BlackHole) -> void:
 	black_hole.queue_free()
 	black_holes.remove_at(idx)
 	
-	EventManager.on_galaxies_updated.emit({"galaxies": galaxies})
+	EventManager.on_galaxies_updated.emit(galaxies)
 
 func _spawn_galaxy() -> void:
 	var pos: Vector2 = _get_valid_position()
@@ -75,8 +76,9 @@ func _spawn_galaxy() -> void:
 	
 	var galaxy: Galaxy = GALAXY.instantiate()
 	galaxy.position = pos
-	galaxy.data = galaxies_variants_data.pick_random()
+	galaxy.data = galaxies_variants_data.pick_random().duplicate()
 	galaxy.data.uid = Utils.gen_uid("g")
+	print("_spawn_galaxy ", galaxy.data.uid)
 	
 	if _is_bad_galaxy():
 		galaxy.set_bad()
@@ -135,7 +137,7 @@ func remove_galaxy(data: GalaxyData) -> void:
 			galaxies.remove_at(i)
 			break
 	
-	EventManager.on_galaxies_updated.emit({"galaxies": galaxies})
+	EventManager.on_galaxies_updated.emit(galaxies)
 
 func get_visible_galaxies() -> Array:
 	return galaxies

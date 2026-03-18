@@ -7,7 +7,7 @@ extends Node
 @onready var pause_button: Button = $CanvasLayer/PauseButton
 @onready var animation_component: AnimationComponent = $AnimationComponent
 @onready var galaxy_info_panel: GalaxyInfoPanel = $CanvasLayer/GalaxyInfoPanel
-@onready var absortion_tutorial: Panel = $CanvasLayer/AbsortionTutorial
+@onready var absorption_tutorial: Panel = $CanvasLayer/AbsorptionTutorial
 @onready var main_camera: MainCamera = $MainCamera
 @onready var galaxy_spawner: GalaxySpawner = $GalaxySpawner
 @onready var minimap_markers: MinimapMarkers = $MinimapViewport/MinimapMarkers
@@ -19,7 +19,7 @@ enum GameState {
 var current_score: int = 10
 var tooltip_timer: Timer
 var tooltip_duration: float = 2.0
-var showing_absortion_tutorial: bool = false
+var showing_absorption_tutorial: bool = false
 
 func _ready() -> void:
 	Globals.player = player
@@ -36,8 +36,7 @@ func _ready() -> void:
 		animation_component.subtle_wobble(pause_button)
 	)
 	
-	absortion_tutorial.visible = false
-	minimap_markers.set_galaxies(galaxy_spawner.get_visible_galaxies())
+	absorption_tutorial.visible = false
 	
 	EventManager.on_attracting_player.connect(_on_start_tutorial)
 	EventManager.on_player_destabilized.connect(_on_game_over_animation)
@@ -50,10 +49,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		_handle_toggle_pause()
-	if showing_absortion_tutorial and Input.is_action_just_pressed("dash"):
+	if showing_absorption_tutorial and Input.is_action_just_pressed("dash"):
 		Engine.time_scale = 1.0
-		showing_absortion_tutorial = false
-		absortion_tutorial.visible = false
+		showing_absorption_tutorial = false
+		absorption_tutorial.visible = false
 
 func _on_player_wrapped(offset: Vector2) -> void:
 	var camera: MainCamera = Globals.game_camera
@@ -63,8 +62,8 @@ func _on_start_tutorial():
 	if Globals.current_save.is_first_time:
 		Globals.current_save.is_first_time = false
 		DataManager.write_save(Globals.current_save)
-		absortion_tutorial.visible = true
-		showing_absortion_tutorial = true
+		absorption_tutorial.visible = true
+		showing_absorption_tutorial = true
 		Engine.time_scale = 0.2
 	
 func _setup_tooltip_timer() -> void:
@@ -81,19 +80,16 @@ func _handle_toggle_pause() -> void:
 		pause_menu.dismiss()
 		
 		EventManager.on_game_state_changed.emit(GameState.ONGOING)
-		AudioManager.resume_music()
 		Engine.time_scale = 1.0
 	else:
 		pause_menu.present()
 		AudioManager.play_sfx(AudioManager.tracks.show_ui)
 		
 		EventManager.on_game_state_changed.emit(GameState.PAUSED)
-		AudioManager.pause_music()
 		Engine.time_scale = 0.0
 
 func _on_game_over_animation():
-	pass
-	
+	_on_game_over()
 
 func _on_game_over() -> void:
 	if current_score > Globals.current_save.highest_score:
