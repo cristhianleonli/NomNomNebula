@@ -89,7 +89,8 @@ func _handle_toggle_pause() -> void:
 		Engine.time_scale = 0.0
 
 func _on_game_over_animation():
-	_on_game_over()
+	#_on_game_over()
+	pass
 
 func _on_game_over() -> void:
 	if current_score > Globals.current_save.highest_score:
