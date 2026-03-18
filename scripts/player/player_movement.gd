@@ -21,14 +21,20 @@ var movement_speed_factor : float = 1
 var rotation_speed: float = 5
 var movement_angle: float = 0
 var speed: float = 300
-var axes_direction : Vector2 = Vector2.ONE
+var axes_direction: Vector2 = Vector2.ONE
 
 func set_control_type(type: ControlType) -> void:
 	movement_indicator.visible = false
 	current_movement_type = type
 	
-	if type == ControlType.TANK:
-		movement_indicator.visible = true
+	match type:
+		ControlType.NORMAL:
+			axes_direction = Vector2.ONE
+		ControlType.TANK:
+			axes_direction = Vector2.ONE
+			movement_indicator.visible = true
+		ControlType.INVERTED:
+			axes_direction = Vector2.ONE * -1
 
 func _process(delta: float) -> void:
 	if not player.can_move:
@@ -77,9 +83,3 @@ func _get_input_direction() -> Vector2:
 
 func apply_movement_factor_speed(factor:float) -> void:
 	movement_speed_factor = factor
-	
-func invert_axes(axes:Vector2) -> void:
-	axes_direction *= axes 
-	
-func set_axes_direction(directions: Vector2) -> void:
-	axes_direction = directions
