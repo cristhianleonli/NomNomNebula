@@ -50,6 +50,11 @@ func _ready() -> void:
 	EventManager.on_galaxy_absorbed.connect(_on_galaxy_absorbed)
 	EventManager.on_buff_applied.connect(_on_buff_applied)
 	
+	AudioManager.configure_audio_server(
+		Globals.current_save.sfx_level,
+		Globals.current_save.music_level
+	)
+	
 	AudioManager.play_music(AudioManager.tracks.game_music)
 	Input.set_custom_mouse_cursor(POINTER_C)
 	SceneManager.fade_in()

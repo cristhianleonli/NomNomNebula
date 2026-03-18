@@ -395,6 +395,7 @@ process_material = SubResource("ParticleProcessMaterial_dltvo")
 
 [node name="ChargePlayer" type="AudioStreamPlayer2D" parent="." unique_id=1701965038]
 stream = ExtResource("2_uaiqi")
+bus = &"SFX"
 
 [node name="MovementWrap" type="Node2D" parent="." unique_id=1419832210]
 script = ExtResource("3_y80rp")
