@@ -49,7 +49,7 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	var buff_debuff: Dictionary = data.buff_debuff
 	
 	# FIXME: Remove
-	buff_debuff = BuffDebuffPool.pool["buffs"][5]
+	#buff_debuff = BuffDebuffPool.pool["buffs"][5]
 	#buff_debuff = BuffDebuffPool.pool["debuffs"][1]
 	#print(buff_debuff)
 	
