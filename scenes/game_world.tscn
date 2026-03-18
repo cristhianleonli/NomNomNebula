@@ -46,6 +46,16 @@ orbit_velocity_max = 0.015000096
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_vbm8o")
 
+[sub_resource type="Environment" id="Environment_gqenn"]
+background_mode = 3
+tonemap_mode = 2
+tonemap_exposure = 1.5
+tonemap_white = 3.75
+glow_enabled = true
+glow_intensity = 3.69
+glow_strength = 0.7
+glow_bloom = 0.2
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0y38y"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5nmku"]
@@ -137,6 +147,17 @@ player = NodePath("../Player")
 
 [node name="GalaxySpawner" type="Node2D" parent="." unique_id=920155787]
 script = ExtResource("7_iokjm")
+
+[node name="Post" type="Node2D" parent="." unique_id=128399805]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Post" unique_id=823920515]
+energy = 0.89
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Post" unique_id=740197548]
+color = Color(0.023529412, 0.08627451, 0.25882354, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Post" unique_id=1167011343]
+environment = SubResource("Environment_gqenn")
 
 [node name="MinimapViewport" type="SubViewport" parent="." unique_id=1553471907]
 transparent_bg = true
