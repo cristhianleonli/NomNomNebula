@@ -22,6 +22,7 @@ var current_score: int = 10
 var tooltip_timer: Timer
 var tooltip_duration: float = 2.0
 var showing_absorption_tutorial: bool = false
+var current_state: GameState = GameState.ONGOING
 
 func _ready() -> void:
 	Globals.player = player
@@ -51,7 +52,7 @@ func _ready() -> void:
 	SceneManager.fade_in()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and current_state != GameState.FINISHED:
 		AudioManager.play_sfx(AudioManager.tracks.show_ui)
 		_handle_toggle_pause()
 	
@@ -83,14 +84,17 @@ func _setup_tooltip_timer() -> void:
 func _handle_toggle_pause() -> void:
 	if pause_menu.visible:
 		pause_menu.dismiss()
-		EventManager.on_game_state_changed.emit(GameState.ONGOING)
+		current_state = GameState.ONGOING
+		EventManager.on_game_state_changed.emit(current_state)
 		Engine.time_scale = 1.0
 	else:
 		pause_menu.present()
-		EventManager.on_game_state_changed.emit(GameState.PAUSED)
+		current_state = GameState.PAUSED
+		EventManager.on_game_state_changed.emit(current_state)
 		Engine.time_scale = 0.0
 
 func _on_game_over_animation():
+	current_state = GameState.FINISHED
 	# wait
 	# shader del radar se remueve
 	#_on_game_over()
