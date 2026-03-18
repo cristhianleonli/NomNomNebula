@@ -2,7 +2,7 @@ class_name Flags
 
 #region Values
 const SKIP_SCENE_MANAGER: int = 1
-const AUTOSTART: int = 0
+const AUTOSTART: int = 1
 const MOVE_GALAXIES: int = 0
 #endregion
 

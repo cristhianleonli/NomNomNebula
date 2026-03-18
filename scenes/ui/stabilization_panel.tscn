@@ -18,3 +18,13 @@ script = ExtResource("1_c7s5b")
 position = Vector2(160, 90)
 texture = ExtResource("2_dt6g0")
 hframes = 35
+
+[node name="Label" type="Label" parent="." unique_id=418549955]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 119.0
+offset_right = 24.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 6
+text = "999"
+horizontal_alignment = 1

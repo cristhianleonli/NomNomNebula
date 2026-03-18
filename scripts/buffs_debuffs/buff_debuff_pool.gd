@@ -7,8 +7,8 @@ const pool: Dictionary = {
 		{ "rarity": 0, BuffDebuffKey.DASH_RECHARGE_FACTOR: 0.5 }, # charge 50% faster
 		{ "rarity": 0, BuffDebuffKey.STABILITY_TIME: 5 }, # add 5s to stability
 		{ "rarity": 0, BuffDebuffKey.SIZE_CHANGE_FACTOR: 0.5 }, # changes size by 50%
+		{ "rarity": 0, BuffDebuffKey.STABILITY_MAX: 5 }, # +5 stability meter
 		
-		#{ "rarity": 0, BuffDebuffKey.STABILITY_MAX: 5 },
 		#{ "rarity": 0, BuffDebuffKey.ESCAPING_TIME_FACTOR: 0.5 }, # more time to scape
 		#{ "rarity": 0, BuffDebuffKey.ABSORPTION_SPEED_FACTOR: 0.5 }, # absorbe galaxies faster
 		#{ "rarity": 0, BuffDebuffKey.MOVEMENT_SPEED_FACTOR: 0.5 }, # moves faster

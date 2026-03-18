@@ -49,8 +49,8 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	var buff_debuff: Dictionary = data.buff_debuff
 	
 	# FIXME: Remove
-	# buff_debuff = BuffDebuffPool.pool["buffs"][4]
-	# buff_debuff = BuffDebuffPool.pool["debuffs"][1]
+	buff_debuff = BuffDebuffPool.pool["buffs"][5]
+	#buff_debuff = BuffDebuffPool.pool["debuffs"][1]
 	#print(buff_debuff)
 	
 	player_movement.set_control_type(PlayerMovement.ControlType.NORMAL)
@@ -74,8 +74,8 @@ func apply_buff_debuff(buff: Dictionary) -> void:
 		BuffDebuffKey.MOVEMENT_SPEED_FACTOR: _apply_movement_speed_factor,
 		
 		# TODO: cris
-		BuffDebuffKey.STABILITY_SPEED_FACTOR: _apply_stability_speed_factor,
 		BuffDebuffKey.STABILITY_MAX: _apply_stability_max,
+		BuffDebuffKey.STABILITY_SPEED_FACTOR: _apply_stability_speed_factor,
 		BuffDebuffKey.BLACK_HOLES_PROB_FACTOR: _apply_black_holes_prob_factor,
 	}
 
