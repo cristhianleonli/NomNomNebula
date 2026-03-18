@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://dbbkcf55bocy6" path="res://resources/UI/panel_solid.png" id="20_0y38y"]
 [ext_resource type="Shader" uid="uid://d1clynis8x1u3" path="res://shaders/stabilization_screen.gdshader" id="20_iokjm"]
 [ext_resource type="Texture2D" uid="uid://bxwpenyw8iyku" path="res://resources/Art/radar.png" id="22_5nmku"]
-[ext_resource type="Script" uid="uid://b7dq2ueha14dg" path="res://scripts/ui/stats_panel.gd" id="22_wgh4l"]
 [ext_resource type="Script" uid="uid://2bqc4b10ula4" path="res://scripts/game_vfx.gd" id="23_eto5o"]
 [ext_resource type="Texture2D" uid="uid://6yo25fpoqpne" path="res://resources/Art/minimap_marker.png" id="24_0y38y"]
 [ext_resource type="Script" uid="uid://c4u4i0c0aw3dp" path="res://scripts/shock_wave.gd" id="25_5nmku"]
@@ -216,43 +215,6 @@ offset_bottom = 51.0
 theme_override_font_sizes/font_size = 4
 text = "Galaxy data"
 
-[node name="StabilizationPanel" parent="CanvasLayer" unique_id=2092434660 instance=ExtResource("18_xxaiy")]
-mouse_filter = 2
-
-[node name="AbsorptionTutorial" type="Panel" parent="CanvasLayer" unique_id=2100812602]
-offset_left = 114.0
-offset_top = 57.0
-offset_right = 201.0
-offset_bottom = 102.0
-
-[node name="Label" type="Label" parent="CanvasLayer/AbsorptionTutorial" unique_id=132770994]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 3.0
-offset_right = 86.0
-offset_bottom = 50.0
-theme_override_font_sizes/font_size = 7
-text = "Must orbit the galaxy at a stable distance to absorb it
-"
-autowrap_mode = 2
-
-[node name="Stats" type="Panel" parent="CanvasLayer" unique_id=662466889]
-offset_left = 4.0
-offset_top = 125.0
-offset_right = 75.0
-offset_bottom = 172.0
-script = ExtResource("22_wgh4l")
-
-[node name="Label" type="Label" parent="CanvasLayer/Stats" unique_id=1993111840]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 4
-text = "asdasd"
-
 [node name="MinimapPanel" type="Panel" parent="CanvasLayer" unique_id=1504764070]
 clip_contents = true
 offset_left = 264.0
@@ -312,6 +274,26 @@ offset_top = 4.0
 offset_right = 46.0
 offset_bottom = 46.0
 texture = ExtResource("22_5nmku")
+
+[node name="StabilizationPanel" parent="CanvasLayer" unique_id=2092434660 instance=ExtResource("18_xxaiy")]
+mouse_filter = 2
+
+[node name="AbsorptionTutorial" type="Panel" parent="CanvasLayer" unique_id=2100812602]
+offset_left = 114.0
+offset_top = 57.0
+offset_right = 201.0
+offset_bottom = 102.0
+
+[node name="Label" type="Label" parent="CanvasLayer/AbsorptionTutorial" unique_id=132770994]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 86.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 7
+text = "Must orbit the galaxy at a stable distance to absorb it
+"
+autowrap_mode = 2
 
 [node name="VFX" type="Panel" parent="CanvasLayer" unique_id=2058071242]
 visible = false

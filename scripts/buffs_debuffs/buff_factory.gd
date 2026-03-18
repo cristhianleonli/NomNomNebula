@@ -10,8 +10,7 @@ static func generate_debuff() -> Dictionary:
 	return _generate(false)
 
 static func _generate(is_good: bool) -> Dictionary:
-	var key: String = "buffs" if is_good else "debuffs"
-	var candidates: Array = BuffDebuffPool.pool[key]
+	var candidates: Array = BuffDebuffPool.buffs if is_good else BuffDebuffPool.debuffs
 
 	if candidates.is_empty():
 		return {}
