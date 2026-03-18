@@ -65,3 +65,4 @@ func on_player_dash_used():
 	if timer < 0.5 or abs(last_dash_used_time - strong_attrach_start_time) < 0.5:
 		change_state.emit(self, "blackholedisabled")
 		sprite.material.set_shader_parameter("holeSize", 0.0)
+		EventManager.on_shock_wave.emit(black_hole)

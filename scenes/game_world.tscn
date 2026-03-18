@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://h8thuxv38bgh" path="res://resources/Art/icons/keyboard_s.png" id="6_u1jpj"]
 [ext_resource type="Script" uid="uid://p0weimq4puxh" path="res://scripts/galaxy_spawner.gd" id="7_iokjm"]
 [ext_resource type="Texture2D" uid="uid://b0ng54pfpsfq7" path="res://resources/Art/icons/keyboard_w.png" id="7_uh34q"]
+[ext_resource type="Script" uid="uid://brqw70d0541ub" path="res://scripts/loss_component.gd" id="8_kbri5"]
 [ext_resource type="Texture2D" uid="uid://dq7ue6vtdx1jb" path="res://resources/Art/icons/keyboard_a.png" id="8_ph1f2"]
 [ext_resource type="Script" uid="uid://b57h78r6ydopc" path="res://scripts/minimap_camera.gd" id="8_y5rsn"]
 [ext_resource type="Texture2D" uid="uid://cqqm3gsucj7e6" path="res://resources/Art/icons/keyboard_d.png" id="9_odt01"]
@@ -24,13 +25,15 @@
 [ext_resource type="Script" uid="uid://b7dq2ueha14dg" path="res://scripts/ui/stats_panel.gd" id="22_wgh4l"]
 [ext_resource type="Texture2D" uid="uid://6yo25fpoqpne" path="res://resources/Art/minimap_marker.png" id="24_0y38y"]
 [ext_resource type="Script" uid="uid://c4u4i0c0aw3dp" path="res://scripts/shock_wave.gd" id="25_5nmku"]
+[ext_resource type="PackedScene" uid="uid://bliqp60aweli1" path="res://scenes/game_scenes/black_hole.tscn" id="25_y5rsn"]
+[ext_resource type="Shader" uid="uid://dwat4244mpgov" path="res://shaders/chromatic_aberration.gdshader" id="26_y5rsn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5nmku"]
 shader = ExtResource("11_0y38y")
 shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/force = 0.05
-shader_parameter/size = 1.585
-shader_parameter/thickness = 0.215
+shader_parameter/force = 0.235
+shader_parameter/size = 3.0
+shader_parameter/thickness = 0.045
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0y38y"]
 
@@ -43,6 +46,13 @@ viewport_path = NodePath("MinimapViewport")
 shader = ExtResource("20_iokjm")
 shader_parameter/intensity = 0.0
 shader_parameter/time_scale = 1.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbri5"]
+shader = ExtResource("26_y5rsn")
+shader_parameter/intensity = 0.0
+shader_parameter/r_displacement = Vector2(3.775, 2.96)
+shader_parameter/g_displacement = Vector2(1.195, -0.68)
+shader_parameter/b_displacement = Vector2(6.72, 0)
 
 [node name="GameWorld" type="Node2D" unique_id=1299650942]
 script = ExtResource("1_0biqy")
@@ -88,6 +98,19 @@ script = ExtResource("2_odt01")
 
 [node name="Player" parent="." unique_id=1205687715 instance=ExtResource("2_47u71")]
 
+[node name="BlackHole" parent="." unique_id=585464348 instance=ExtResource("25_y5rsn")]
+position = Vector2(208, -108)
+
+[node name="MainCamera" parent="." unique_id=1322683729 node_paths=PackedStringArray("player") groups=["camera"] instance=ExtResource("19_fg3oe")]
+player = NodePath("../Player")
+
+[node name="GalaxySpawner" type="Node2D" parent="." unique_id=920155787]
+script = ExtResource("7_iokjm")
+
+[node name="LossComponent" type="Node" parent="." unique_id=233967147 node_paths=PackedStringArray("chromatic_aberration_rect")]
+script = ExtResource("8_kbri5")
+chromatic_aberration_rect = NodePath("../ChromaticAberration/ColorRect")
+
 [node name="MinimapViewport" type="SubViewport" parent="." unique_id=1553471907]
 transparent_bg = true
 size = Vector2i(40, 40)
@@ -97,12 +120,6 @@ script = ExtResource("3_5nmku")
 
 [node name="Camera2D" type="Camera2D" parent="MinimapViewport" unique_id=661071147]
 script = ExtResource("8_y5rsn")
-
-[node name="GalaxySpawner" type="Node2D" parent="." unique_id=920155787]
-script = ExtResource("7_iokjm")
-
-[node name="MainCamera" parent="." unique_id=1322683729 node_paths=PackedStringArray("target") instance=ExtResource("19_fg3oe")]
-target = NodePath("../Player")
 
 [node name="ShokWave" type="CanvasLayer" parent="." unique_id=1739860249]
 
@@ -114,7 +131,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("25_5nmku")
-shock_wave_speed = 5.0
 shock_wave_force = 0.05
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=73551857]
@@ -341,3 +357,13 @@ mouse_filter = 2
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1110686936 instance=ExtResource("11_odt01")]
 visible = false
+
+[node name="ChromaticAberration" type="CanvasLayer" parent="." unique_id=1075421215]
+
+[node name="ColorRect" type="ColorRect" parent="ChromaticAberration" unique_id=1339145857]
+material = SubResource("ShaderMaterial_kbri5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

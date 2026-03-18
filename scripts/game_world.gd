@@ -40,7 +40,7 @@ func _ready() -> void:
 	minimap_markers.set_galaxies(galaxy_spawner.get_visible_galaxies())
 	
 	EventManager.on_attracting_player.connect(_on_start_tutorial)
-	EventManager.on_player_destabilized.connect(_on_game_over)
+	EventManager.on_player_destabilized.connect(_on_game_over_animation)
 	EventManager.on_tooltip_show.connect(_on_galaxy_tooltip_show)
 	EventManager.on_tooltip_hide.connect(_on_galaxy_tooltip_hide)
 	EventManager.on_galaxy_absorbed.connect(_on_galaxy_absorbed)
@@ -90,6 +90,10 @@ func _handle_toggle_pause() -> void:
 		EventManager.on_game_state_changed.emit(GameState.PAUSED)
 		AudioManager.pause_music()
 		Engine.time_scale = 0.0
+
+func _on_game_over_animation():
+	pass
+	
 
 func _on_game_over() -> void:
 	if current_score > Globals.current_save.highest_score:

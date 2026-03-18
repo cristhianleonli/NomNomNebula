@@ -4,17 +4,119 @@
 [ext_resource type="Script" uid="uid://i18xqufr6gud" path="res://scripts/player/player_movement.gd" id="3_bhlyf"]
 [ext_resource type="Script" uid="uid://bn6wfo5m712rk" path="res://scripts/movement_wrap.gd" id="4_0lqrc"]
 [ext_resource type="Script" uid="uid://u0bc1marrjav" path="res://scripts/player/dash_component.gd" id="4_8ut53"]
+[ext_resource type="Shader" uid="uid://cf1k4yl3eu2e" path="res://shaders/player_shader.gdshader" id="4_qpgmy"]
+[ext_resource type="Texture2D" uid="uid://bqrf1vf5m2mh0" path="res://resources/Art/Galaxy Sprite Sheets/player galaxy.png" id="4_wxxbh"]
 [ext_resource type="Script" uid="uid://cdsyiosey41jg" path="res://scripts/player/stabilization_component.gd" id="5_2ue4q"]
+[ext_resource type="Texture2D" uid="uid://pqcffqxgufsf" path="res://resources/Art/guide_tilemap.png" id="5_eqovo"]
+[ext_resource type="Texture2D" uid="uid://d0i2dq4b2ljw2" path="res://icon.svg" id="6_wxxbh"]
+[ext_resource type="Texture2D" uid="uid://b53onynrxfexa" path="res://resources/UI/arrow_right.png" id="10_ttkvm"]
+[ext_resource type="Script" uid="uid://c1npqec65kjpn" path="res://scripts/player/vel_direction_arrow.gd" id="11_7iota"]
 
-[sub_resource type="Gradient" id="Gradient_6p80c"]
-offsets = PackedFloat32Array(0.686747, 1)
-colors = PackedColorArray(0.5647059, 0.6627451, 1, 1, 0, 0, 0, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttkvm"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ut53"]
-gradient = SubResource("Gradient_6p80c")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.8652174, 0.21304348)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iota"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk2f8"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nphj3"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqivf"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yslsu"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sxy6"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8setw"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2hnu"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ku62b"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ijg4"]
+atlas = ExtResource("4_wxxbh")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_148eg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttkvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iota")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk2f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nphj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqivf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yslsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sxy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8setw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2hnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ku62b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ijg4")
+}],
+"loop": true,
+"name": &"main",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_n71xk"]
+colors = PackedColorArray(0.49803922, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eqovo"]
+gradient = SubResource("Gradient_n71xk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n71xk"]
+shader = ExtResource("4_qpgmy")
+shader_parameter/resolution = Vector2(32, 32)
+shader_parameter/colorResolution = 100.0
+shader_parameter/holeSize = 0.07999999821184
+shader_parameter/holeColor = SubResource("GradientTexture1D_eqovo")
+shader_parameter/image = ExtResource("5_eqovo")
+shader_parameter/rotations = 3.0
+shader_parameter/depth = 6.40000009536768
+shader_parameter/spiralIntensity = -2.09999988228052
+shader_parameter/shrinkSpeed = -0.29999985545835983
+shader_parameter/rotationSpeed = 1.2000001668934406
+shader_parameter/color_count = 1
+shader_parameter/colors = PackedColorArray(0, 0.91764706, 0.91764706, 1, 0.13146323, 0.31508726, 0.50013626, 1, 0.69803923, 0.9764706, 0.15686275, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lhng"]
 radius = 22.090721
@@ -23,26 +125,46 @@ radius = 22.090721
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_fdpfy")
 
-[node name="PlayerMovement" type="Node2D" parent="." unique_id=1515665023 node_paths=PackedStringArray("player")]
+[node name="PlayerMovement" type="Node2D" parent="." unique_id=1515665023 node_paths=PackedStringArray("player", "movement_indicator")]
 script = ExtResource("3_bhlyf")
 player = NodePath("..")
+movement_indicator = NodePath("../MovementIndicator")
+current_movement_type = 0
 
 [node name="MovementWrap" type="Node2D" parent="." unique_id=1647192220]
 script = ExtResource("4_0lqrc")
 move_camera = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=148926646]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1057678827]
 rotation = 1.5707964
-texture = SubResource("GradientTexture2D_8ut53")
+scale = Vector2(1.96, 1.96)
+sprite_frames = SubResource("SpriteFrames_148eg")
+animation = &"main"
+frame_progress = 0.15844963
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=148926646]
+material = SubResource("ShaderMaterial_n71xk")
+rotation = 1.5707964
+texture = ExtResource("6_wxxbh")
 
 [node name="DashComponent" type="Node2D" parent="." unique_id=942892623]
 script = ExtResource("4_8ut53")
 
 [node name="StabilizationComponent" type="Node2D" parent="." unique_id=212140747]
 script = ExtResource("5_2ue4q")
+max_time = 30.0
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1609183663]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=804966322]
 shape = SubResource("CircleShape2D_1lhng")
+
+[node name="MovementIndicator" type="Sprite2D" parent="." unique_id=403440852 node_paths=PackedStringArray("player", "player_movement")]
+scale = Vector2(3, 3)
+texture = ExtResource("10_ttkvm")
+script = ExtResource("11_7iota")
+player = NodePath("..")
+player_movement = NodePath("../PlayerMovement")
+
+[node name="CameraTarget" type="Node2D" parent="." unique_id=2122891678]

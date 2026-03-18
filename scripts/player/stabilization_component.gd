@@ -1,7 +1,7 @@
 class_name StabilizationComponent
 extends Node
 
-@export var max_time: float = 30.0
+@export var max_time: float = 10.0
 @export var warning_time: float = 10.0
 @export var drain_rate: float = 1.0
 @export var base_absorption_speed: float = 1.0

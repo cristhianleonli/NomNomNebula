@@ -23,7 +23,7 @@ var max_black_holes: int = 2
 var spawn_radius: float = 600.0
 var min_spawn_radius: float = 200.0
 var min_distance_between: float = 150.0
-var initial_galaxies: int = 3
+var initial_galaxies: int = 5
 
 func _ready() -> void:
 	for i in range(initial_galaxies):

@@ -1,19 +1,24 @@
 class_name Player
 extends Node2D
 
+
 @onready var dash_component: DashComponent = $DashComponent
 @onready var stabilization_component: StabilizationComponent = $StabilizationComponent
 @onready var player_movement: PlayerMovement = $PlayerMovement
-
+@onready var animation : AnimatedSprite2D = $AnimatedSprite2D
+@onready var camera_target : Node2D = $CameraTarget
 var can_move: bool = true
+var can_control : bool = true
 var target_size: float = 0.5
 var velocity: Vector2 = Vector2.ZERO
+var color_amount : int = 1
 
 func _ready() -> void:
+	animation.play("main")
 	EventManager.on_game_state_changed.connect(_on_game_state_changed)
 
 func _process(_delta: float) -> void:
-	pass
+	camera_target.global_position = global_position + (velocity)
 
 func use_dash() -> void:
 	dash_component.use_dash()
@@ -33,8 +38,9 @@ func apply_force(force: Vector2) -> void:
 	velocity += force
 
 func absorb_galaxy(data: GalaxyData) -> void:
+	$Sprite2D.material.set_shader_parameter("color_count", color_amount+1)
+	color_amount += 1
 	var buff_debuff: Dictionary = data.buff_debuff
-	print(buff_debuff)
 	#apply_buff_debuff(buff_debuff)
 	#target_size += 1 # data.mass
 

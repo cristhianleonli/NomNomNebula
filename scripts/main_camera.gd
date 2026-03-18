@@ -1,30 +1,32 @@
 class_name MainCamera
 extends Camera2D
 
-var zoom_target : Vector2 = Vector2(1.0, 1.0)
-@export var target : Node2D
-@export var follow_reduction_factor : float = 1
+@export var player : Player
+@export var follow_speed : float = 1.5
 @export var zoom_speed : float = 1
 
+var target : Node2D
 var rng = RandomNumberGenerator.new()
 var shaking : bool = false
 var shake_strength : float
 var shake_time : float
 var target_zoom: Vector2 = Vector2(1, 1)
+var hard_zoom : bool = false
 
 func _ready() -> void:
+	target = player.camera_target
 	EventManager.on_camera_shake.connect(on_start_shake)
 
 func _process(delta: float) -> void:
-	if target == Globals.player:
+	if target == Globals.player.camera_target and not hard_zoom:
 		target_zoom = Vector2.ONE - Vector2(Globals.player.velocity.length() * 0.0015, Globals.player.velocity.length() * 0.0015)
+	
+	position += (target.global_position - global_position)*follow_speed * delta
+	zoom = lerp(zoom, target_zoom, zoom_speed*delta)
 	
 	if shake_strength > 0:
 		position += get_random_offset()
 		shake_strength = lerpf(shake_strength, 0, 5.0 * delta)
-		
-	position += (target.global_position - global_position)/follow_reduction_factor * delta
-	zoom = lerp(zoom, target_zoom, zoom_speed*delta)
 
 func set_target(_target) -> void:
 	target = _target

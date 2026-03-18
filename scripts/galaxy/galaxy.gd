@@ -44,7 +44,9 @@ func apply_force(force: Vector2) ->void:
 
 func _on_center_area_entered(_area: Area2D) -> void:
 	Globals.player.velocity = Vector2.ZERO
-	Globals.player.apply_force((Globals.player.global_position - global_position).normalized() * 500)
+	Globals.player.apply_force((Globals.player.global_position - global_position).normalized() * 400)
+	EventManager.on_camera_shake.emit(6.0, 2.0)
+
 
 func _on_interaction_area_mouse_entered() -> void:
 	EventManager.on_tooltip_show.emit(data)

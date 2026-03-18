@@ -1,12 +1,16 @@
 extends Sprite2D
 
-@onready var player: Player = get_parent()
-@export var distance: float = 10
+@export var player: Player
+@export var player_movement : PlayerMovement
+@export var distance: float = 30
 
 func _ready() -> void:
 	pass # Replace with function body.
 
 
 func _process(_delta: float) -> void:
-	var player_direction :Vector2 = Utils.rotation_to_vector(player.rotation)
+	if not player_movement.current_movement_type == player_movement.MovementType.TANK:
+		return
+	var player_direction :Vector2 = Utils.rotation_to_vector(player_movement.movement_angle)
+	rotation = player_movement.movement_angle
 	global_position = player.position + player_direction * distance

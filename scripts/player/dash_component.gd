@@ -60,6 +60,7 @@ func use_dash() -> void:
 	if dash_count == 0:
 		_start_recharge()
 
+
 func dash_error() -> void:
 	AudioManager.play_sfx(AudioManager.tracks.dash_error)
 
