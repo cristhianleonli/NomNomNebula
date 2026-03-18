@@ -37,7 +37,6 @@ func _ready() -> void:
 	)
 	
 	absortion_tutorial.visible = false
-	minimap_markers.set_galaxies(galaxy_spawner.get_visible_galaxies())
 	
 	EventManager.on_attracting_player.connect(_on_start_tutorial)
 	EventManager.on_player_destabilized.connect(_on_game_over)

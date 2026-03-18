@@ -13,7 +13,7 @@ static func _gen_random_str(length: int) -> String:
 	var charset: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 	var result: String = ""
 	for _i: int in range(length):
-		var random_index: int = randi() % charset.length()
+		var random_index: int = Globals.rng.randi() % charset.length()
 		result += charset[random_index]
 	return result
 

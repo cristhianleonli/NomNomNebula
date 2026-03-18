@@ -6,13 +6,13 @@ enum MovementType {
 }
 
 @export var player: Player
-@export var dash_speed: float = 200.0
 @export var acceleration: float = 300.0
 @export var friction: float = 0.98
 @export var movement_type: MovementType = MovementType.NORMAL
 
 func set_control_type(type: MovementType) -> void:
 	movement_type = type
+	print("new movement: ", type)
 	# actually do something
 
 func _process(delta: float) -> void:
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash"):
 		if player.can_dash():
 			if input_dir != Vector2.ZERO:
-				player.velocity += input_dir * dash_speed
+				player.velocity += input_dir * player.dash_component.effective_speed
 				player.use_dash()
 		else:
 			player.use_dash_error()

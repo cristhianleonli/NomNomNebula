@@ -1,7 +1,8 @@
 class_name BuffDebuffKey
 
 const EXTRA_DASHES: String = "extra_dashes"
-const DASH_SPEED_FACTOR: String = "dash_speed_factor"
+const DASH_RECHARGE_FACTOR: String = "dash_recharge_factor"
+const DASH_FORCE_FACTOR: String = "dash_force_factor"
 const ESCAPING_TIME_FACTOR: String = "escaping_time_factor"
 const ABSORTION_SPEED_FACTOR: String = "absortion_speed_factor"
 const MOVEMENT_SPEED_FACTOR: String = "movement_speed_factor"

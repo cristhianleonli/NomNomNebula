@@ -19,8 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://jgiwhntmki7w" path="res://scenes/ui/stabilization_panel.tscn" id="18_xxaiy"]
 [ext_resource type="PackedScene" uid="uid://dpwoginuct65t" path="res://scenes/main_camera.tscn" id="19_fg3oe"]
 [ext_resource type="Script" uid="uid://c81dqmvah0kk" path="res://scripts/ui/stabilization_screen_fx.gd" id="19_mf52o"]
-[ext_resource type="Texture2D" uid="uid://dbbkcf55bocy6" path="res://resources/Art/panel_solid.png" id="20_0y38y"]
+[ext_resource type="Texture2D" uid="uid://dbbkcf55bocy6" path="res://resources/UI/panel_solid.png" id="20_0y38y"]
 [ext_resource type="Shader" uid="uid://d1clynis8x1u3" path="res://shaders/stabilization_screen.gdshader" id="20_iokjm"]
+[ext_resource type="Texture2D" uid="uid://bxwpenyw8iyku" path="res://resources/Art/radar.png" id="22_5nmku"]
 [ext_resource type="Script" uid="uid://b7dq2ueha14dg" path="res://scripts/ui/stats_panel.gd" id="22_wgh4l"]
 [ext_resource type="Texture2D" uid="uid://6yo25fpoqpne" path="res://resources/Art/minimap_marker.png" id="24_0y38y"]
 [ext_resource type="Script" uid="uid://c4u4i0c0aw3dp" path="res://scripts/shock_wave.gd" id="25_5nmku"]
@@ -186,25 +187,6 @@ theme_override_font_sizes/font_size = 12
 text = "Move"
 horizontal_alignment = 1
 
-[node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=398200875]
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 19.0
-offset_bottom = 18.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseButton" unique_id=112404304]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_ph1f2")
-expand_mode = 1
-stretch_mode = 4
-
 [node name="GalaxyInfoPanel" type="Panel" parent="CanvasLayer" unique_id=893638207]
 offset_left = 231.0
 offset_top = 3.0
@@ -318,6 +300,34 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("24_0y38y")
+
+[node name="RadarTexture" type="TextureRect" parent="CanvasLayer/MinimapPanel" unique_id=460278077]
+modulate = Color(1, 1, 1, 0.13725491)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 46.0
+texture = ExtResource("22_5nmku")
+
+[node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=398200875]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 19.0
+offset_bottom = 18.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseButton" unique_id=112404304]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_ph1f2")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="StabilizationScreenFX" type="Panel" parent="CanvasLayer" unique_id=1651400057]
 anchors_preset = 15
