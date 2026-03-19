@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://l438c6qr6470"]
+
+[ext_resource type="Script" uid="uid://br0ui4rpububb" path="res://scripts/ui/increment_label.gd" id="1_1ed7c"]
+
+[node name="IncrementLabel" type="Label" unique_id=216699561]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 6
+text = "+1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_1ed7c")

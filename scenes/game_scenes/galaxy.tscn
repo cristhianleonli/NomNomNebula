@@ -13,8 +13,7 @@
 [ext_resource type="Script" uid="uid://sunbyn5fx5l1" path="res://scripts/galaxy/galaxy_attract_state.gd" id="6_pctnl"]
 [ext_resource type="Texture2D" uid="uid://43825t84jvkq" path="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 2.0.png" id="6_pdkth"]
 [ext_resource type="Script" uid="uid://btwfig6s12las" path="res://scripts/galaxy/galaxy_desintegrate_state.gd" id="7_0t61a"]
-[ext_resource type="Material" uid="uid://jske8d54cs0g" path="res://shaders/mats/vortex_material.tres" id="9_y80rp"]
-[ext_resource type="Script" uid="uid://d2syqet6n2u2u" path="res://scripts/incremented_size_buff.gd" id="15_y80rp"]
+[ext_resource type="Material" uid="uid://jske8d54cs0g" path="res://mats/vortex_material.tres" id="9_y80rp"]
 
 [sub_resource type="Gradient" id="Gradient_uaiqi"]
 offsets = PackedFloat32Array(0.6721311, 1)
@@ -444,10 +443,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Center" unique_id=1403290327]
 shape = SubResource("CircleShape2D_4oih2")
 
-[node name="IncrementedSizeBuff" type="Node" parent="." unique_id=750055645 node_paths=PackedStringArray("interaction_collision_shape")]
-script = ExtResource("15_y80rp")
-interaction_collision_shape = NodePath("../InteractionArea/CollisionShape2D")
-
 [node name="StateMachine" type="Node" parent="." unique_id=1730946245 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_nbxba")
 initial_state = NodePath("idle")
@@ -472,17 +467,6 @@ script = ExtResource("7_0t61a")
 galaxy = NodePath("../..")
 metadata/_custom_type_script = "uid://btwfig6s12las"
 
-[node name="TimerLabel" type="Label" parent="." unique_id=1434764620]
-visible = false
-offset_left = -19.0
-offset_top = -31.0
-offset_right = 35.0
-offset_bottom = -15.0
-theme_override_font_sizes/font_size = 12
-text = "123"
-
 [connection signal="mouse_entered" from="InnerArea" to="." method="_on_inner_area_mouse_entered"]
 [connection signal="mouse_exited" from="InnerArea" to="." method="_on_inner_area_mouse_exited"]
-[connection signal="mouse_entered" from="InteractionArea" to="." method="_on_interaction_area_mouse_entered"]
-[connection signal="mouse_exited" from="InteractionArea" to="." method="_on_interaction_area_mouse_exited"]
 [connection signal="area_entered" from="Center" to="." method="_on_center_area_entered"]

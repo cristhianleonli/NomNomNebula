@@ -20,7 +20,7 @@ func enter() -> void:
 	Globals.game_camera.set_target(target)
 	Globals.game_camera.target_zoom = Vector2(galaxy.size/4, galaxy.size/4)
 	
-	absorption_timer = absorption_time_required
+	absorption_timer = absorption_time_required * Globals.player.absorption_speed_factor
 
 func update(delta: float) -> void:
 	var offset = _get_offset_to_player()
@@ -31,16 +31,14 @@ func update(delta: float) -> void:
 	target.global_position = galaxy.global_position + _get_offset_to_player() * -1.0 * 0.5
 
 	if not is_inside:
-		absorption_timer -= delta * absorption_speed_factor*Globals.player.absorption_speed_factor*Globals.player.target_size
+		absorption_timer -= delta * absorption_speed_factor * Globals.player.target_size
 	else:
-		absorption_timer = absorption_time_required
+		absorption_timer = absorption_time_required * Globals.player.absorption_speed_factor
 	
 	was_inside_inner_radius = is_inside
 		
 	if absorption_timer < 0:
 		change_state.emit("desintegrate")
-	
-	galaxy.timer_label.text = "%.2f" % absorption_timer
 	
 func calc_force() -> Vector2:
 	var offset: Vector2 = _get_offset_to_player()
@@ -60,4 +58,3 @@ func exit() -> void:
 	attraction_area.area_exited.disconnect(end_attraction_state)
 	absorption_timer = absorption_time_required
 	galaxy.charge_player.stop()
-	galaxy.timer_label.text = str(absorption_time_required)

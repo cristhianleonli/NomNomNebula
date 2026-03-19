@@ -4,7 +4,7 @@ extends Node
 @onready var texture_rect: TextureRect = $HBoxContainer/TextureRect
 @onready var label: Label = $HBoxContainer/Label
 @onready var tooltip_label: Label = $Tooltip/TooltipLabel
-@onready var tooltip: Panel = $Tooltip
+@onready var tooltip: PanelContainer = $Tooltip
 
 var atlas: AtlasTexture
 
@@ -12,26 +12,44 @@ func _ready() -> void:
 	atlas = texture_rect.texture as AtlasTexture
 	label.text = ""
 	texture_rect.visible = false
+	tooltip.visible = false
+	
+	texture_rect.mouse_exited.connect(func() -> void: tooltip.visible = false)
+	texture_rect.mouse_entered.connect(func() -> void:
+		tooltip.visible = true
+		AudioManager.play_sfx(AudioManager.tracks.show_ui)
+	)
 
 func set_data(data: Dictionary) -> void:
 	texture_rect.visible = true
+	label.text = ""
+	tooltip_label.text = ""
 	
 	for key: String in data:
 		if key == "rarity":
 			pass
-		elif key == "stability_max_count":
-			if data["stability_max_count"] > 0:
-				label.text = str(data["stability_max_count"])
-				_set_icon(BuffDebuffKey.STABILITY_MAX)
-		elif key == BuffDebuffKey.CONTROL_TYPE:
-			label.text = ""
-			_set_icon(key)
+		elif key == "desciption":
+			pass
 		elif key == BuffDebuffKey.STABILITY_MAX:
 			pass
-		else:
+		elif key == "stability_max_count":
+			#if data["stability_max_count"] > 0:
+				#_set_icon(BuffDebuffKey.STABILITY_MAX)
+			#if data["stability_max_count"] > 1:
+				#label.text = str(data["stability_max_count"])
+			pass
+		elif key == BuffDebuffKey.CONTROL_TYPE_TANK or key == BuffDebuffKey.CONTROL_TYPE_INVERTED:
+			label.text = ""
 			_set_icon(key)
+			_set_tooltip_title(key)
+		else:
 			label.text = _get_title(key, data[key])
+			_set_icon(key)
+			_set_tooltip_title(key)
 
+func _set_tooltip_title(key: String) -> void:
+	tooltip_label.text = BuffDebuffKey.DESCRIPTIONS.get(key, "-")
+	
 func _set_icon(key: String) -> void:
 	var new_region: Rect2 = atlas.region
 	var tile_size: float = 32
@@ -45,6 +63,8 @@ func _set_icon(key: String) -> void:
 			new_region.position.y = tile_size * 2.0
 		BuffDebuffKey.DASH_RECHARGE_FACTOR:
 			new_region.position.y = tile_size * 3.0
+		BuffDebuffKey.DASH_RECHARGE_FACTOR_INCREASED:
+			new_region.position.y = tile_size * 3.0 # FIXME:
 		BuffDebuffKey.MOVEMENT_WARP_FACTOR:
 			new_region.position.y = tile_size * 0.0
 		BuffDebuffKey.INTERACTION_RADIUS_FACTOR:
@@ -53,7 +73,9 @@ func _set_icon(key: String) -> void:
 			new_region.position.y = tile_size * 5.0
 		BuffDebuffKey.STABILITY_MAX:
 			pass
-		BuffDebuffKey.CONTROL_TYPE:
+		BuffDebuffKey.CONTROL_TYPE_TANK:
+			pass
+		BuffDebuffKey.CONTROL_TYPE_INVERTED:
 			pass
 	
 	atlas.region = new_region
@@ -68,6 +90,8 @@ func _get_title(key: String, value: Variant) -> String:
 			return "+" + str(value) + "s"
 		BuffDebuffKey.DASH_RECHARGE_FACTOR:
 			return _get_float_format(value)
+		BuffDebuffKey.DASH_RECHARGE_FACTOR_INCREASED:
+			return _get_float_format(value)
 		BuffDebuffKey.MOVEMENT_WARP_FACTOR:
 			return _get_float_format(value)
 		BuffDebuffKey.INTERACTION_RADIUS_FACTOR:
@@ -76,7 +100,9 @@ func _get_title(key: String, value: Variant) -> String:
 			return _get_float_format(value)
 		BuffDebuffKey.STABILITY_MAX:
 			return ""
-		BuffDebuffKey.CONTROL_TYPE:
+		BuffDebuffKey.CONTROL_TYPE_TANK:
+			return ""
+		BuffDebuffKey.CONTROL_TYPE_INVERTED:
 			return ""
 	
 	return ""

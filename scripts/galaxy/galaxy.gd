@@ -8,7 +8,6 @@ const VORTEX_MATERIAL: Resource = preload("uid://jske8d54cs0g")
 
 @onready var charge_player: AudioStreamPlayer2D = $ChargePlayer
 @onready var animation: AnimatedSprite2D = get_node("Animation")
-@onready var timer_label: Label = $TimerLabel
 @onready var interaction_collision_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
 @onready var vortex_effect: Sprite2D = $VortexEffect
 @onready var repel_particles: GPUParticles2D = $RepelParticles
@@ -18,7 +17,10 @@ var velocity: Vector2 = Vector2.ZERO
 var base_interaction_radius: float = 60.0
 
 func _ready() -> void:
+	EventManager.on_increment_galaxy_size.connect(_on_increment_interaction_radius)
+	EventManager.on_reset_galaxy_size.connect(_on_increment_interaction_radius.bind(0))
 	EventManager.on_game_state_changed.connect(_on_game_state_changed)
+	
 	# duplicate shape to make size unique per galaxy
 	var shape: CircleShape2D = interaction_collision_shape.shape.duplicate()
 	shape.radius = base_interaction_radius
@@ -40,6 +42,9 @@ func _ready() -> void:
 	
 	animation.play(data.animation)
 
+func _on_increment_interaction_radius(factor: float) -> void:
+	interaction_collision_shape.shape.radius = base_interaction_radius * (1 + factor)
+
 func _process(delta: float) -> void:
 	size = lerp(size, 2.0, scaling_speed * delta)
 	scale = Vector2(size, size)
@@ -54,12 +59,6 @@ func _on_center_area_entered(_area: Area2D) -> void:
 	EventManager.on_camera_shake.emit(4.0)
 	AudioManager.play_sfx(AudioManager.tracks.galaxy_repel)
 	repel_particles.restart()
-
-func _on_interaction_area_mouse_entered() -> void:
-	EventManager.on_tooltip_show.emit(data)
-
-func _on_interaction_area_mouse_exited() -> void:
-	EventManager.on_tooltip_hide.emit()
 
 func _on_game_state_changed(state: GameWorld.GameState) -> void:
 	match state:

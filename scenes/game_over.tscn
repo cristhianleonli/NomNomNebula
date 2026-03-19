@@ -89,7 +89,7 @@ alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SummaryPanel/Panel/VBoxContainer" unique_id=885884109]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 6
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/SummaryPanel/Panel/VBoxContainer/HBoxContainer" unique_id=1030136943]
@@ -106,19 +106,18 @@ horizontal_alignment = 1
 
 [node name="ScoreStar" type="TextureRect" parent="CanvasLayer/SummaryPanel/Panel/VBoxContainer/HBoxContainer" unique_id=395833735]
 layout_mode = 2
-size_flags_horizontal = 4
 texture = ExtResource("4_v3hpu")
 stretch_mode = 5
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/SummaryPanel/Panel/VBoxContainer" unique_id=1817010706]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/SummaryPanel/Panel/VBoxContainer/HBoxContainer2" unique_id=790342154]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "Highest score"
+text = "Your score"
 horizontal_alignment = 1
 
 [node name="CurrentScore" type="Label" parent="CanvasLayer/SummaryPanel/Panel/VBoxContainer/HBoxContainer2" unique_id=672994065]

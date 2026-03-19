@@ -26,11 +26,6 @@ func _ready() -> void:
 	
 	dash_particles.one_shot = true
 	dash_particles.emitting = false
-	
-	# FIXME: remove
-	#await get_tree().create_timer(4.0).timeout
-	#var r = GalaxyData.new()
-	#absorb_galaxy(r)
 
 func _process(_delta: float) -> void:
 	camera_target.global_position = global_position + (velocity)
@@ -60,17 +55,15 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	var buff_debuff: Dictionary = data.buff_debuff
 	buff_debuff.duplicate()
 	
+	# clean all previously applied buffs/debuffs
 	target_size += increase_size_factor
 	player_movement.set_control_type(PlayerMovement.ControlType.NORMAL)
+	player_movement.apply_movement_factor_speed(0)
 	dash_component.reset_buffs()
 	stabilization_component.reset_buffs()
 	stabilization_component.add_time(data.stability_buff)
-	
-	# FIXME: Remove debug
-	#buff_debuff = BuffDebuffPool.buffs[3].duplicate()
-	#buff_debuff = BuffDebuffPool.buffs[0]
-	#buff_debuff = BuffDebuffPool.pool["debuffs"][4]
-	#print(buff_debuff)
+	absorption_speed_factor = 1.0
+	EventManager.on_reset_galaxy_size.emit()
 	
 	apply_buff_debuff(buff_debuff)
 	
@@ -87,11 +80,13 @@ func apply_buff_debuff(buff: Dictionary) -> void:
 		BuffDebuffKey.DASH_FORCE_FACTOR: _apply_dash_force_factor,
 		BuffDebuffKey.ESCAPING_TIME: _apply_escaping_time,
 		BuffDebuffKey.DASH_RECHARGE_FACTOR: _apply_dash_recharge_factor,
+		BuffDebuffKey.DASH_RECHARGE_FACTOR_INCREASED: _apply_dash_recharge_factor,
 		BuffDebuffKey.MOVEMENT_WARP_FACTOR: _apply_movement_speed_factor,
 		BuffDebuffKey.INTERACTION_RADIUS_FACTOR: _apply_interaction_radius_factor,
 		BuffDebuffKey.ABSORPTION_SPEED_FACTOR: _apply_absorption_speed_factor,
 		BuffDebuffKey.STABILITY_MAX: _apply_stability_max,
-		BuffDebuffKey.CONTROL_TYPE: _apply_control_type,
+		BuffDebuffKey.CONTROL_TYPE_TANK: _apply_control_type_tank,
+		BuffDebuffKey.CONTROL_TYPE_INVERTED: _apply_control_type_inverted,
 	}
 
 	for key in buff.keys():
@@ -112,8 +107,11 @@ func _on_game_state_changed(state: GameWorld.GameState) -> void:
 			can_move = false
 #region buff debuff handlers
 
-func _apply_control_type(value: int) -> void:
-	player_movement.set_control_type(PlayerMovement.ControlType.values()[value])
+func _apply_control_type_tank(_value: Variant) -> void:
+	player_movement.set_control_type(PlayerMovement.ControlType.values()[1])
+
+func _apply_control_type_inverted(_value: Variant) -> void:
+	player_movement.set_control_type(PlayerMovement.ControlType.values()[2])
 
 func _apply_extra_dashes(value: int) -> void:
 	dash_component.apply_extra_dashes(value)

@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bwgjk5vsqnrxm" path="res://resources/Art/icons/gear.png" id="11_ph1f2"]
 [ext_resource type="Script" uid="uid://mswum8c7a70x" path="res://scripts/ui/conditions_panel.gd" id="16_y5rsn"]
 [ext_resource type="Texture2D" uid="uid://cjw5784ro20c4" path="res://resources/Art/icons/buff_icons.png" id="17_kbri5"]
-[ext_resource type="Script" uid="uid://1hy21bsnn0ng" path="res://scripts/ui/galaxy_info_panel.gd" id="17_oyepb"]
 [ext_resource type="Shader" uid="uid://br1gbhg6xop70" path="res://shaders/displace_uv.gdshader" id="18_eto5o"]
+[ext_resource type="Texture2D" uid="uid://y71y2r5t4km7" path="res://resources/UI/score_star.png" id="18_mtxny"]
 [ext_resource type="PackedScene" uid="uid://jgiwhntmki7w" path="res://scenes/ui/stabilization_panel.tscn" id="18_xxaiy"]
 [ext_resource type="PackedScene" uid="uid://dpwoginuct65t" path="res://scenes/main_camera.tscn" id="19_fg3oe"]
 [ext_resource type="Script" uid="uid://c81dqmvah0kk" path="res://scripts/ui/stabilization_screen_fx.gd" id="19_mf52o"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://6yo25fpoqpne" path="res://resources/Art/minimap_marker.png" id="24_0y38y"]
 [ext_resource type="Script" uid="uid://c4u4i0c0aw3dp" path="res://scripts/shock_wave.gd" id="25_5nmku"]
 [ext_resource type="Shader" uid="uid://dwat4244mpgov" path="res://shaders/chromatic_aberration.gdshader" id="26_y5rsn"]
+[ext_resource type="Script" uid="uid://vntyq0qk1e48" path="res://scripts/ui/score_panel.gd" id="27_kbri5"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gqenn"]
 particle_flag_disable_z = true
@@ -55,9 +56,13 @@ viewport_path = NodePath("MinimapViewport")
 shader = ExtResource("18_eto5o")
 shader_parameter/offset = Vector2(0, 0)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbri5"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbri5"]
 atlas = ExtResource("17_kbri5")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mtxny"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eto5o"]
 
@@ -164,32 +169,6 @@ script = ExtResource("8_y5rsn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=73551857]
 
-[node name="GalaxyInfoPanel" type="Panel" parent="CanvasLayer" unique_id=893638207]
-offset_left = 231.0
-offset_top = 3.0
-offset_right = 317.0
-offset_bottom = 61.0
-script = ExtResource("17_oyepb")
-
-[node name="Label" type="Label" parent="CanvasLayer/GalaxyInfoPanel" unique_id=193440778]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 2.0
-offset_right = 82.0
-offset_bottom = 12.0
-theme_override_font_sizes/font_size = 7
-text = "Galaxy data"
-horizontal_alignment = 1
-
-[node name="DataLabel" type="Label" parent="CanvasLayer/GalaxyInfoPanel" unique_id=506995605]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 15.0
-offset_right = 82.0
-offset_bottom = 51.0
-theme_override_font_sizes/font_size = 4
-text = "Galaxy data"
-
 [node name="MinimapPanel" type="Panel" parent="CanvasLayer" unique_id=1504764070]
 clip_contents = true
 offset_left = 264.0
@@ -261,6 +240,8 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("24_0y38y")
 
 [node name="StabilizationPanel" parent="CanvasLayer" unique_id=2092434660 instance=ExtResource("18_xxaiy")]
+offset_left = -1.0
+offset_right = -1.0
 mouse_filter = 2
 
 [node name="ConditionsPanel" type="Panel" parent="CanvasLayer" unique_id=1015501446]
@@ -270,6 +251,7 @@ anchor_bottom = 1.0
 offset_top = -27.0
 offset_right = 70.0
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kbri5")
 script = ExtResource("16_y5rsn")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ConditionsPanel" unique_id=763135158]
@@ -279,6 +261,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = -2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConditionsPanel/HBoxContainer" unique_id=1457533625]
 layout_mode = 2
@@ -290,24 +273,53 @@ theme_override_font_sizes/font_size = 7
 text = "+99"
 vertical_alignment = 1
 
-[node name="Tooltip" type="Panel" parent="CanvasLayer/ConditionsPanel" unique_id=1162046128]
+[node name="Tooltip" type="PanelContainer" parent="CanvasLayer/ConditionsPanel" unique_id=2030119467]
 layout_mode = 0
-offset_left = 33.0
-offset_top = -17.0
+offset_left = 30.0
+offset_top = -27.0
 offset_right = 90.0
-offset_bottom = 5.0
 
 [node name="TooltipLabel" type="Label" parent="CanvasLayer/ConditionsPanel/Tooltip" unique_id=1056620267]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 7
-text = "Description"
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Description
+Description
+Description"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScorePanel" type="Panel" parent="CanvasLayer" unique_id=1264316782]
+offset_left = 267.0
+offset_right = 320.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mtxny")
+script = ExtResource("27_kbri5")
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/ScorePanel" unique_id=82946981]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.8901961, 0.85882354, 0.28235295, 1)
+theme_override_font_sizes/font_size = 8
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ScorePanel" unique_id=1728317475]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 11.0
+offset_right = 46.0
+offset_bottom = 16.0
+texture = ExtResource("18_mtxny")
+stretch_mode = 4
+
+[node name="Marker2D" type="Marker2D" parent="CanvasLayer/ScorePanel" unique_id=1959748708]
+position = Vector2(28, 27)
 
 [node name="DashPanel" parent="CanvasLayer" unique_id=696284378 instance=ExtResource("3_ywgp6")]
 anchors_preset = 7
@@ -368,10 +380,10 @@ mouse_filter = 2
 script = ExtResource("8_kbri5")
 
 [node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=398200875]
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 19.0
-offset_bottom = 18.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 22.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 focus_mode = 0
 

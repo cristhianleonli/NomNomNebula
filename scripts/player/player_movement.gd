@@ -50,13 +50,13 @@ func _process(delta: float) -> void:
 func _inverted_movement(delta):
 	var input_dir: Vector2 = _get_input_direction() * -1
 	if input_dir != Vector2.ZERO:
-		player.velocity += input_dir * acceleration * delta
+		player.velocity += input_dir * acceleration * movement_speed_factor * delta
 		try_dash(input_dir)
 
 func _normal_movement(delta: float):
 	var input_dir: Vector2 = _get_input_direction()
 	if input_dir != Vector2.ZERO:
-		player.velocity += input_dir * acceleration * delta
+		player.velocity += input_dir * acceleration * movement_speed_factor * delta
 		try_dash(input_dir)
 
 func _tank_movement(delta: float):
@@ -65,7 +65,8 @@ func _tank_movement(delta: float):
 	if Input.is_action_pressed("move_right"):
 		movement_angle += rotation_speed * delta
 	if Input.is_action_pressed("move_up"):
-		player.velocity += Vector2(cos(movement_angle), sin(movement_angle)) * speed * delta
+		player.velocity += Vector2(cos(movement_angle), sin(movement_angle)) * speed * movement_speed_factor  * delta
+	
 	try_dash(Utils.rotation_to_vector(movement_angle))
 
 func try_dash(dir: Vector2):
@@ -86,5 +87,5 @@ func _get_input_direction() -> Vector2:
 
 	return (dir*axes_direction).normalized()
 
-func apply_movement_factor_speed(factor:float) -> void:
-	movement_speed_factor = 1 + factor
+func apply_movement_factor_speed(factor: float) -> void:
+	movement_speed_factor = movement_speed_factor * (1 + factor)
