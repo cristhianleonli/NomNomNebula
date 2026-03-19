@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 
 func use_dash() -> void:
 	dash_component.consume_dash()
-	EventManager.on_camera_shake.emit(1.0, 1.0)
+	EventManager.on_camera_shake.emit(1.0)
 	dash_particles.restart()
 
 func use_dash_error() -> void:
@@ -129,7 +129,7 @@ func _apply_movement_speed_factor(value: float) -> void:
 	player_movement.apply_movement_factor_speed(value)
 
 func _apply_interaction_radius_factor(value: float) -> void:
-	pass
+	EventManager.on_increment_galaxy_size.emit(value)
 
 #func _apply_size_change_factor(value: float) -> void:
 	#target_size *= (1.0 + value)
