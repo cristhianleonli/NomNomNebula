@@ -8,6 +8,7 @@ enum ControlType {
 var movement_type_map: Dictionary = {
 	ControlType.NORMAL: _normal_movement,
 	ControlType.TANK: _tank_movement,
+	ControlType.INVERTED: _inverted_movement,
 }
 
 @export var player: Player
@@ -39,13 +40,18 @@ func set_control_type(type: ControlType) -> void:
 func _process(delta: float) -> void:
 	if not player.can_move:
 		return
-	
 	if player.can_control:
 		movement_type_map[current_movement_type].call(delta)
 	
 	player.position += player.velocity * delta
 	player.velocity *= friction
 	player.scale = lerp(player.scale, Vector2(player.target_size, player.target_size), 0.1)
+
+func _inverted_movement(delta):
+	var input_dir: Vector2 = _get_input_direction() * -1
+	if input_dir != Vector2.ZERO:
+		player.velocity += input_dir * acceleration * delta
+		try_dash(input_dir)
 
 func _normal_movement(delta: float):
 	var input_dir: Vector2 = _get_input_direction()

@@ -32,12 +32,11 @@ func _ready() -> void:
 	#absorb_galaxy(r)
 
 func _process(_delta: float) -> void:
-	print(target_size)
 	camera_target.global_position = global_position + (velocity)
 
 func use_dash() -> void:
 	dash_component.consume_dash()
-	EventManager.on_camera_shake.emit(1.0, 1.0)
+	EventManager.on_camera_shake.emit(1.0)
 	dash_particles.restart()
 
 func use_dash_error() -> void:

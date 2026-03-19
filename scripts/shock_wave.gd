@@ -22,8 +22,8 @@ func _process(delta: float) -> void:
 		
 	if shock_wave_size < 2:
 		var target_screen_coords : Vector2 = get_viewport().get_canvas_transform() * target.global_position
-		var size: Vector2 = get_viewport().get_visible_rect().size / camera.zoom
+		var screen_size: Vector2 = get_viewport().get_visible_rect().size / camera.zoom
 		shock_wave_size += shock_wave_speed*shock_wave_speed*delta
 		self.material.set_shader_parameter("size", shock_wave_size)
-		self.material.set_shader_parameter("center", target_screen_coords/camera.zoom/size)
+		self.material.set_shader_parameter("center", target_screen_coords/camera.zoom/screen_size)
 		

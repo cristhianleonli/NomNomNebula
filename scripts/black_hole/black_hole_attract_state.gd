@@ -35,10 +35,10 @@ func update(delta: float) -> void:
 	
 	if timer <= 0:
 		strong_attract_start_time = Time.get_ticks_msec() / 1000.0
-		strenght = 15.0
+		strenght = 600.0
 		
 	var force: Vector2 = calc_force()
-	Globals.player.apply_force(force)
+	Globals.player.apply_force(force*delta)
 	sprite.material.set_shader_parameter("holeSize", 0.1 + 0.4 * elapsed_time / max_time)
 	black_hole.timer_label.text = "%.2f" % timer
 
@@ -49,7 +49,7 @@ func exit() -> void:
 	timer_label.visible = false
 	attraction_area.area_exited.disconnect(on_exited_area)
 	EventManager.on_dash_used.disconnect(on_player_dash_used)
-	Globals.game_camera.target_zoom = Vector2(1.0, 1.0)
+	Globals.game_camera.target_zoom = Vector2.ONE * (Globals.player.target_size+0.5)
 	Globals.game_camera.set_target(Globals.player.camera_target)
 	
 func calc_force() -> Vector2:

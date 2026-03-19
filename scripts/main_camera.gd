@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 func set_target(_target) -> void:
 	target = _target
 
-func on_start_shake(strength, time) -> void:
+func on_start_shake(strength) -> void:
 	shake_strength = strength
 
 func get_random_offset() -> Vector2:

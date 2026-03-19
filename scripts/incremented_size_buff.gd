@@ -7,8 +7,9 @@ var size_incremented_amount : float
 func _ready() -> void:
 	EventManager.on_increment_galaxy_size.connect(_on_increment_size)
 	EventManager.on_galaxy_absorbed.connect(_on_check_state)
-
-func _on_check_state() -> void:
+	
+@warning_ignore("unused_parameter")
+func _on_check_state(data:GalaxyData) -> void:
 	if size_incremented:
 		get_parent().size -= size_incremented_amount
 	
