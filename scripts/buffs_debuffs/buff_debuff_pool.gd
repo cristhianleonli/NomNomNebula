@@ -11,13 +11,13 @@ const buffs: Array = [
 ]
 
 const debuffs: Array = [
-	{ "rarity": 0, BuffDebuffKey.EXTRA_DASHES: -1 },
 	{ "rarity": 1, BuffDebuffKey.STABILITY_MAX: -5 }, # Exotic matter only, -5 stability max
 	{ "rarity": 1, BuffDebuffKey.CONTROL_TYPE: 1 }, # tank control
 	{ "rarity": 1, BuffDebuffKey.CONTROL_TYPE: 2 }, # inverted control
 	{ "rarity": 0, BuffDebuffKey.DASH_RECHARGE_FACTOR: 0.5 }, # charge 50% faster
 ]
 
+	#{ "rarity": 0, BuffDebuffKey.EXTRA_DASHES: -1 },
 	#{ "rarity": 0, BuffDebuffKey.MOVEMENT_WARP_FACTOR: -0.2 },
 	#{ "rarity": 0, BuffDebuffKey.MOVEMENT_SPEED_FACTOR: -0.5 },
 	#{ "rarity": 0, BuffDebuffKey.STABILITY_DRAIN_FACTOR: 0.5 },

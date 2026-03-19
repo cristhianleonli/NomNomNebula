@@ -18,7 +18,7 @@ var movement_type_map: Dictionary = {
 @export var friction: float = 0.98
 @export var current_movement_type: ControlType = ControlType.TANK
 
-var movement_speed_factor : float = 1
+var movement_speed_factor: float = 1.0
 var rotation_speed: float = 5
 var movement_angle: float = 0
 var speed: float = 300
@@ -67,14 +67,13 @@ func _tank_movement(delta: float):
 	if Input.is_action_pressed("move_up"):
 		player.velocity += Vector2(cos(movement_angle), sin(movement_angle)) * speed * delta
 	try_dash(Utils.rotation_to_vector(movement_angle))
-	
 
 func try_dash(dir: Vector2):
 	if Input.is_action_just_pressed("dash"):
 		if player.can_dash():
 			if dir != Vector2.ZERO:
-				EventManager.on_dash_used.emit()
 				player.velocity += dir * dash_speed
+				EventManager.on_dash_used.emit()
 				player.use_dash()
 		else:
 			player.use_dash_error()
@@ -88,4 +87,4 @@ func _get_input_direction() -> Vector2:
 	return (dir*axes_direction).normalized()
 
 func apply_movement_factor_speed(factor:float) -> void:
-	movement_speed_factor = factor
+	movement_speed_factor = 1 + factor

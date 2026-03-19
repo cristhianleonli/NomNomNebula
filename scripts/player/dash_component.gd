@@ -83,7 +83,7 @@ func apply_force_factor(value: float) -> void:
 	effective_speed = base_speed * (1.0 + value)
 
 func apply_recharge_factor(value: float) -> void:
-	effective_recharge = base_recharge * value
+	effective_recharge = base_recharge * (1 + value)
 
 func _get_recharge_time() -> float:
 	return effective_recharge

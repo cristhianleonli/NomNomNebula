@@ -18,6 +18,7 @@ var escaping_timer_factor: float = 1.0
 var absorption_speed_factor: float = 1.0
 var increase_size_factor: float = 0.15
 var can_be_absorbed : bool = true
+var exotic_matter_count: int = 0
 
 func _ready() -> void:
 	animation.play("main")
@@ -55,13 +56,9 @@ func apply_force(force: Vector2) -> void:
 func absorb_galaxy(data: GalaxyData) -> void:
 	$Sprite2D.material.set_shader_parameter("color_count", color_amount + 1)
 	color_amount += 1
-	var buff_debuff: Dictionary = data.buff_debuff
 	
-	# FIXME: Remove debug
-	#buff_debuff = BuffDebuffPool.buffs[0]
-	#buff_debuff = BuffDebuffPool.buffs[0]
-	#buff_debuff = BuffDebuffPool.pool["debuffs"][4]
-	#print(buff_debuff)
+	var buff_debuff: Dictionary = data.buff_debuff
+	buff_debuff.duplicate()
 	
 	target_size += increase_size_factor
 	player_movement.set_control_type(PlayerMovement.ControlType.NORMAL)
@@ -69,8 +66,20 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	stabilization_component.reset_buffs()
 	stabilization_component.add_time(data.stability_buff)
 	
+	# FIXME: Remove debug
+	#buff_debuff = BuffDebuffPool.buffs[3].duplicate()
+	#buff_debuff = BuffDebuffPool.buffs[0]
+	#buff_debuff = BuffDebuffPool.pool["debuffs"][4]
+	#print(buff_debuff)
+	
 	apply_buff_debuff(buff_debuff)
-	EventManager.on_buff_applied.emit(buff_debuff)
+	
+	# exotic matter works differenly, cause it's permanent
+	if buff_debuff.keys().has(BuffDebuffKey.STABILITY_MAX):
+		exotic_matter_count += 1
+	buff_debuff["stability_max_count"] = exotic_matter_count
+	
+	EventManager.on_buffs_applied.emit(buff_debuff)
 
 func apply_buff_debuff(buff: Dictionary) -> void:
 	var HANDLERS: Dictionary = {
@@ -101,7 +110,6 @@ func _on_game_state_changed(state: GameWorld.GameState) -> void:
 			can_move = false
 		GameWorld.GameState.FINISHED:
 			can_move = false
-
 #region buff debuff handlers
 
 func _apply_control_type(value: int) -> void:

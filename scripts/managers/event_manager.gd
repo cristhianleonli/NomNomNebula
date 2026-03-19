@@ -20,7 +20,7 @@ signal on_dash_fully_recovered
 signal on_dash_updated(data: Dictionary)
 signal on_dash_recover_progress(progress: float)
 
-signal on_buff_applied(data: Dictionary)
+signal on_buffs_applied(data: Dictionary)
 signal on_player_absorbed()
 signal on_attracting_player
 signal on_player_destabilized

@@ -8,7 +8,7 @@ extends Node
 
 var slot_count: int = 0
 var remaining: int = 0
-var slots: Array
+var slots: Array[DashSlot]
 
 func _ready() -> void:
 	EventManager.on_dash_used.connect(_on_dash_used)
@@ -19,8 +19,8 @@ func _ready() -> void:
 	slots = [dash_slot, dash_slot_2, dash_slot_3, dash_slot_4]
 
 func _on_dash_used() -> void:
-	if remaining > 0 and remaining <= slots.size():
-		slots[remaining-1].play_consume()
+	if remaining > 0:
+		slots[remaining - 1].play_consume()
 
 func setup(max_dashes: int) -> void:
 	slot_count = max_dashes
@@ -39,6 +39,7 @@ func _on_dash_updated(data: Dictionary) -> void:
 			slots[i].make_full()
 		
 	remaining = new_remaining
+	_sync_slots()
 
 func _sync_slots() -> void:
 	for node: Node in slots:

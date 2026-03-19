@@ -28,19 +28,10 @@ func make_empty() -> void:
 	target_frame = hframes - 1
 	_set_frame(hframes - 1)
 
-func set_fill_progress(value: float) -> void:
-	value = clamp(value, 0.0, 1.0)
-	var frame: int = int((1.0 - value) * (hframes - 1))
-	
-	current_frame = frame
-	target_frame = frame
-	
-	_set_frame(frame)
-
 func play_consume() -> void:
 	if r_tween:
 		r_tween.kill()
-	
+
 	r_tween = get_tree().create_tween()
 	r_tween.tween_method(_update_from_float, current_frame, hframes - 1, 0.5)\
 		.set_trans(Tween.TRANS_SINE)\
@@ -48,7 +39,12 @@ func play_consume() -> void:
 
 func _set_frame(frame: int) -> void:
 	frame = clamp(frame, 0, hframes - 1)
-	atlas.region = Rect2(frame * frame_size.x, 0, frame_size.x, frame_size.y)
+	atlas.region = Rect2(
+		frame * frame_size.x,
+		0,
+		frame_size.x,
+		frame_size.y
+	)
 
 func _update_from_float(value: float) -> void:
 	current_frame = int(value)
@@ -56,3 +52,11 @@ func _update_from_float(value: float) -> void:
 
 func show_wobble() -> void:
 	animation_component.subtle_wobble()
+
+func set_fill_progress(value: float) -> void:
+	if r_tween:
+		r_tween.kill()
+	
+	var frame: float = (1.0 - value) * (hframes - 1)
+	current_frame = int(frame)
+	_set_frame(int(frame))
