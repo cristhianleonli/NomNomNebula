@@ -12,9 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://b1gjtho0xxfqd" path="res://audio/sounds/Digital Click 12.wav" id="8_7rb6b"]
 [ext_resource type="AudioStream" uid="uid://b85hbn4ajqt1w" path="res://audio/sounds/Sci Fi Explosion 12.wav" id="8_lqfd0"]
 [ext_resource type="AudioStream" uid="uid://2826cgt8jbh4" path="res://audio/sounds/Impact 5.wav" id="9_jnt4g"]
-[ext_resource type="AudioStream" uid="uid://dukrjox0dco1q" path="res://audio/sounds/Main song wip V1.mp3" id="10_jnt4g"]
 [ext_resource type="AudioStream" uid="uid://0xdt4tdyyt7m" path="res://audio/sounds/Abstract1.mp3" id="10_lelip"]
-[ext_resource type="AudioStream" uid="uid://cfac3xt8pe2uf" path="res://audio/sounds/main track 1 wip.mp3" id="13_7rb6b"]
+[ext_resource type="AudioStream" uid="uid://cdwbrxqx7df0y" path="res://audio/sounds/main full.mp3" id="11_lqfd0"]
+[ext_resource type="AudioStream" uid="uid://ccxvjc2485p2m" path="res://audio/sounds/possible main menu music.mp3" id="15_lqfd0"]
 
 [sub_resource type="Resource" id="Resource_a6wuk"]
 script = ExtResource("1_ixyf6")
@@ -76,7 +76,7 @@ metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_uhasv"]
 script = ExtResource("1_ixyf6")
-source = ExtResource("10_jnt4g")
+source = ExtResource("11_lqfd0")
 volume_db = -5.0
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
@@ -95,8 +95,7 @@ metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_va0tg"]
 script = ExtResource("1_ixyf6")
-source = ExtResource("13_7rb6b")
-volume_db = -5.0
+source = ExtResource("15_lqfd0")
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [resource]

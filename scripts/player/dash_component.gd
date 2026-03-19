@@ -37,6 +37,7 @@ func _process(delta: float) -> void:
 		dash_count = get_max_dashes()
 		_emit_change()
 		AudioManager.play_sfx(AudioManager.tracks.dash_recovered)
+		EventManager.on_dash_fully_recovered.emit()
 
 func get_max_dashes() -> int:
 	return base_dashes + current_buff_dashes
@@ -45,7 +46,7 @@ func can_dash() -> bool:
 	return dash_count > 0 and not recharging and dash_delay_timer <= 0
 
 func _emit_change() -> void:
-	EventManager.on_dash_udpated.emit({"count": dash_count, "max": get_max_dashes()})
+	EventManager.on_dash_updated.emit({"remaining": dash_count, "max": get_max_dashes()})
 
 func consume_dash() -> void:
 	if not can_dash():
@@ -74,6 +75,8 @@ func reset_buffs() -> void:
 func apply_extra_dashes(value: int) -> void:
 	current_buff_dashes = value
 	dash_count = get_max_dashes()
+	recharging = false
+	EventManager.on_dash_recover_progress.emit(1.0)
 	_emit_change()
 
 func apply_force_factor(value: float) -> void:

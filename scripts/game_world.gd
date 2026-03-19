@@ -50,7 +50,7 @@ func _ready() -> void:
 		Globals.current_save.sfx_level,
 		Globals.current_save.music_level
 	)
-	
+	print("--", SceneManager.last_scene)
 	AudioManager.play_music(AudioManager.tracks.game_music)
 	Input.set_custom_mouse_cursor(POINTER_C)
 	SceneManager.fade_in()

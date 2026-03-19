@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccxvjc2485p2m"
+path="res://.godot/imported/possible main menu music.mp3-61b6df6c89cba52205d0a8c2de934bd6.mp3str"
+
+[deps]
+
+source_file="res://audio/sounds/possible main menu music.mp3"
+dest_files=["res://.godot/imported/possible main menu music.mp3-61b6df6c89cba52205d0a8c2de934bd6.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

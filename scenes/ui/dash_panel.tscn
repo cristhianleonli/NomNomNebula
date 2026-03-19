@@ -1,72 +1,33 @@
 [gd_scene format=3 uid="uid://exsf0igc7o8v"]
 
 [ext_resource type="Script" uid="uid://cc2n5h16db6yg" path="res://scripts/ui/dash_panel.gd" id="1_x53hx"]
-[ext_resource type="Texture2D" uid="uid://dlceat5pxal78" path="res://resources/Art/icons/keyboard_space.png" id="2_ble8e"]
 [ext_resource type="Script" uid="uid://bo0y5ea02unt7" path="res://scripts/animation_component.gd" id="2_tfr0o"]
+[ext_resource type="PackedScene" uid="uid://kfa08wt4q5l4" path="res://scenes/ui/dash_slot.tscn" id="4_nrgv8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ble8e"]
-bg_color = Color(0.09411765, 0.09411765, 0.09411765, 0.61960787)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tfr0o"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x53hx"]
-
-[node name="DashPanel" type="Panel" unique_id=696284378]
-offset_right = 74.0
-offset_bottom = 40.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ble8e")
+[node name="DashPanel" type="PanelContainer" unique_id=1551149095]
+offset_right = 99.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tfr0o")
 script = ExtResource("1_x53hx")
 
 [node name="AnimationComponent" type="Node2D" parent="." unique_id=757096355]
 script = ExtResource("2_tfr0o")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=47428910]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 68.0
-offset_bottom = 18.0
-theme_override_constants/separation = 7
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2042628479]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="HBoxContainer" unique_id=373525879]
-custom_minimum_size = Vector2(10, 10)
+[node name="DashSlot" parent="HBoxContainer" unique_id=296917363 instance=ExtResource("4_nrgv8")]
 layout_mode = 2
 
-[node name="ColorRect2" type="ColorRect" parent="HBoxContainer" unique_id=229990980]
-custom_minimum_size = Vector2(10, 10)
+[node name="DashSlot2" parent="HBoxContainer" unique_id=439542860 instance=ExtResource("4_nrgv8")]
 layout_mode = 2
 
-[node name="ColorRect3" type="ColorRect" parent="HBoxContainer" unique_id=1594163967]
-custom_minimum_size = Vector2(10, 10)
+[node name="DashSlot3" parent="HBoxContainer" unique_id=1806251732 instance=ExtResource("4_nrgv8")]
 layout_mode = 2
 
-[node name="ColorRect4" type="ColorRect" parent="HBoxContainer" unique_id=1356179251]
-custom_minimum_size = Vector2(10, 10)
+[node name="DashSlot4" parent="HBoxContainer" unique_id=998036172 instance=ExtResource("4_nrgv8")]
 layout_mode = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1654695784]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 23.0
-offset_right = 70.0
-offset_bottom = 36.0
-theme_override_font_sizes/font_size = 10
-theme_override_styles/fill = SubResource("StyleBoxFlat_x53hx")
-value = 41.29
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=785799344]
-layout_mode = 0
-offset_left = -20.0
-offset_top = -41.0
-offset_right = 44.0
-offset_bottom = 23.0
-scale = Vector2(0.325, 0.325)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("2_ble8e")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="." unique_id=365482104]
-layout_mode = 0
-offset_left = 27.0
-offset_top = -14.0
-offset_right = 73.0
-theme_override_font_sizes/font_size = 12
-text = "Burst"

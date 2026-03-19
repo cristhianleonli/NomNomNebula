@@ -25,7 +25,9 @@ func _ready() -> void:
 	credits_panel.visible = false
 	SceneManager.fade_in()
 	Input.set_custom_mouse_cursor(POINTER_C)
-	AudioManager.play_music(AudioManager.tracks.title_music)
+	
+	if SceneManager.last_scene != Scenes.FINISH:
+		AudioManager.play_music(AudioManager.tracks.title_music)
 	
 	start_button.pressed.connect(_on_start_button_pressed)
 	exit_button.pressed.connect(_on_exit_button_pressed)
@@ -64,9 +66,9 @@ func _process(_delta: float) -> void:
 		AudioManager.play_sfx(AudioManager.tracks.dismiss_ui)
 
 func _on_start_button_pressed() -> void:
+	AudioManager.stop_music()
 	SceneManager.transition_to(Scenes.WORLD)
 	AudioManager.play_sfx(AudioManager.tracks.click)
-	AudioManager.stop_music()
 
 func _on_exit_button_pressed() -> void:
 	AudioManager.play_sfx(AudioManager.tracks.click)

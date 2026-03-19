@@ -1,76 +1,60 @@
 class_name DashPanel
 extends Node
 
-@onready var h_box_container: HBoxContainer = $HBoxContainer
-@onready var progress_bar: ProgressBar = $ProgressBar
-@onready var animation_component: AnimationComponent = $AnimationComponent
-@onready var texture_rect: TextureRect = $TextureRect
+@onready var dash_slot: DashSlot = $HBoxContainer/DashSlot
+@onready var dash_slot_2: DashSlot = $HBoxContainer/DashSlot2
+@onready var dash_slot_3: DashSlot = $HBoxContainer/DashSlot3
+@onready var dash_slot_4: DashSlot = $HBoxContainer/DashSlot4
 
 var slot_count: int = 0
-var remaning: int = 0
-var is_recharging: bool = false
+var remaining: int = 0
+var slots: Array
 
 func _ready() -> void:
-	EventManager.on_dash_recover_progress.connect(_on_dash_recharging)
-	EventManager.on_dash_udpated.connect(_on_dash_udpated)
+	EventManager.on_dash_used.connect(_on_dash_used)
+	EventManager.on_dash_updated.connect(_on_dash_updated)
+	EventManager.on_dash_recover_progress.connect(_on_dash_recover_progress)
+	EventManager.on_dash_error.connect(_on_dash_error)
+	
+	slots = [dash_slot, dash_slot_2, dash_slot_3, dash_slot_4]
+
+func _on_dash_used() -> void:
+	if remaining > 0 and remaining <= slots.size():
+		slots[remaining-1].play_consume()
 
 func setup(max_dashes: int) -> void:
 	slot_count = max_dashes
-	remaning = max_dashes
+	remaining = max_dashes
+	_sync_slots()
 	
-	_refresh_slots()
-	_update()
+	for i in range(min(slot_count, slots.size())):
+		slots[i].make_full()
 
-func _on_dash_udpated(data: Dictionary) -> void:
-	var dash_count: int = data.get("count", 0)
-	var dash_max: int = data.get("max", 0)
+func _on_dash_updated(data: Dictionary) -> void:
+	var new_remaining: int = data.get("remaining", 0)
+	slot_count = data.get("max", 0)
 	
-	slot_count = dash_max
-	remaning = dash_count
-	
-	_refresh_slots()
-	_update()
+	if new_remaining > remaining:
+		for i in range(min(slot_count, slots.size())):
+			slots[i].make_full()
+		
+	remaining = new_remaining
 
-#func _set_max_dashes(amount: int) -> void:
-	#slot_count = amount
-	#
-	#if remaning > slot_count:
-		#remaning = slot_count
-	#
-	#_refresh_slots()
-	#_update()
-
-func _process(_delta: float) -> void:
-	progress_bar.visible = is_recharging
-
-func _refresh_slots() -> void:
-	for node in h_box_container.get_children():
+func _sync_slots() -> void:
+	for node: Node in slots:
 		node.visible = false
 	
-	for i in range(min(slot_count, h_box_container.get_child_count())):
-		h_box_container.get_child(i).visible = true
+	for i in range(min(slot_count, slots.size())):
+		slots[i].visible = true
 
-func _update() -> void:
-	for i in range(min(slot_count, h_box_container.get_child_count())):
-		h_box_container.get_child(i).color = Color.WHITE
-		
-	for i in range(min(remaning, h_box_container.get_child_count())):
-		var node = h_box_container.get_child(i)
-		node.visible = true
-		node.color = Color.GREEN
+func _on_dash_recover_progress(progress: float) -> void:
+	for slot: DashSlot in slots:
+		if progress == 1.0:
+			slot.make_full()
+		else:
+			if progress >= 0.3:
+				slot.set_fill_progress(progress)
 
-#func _on_dash_used() -> void:
-	#remaning = max(remaning - 1, 0)
-	#_refresh_slots()
-	#_update()
-	#animation_component.subtle_wobble(texture_rect)
-
-#func _on_dash_recovered() -> void:
-	#remaning = slot_count
-	#is_recharging = false
-	#_refresh_slots()
-	#_update()
-
-func _on_dash_recharging(progress: float) -> void:
-	is_recharging = true
-	progress_bar.value = progress * 100
+func _on_dash_error() -> void:
+	for node: DashSlot in slots:
+		node.show_wobble()

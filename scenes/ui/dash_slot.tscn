@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://kfa08wt4q5l4"]
+
+[ext_resource type="Script" uid="uid://bwy6it1chq4tv" path="res://scripts/ui/dash_slot.gd" id="1_k8qt1"]
+[ext_resource type="Texture2D" uid="uid://bujqt3uqx8g42" path="res://mats/dash_slot_atlas.tres" id="2_k8qt1"]
+[ext_resource type="Script" uid="uid://bo0y5ea02unt7" path="res://scripts/animation_component.gd" id="3_idcws"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k8qt1"]
+
+[node name="DashSlot" type="PanelContainer" unique_id=439542860]
+offset_right = 24.0
+offset_bottom = 24.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_k8qt1")
+script = ExtResource("1_k8qt1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=414164642]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("2_k8qt1")
+
+[node name="AnimationComponent" type="Node" parent="." unique_id=111652594]
+script = ExtResource("3_idcws")
+metadata/_custom_type_script = "uid://bo0y5ea02unt7"

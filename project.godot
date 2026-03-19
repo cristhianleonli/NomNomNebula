@@ -43,6 +43,7 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
+"res://mats/": "yellow",
 "res://resources/": "pink",
 "res://scenes/": "purple",
 "res://scripts/": "green",

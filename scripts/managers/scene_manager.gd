@@ -5,6 +5,7 @@ var duration: float = 0.8
 var is_loading: bool = false
 var progress: Array = []
 var material: ShaderMaterial
+var last_scene: String
 
 @onready var bg: ColorRect = $ColorRect
 
@@ -23,6 +24,7 @@ func _skip_scene_manager() -> void:
 		self.visible = false
 		
 func transition_to(scene: String) -> void:
+	last_scene = target_scene
 	target_scene = scene
 	fade_out(on_fade_out_finished)
 

@@ -12,11 +12,13 @@ signal on_game_state_changed(state: GameWorld.GameState)
 signal on_galaxy_absorbed(data: GalaxyData)
 signal on_tooltip_show(data: GalaxyData)
 signal on_tooltip_hide
+
 signal on_dash_used
 signal on_dash_error
 signal on_dash_fully_recovered
-signal on_dash_udpated(data: Dictionary)
+signal on_dash_updated(data: Dictionary)
 signal on_dash_recover_progress(progress: float)
+
 signal on_buff_applied(data: Dictionary)
 signal on_player_absorbed()
 signal on_attracting_player

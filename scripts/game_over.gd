@@ -11,6 +11,7 @@ func _ready() -> void:
 	exit_button.pressed.connect(_exit_game)
 	_setup_data()
 	
+	AudioManager.play_music(AudioManager.tracks.title_music)
 	SceneManager.fade_in()
 
 func _start_over() -> void:

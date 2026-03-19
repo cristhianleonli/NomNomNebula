@@ -12,6 +12,7 @@ var sfx_players: Array[AudioStreamPlayer] = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var fade_duration: float = 1.0
 var base_music_db: float = 0.0
+var music_tween: Tween
 
 func _ready() -> void:
 	_setup_nodes()
@@ -33,20 +34,25 @@ func _setup_nodes() -> void:
 	add_child(music_player)
 
 func play_music(setting: AudioSetting) -> void:
+	if music_tween:
+		music_tween.kill()
+		
 	music_player.stream = setting.source
-	music_player.volume_db = setting.volume_db
-	base_music_db = music_player.volume_db
+	music_player.volume_db = -80.0
 	music_player.play()
 	
-	var tween: Tween = create_tween()
-	tween.tween_property(music_player, "volume_db", setting.volume_db, fade_duration)\
+	music_tween = create_tween()
+	music_tween.tween_property(music_player, "volume_db", setting.volume_db, fade_duration)\
 		.set_trans(Tween.TRANS_SINE)
 
 func stop_music() -> void:
-	var tween: Tween = create_tween()
-	tween.tween_property(music_player, "volume_db", -80.0, fade_duration)\
+	if music_tween:
+		music_tween.kill()
+	
+	music_tween = create_tween()
+	music_tween.tween_property(music_player, "volume_db", -80.0, fade_duration)\
 		.set_trans(Tween.TRANS_SINE)
-	tween.finished.connect(func() -> void: music_player.stop())
+	music_tween.finished.connect(func() -> void: music_player.stop())
 
 func play_sfx(setting: AudioSetting, override_scale: float = 1.0) -> void:
 	if setting == null:
