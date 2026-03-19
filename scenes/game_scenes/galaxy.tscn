@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dpqwcej6nfhgq" path="res://scripts/galaxy/galaxy.gd" id="1_n7ltq"]
 [ext_resource type="Texture2D" uid="uid://bi3ek0ijq6v3m" path="res://resources/Art/Galaxy Sprite Sheets/Larger galaxy 2.0.png" id="2_e83e5"]
-[ext_resource type="AudioStream" uid="uid://cc3yvxnyuhc4d" path="res://audio/sounds/charge_up.wav" id="2_uaiqi"]
+[ext_resource type="AudioStream" uid="uid://bgt61s23pmbwg" path="res://audio/sounds/charge_up_v2.wav" id="2_uaiqi"]
 [ext_resource type="Script" uid="uid://dkmph7m6e1a2x" path="res://scripts/state_machine.gd" id="3_nbxba"]
 [ext_resource type="Texture2D" uid="uid://dk6percugxa6w" path="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 3.0.png" id="3_uaiqi"]
 [ext_resource type="Script" uid="uid://bn6wfo5m712rk" path="res://scripts/movement_wrap.gd" id="3_y80rp"]
@@ -458,7 +458,6 @@ metadata/_custom_type_script = "uid://iccc1ul8qm2x"
 script = ExtResource("6_pctnl")
 galaxy = NodePath("../..")
 attraction_area = NodePath("../../InteractionArea")
-absorption_time_required = 3.0
 metadata/_custom_type_script = "uid://sunbyn5fx5l1"
 
 [node name="Target" type="Node2D" parent="StateMachine/attract" unique_id=1446115246]

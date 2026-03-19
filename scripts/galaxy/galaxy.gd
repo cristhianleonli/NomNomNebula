@@ -15,12 +15,13 @@ const VORTEX_MATERIAL: Resource = preload("uid://jske8d54cs0g")
 
 var size: float
 var velocity: Vector2 = Vector2.ZERO
+var base_interaction_radius: float = 60.0
 
 func _ready() -> void:
 	EventManager.on_game_state_changed.connect(_on_game_state_changed)
 	# duplicate shape to make size unique per galaxy
 	var shape: CircleShape2D = interaction_collision_shape.shape.duplicate()
-	shape.radius = data.interaction_radius
+	shape.radius = base_interaction_radius
 	interaction_collision_shape.shape = shape
 	size = data.size
 	
@@ -61,7 +62,13 @@ func _on_interaction_area_mouse_exited() -> void:
 	EventManager.on_tooltip_hide.emit()
 
 func _on_game_state_changed(state: GameWorld.GameState) -> void:
-	pass
+	match state:
+		GameWorld.GameState.ONGOING:
+			charge_player.stream_paused = false
+		GameWorld.GameState.PAUSED:
+			charge_player.stream_paused = true
+		GameWorld.GameState.FINISHED:
+			charge_player.stream_paused = true
 
 func is_good_galaxy() -> bool:
 	return data.is_good_galaxy

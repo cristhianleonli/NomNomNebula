@@ -9,11 +9,20 @@ func _ready() -> void:
 func present(data: GalaxyData) -> void:
 	self.visible = true
 	
-	var lines: Array[String] = ["uid: " + data.uid]
+	var lines: Array[String] = []
+	
+	lines.append("uid: " + data.uid)
+	lines.append("Stability buff: " + str(data.stability_buff))
+	
 	for key in data.buff_debuff:
-		var line: String = key + " : " + str(data.buff_debuff[key])
-		lines.append(line)
+		var value: String = str(data.buff_debuff[key])
 		
+		if key == "rarity":
+			value = ["COMMON", "UNCOMMON", "RARE"][data.buff_debuff[key]]
+		
+		var line: String = key + " : " + value
+		lines.append(line)
+	
 	data_label.text = "\n".join(lines)
 
 func dismiss() -> void:

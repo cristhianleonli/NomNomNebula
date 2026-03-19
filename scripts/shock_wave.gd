@@ -1,25 +1,24 @@
 extends ColorRect
 
-# Called when the node enters the scene tree for the first time.
+@export var shock_wave_speed: float = 1.5
+@export var shock_wave_center: Vector2 = Vector2(0.5, 0.5)
+@export var shock_wave_force: float = 0.5
 
-@export var shock_wave_speed : float = 1.5
-@export var shock_wave_center : Vector2 = Vector2(0.5, 0.5)
-@export var shock_wave_force : float = 0.5
-@onready var camera : MainCamera 
-var target
-
-var shock_wave_size : float = 2.0
+var camera: MainCamera 
+var target: Node
+var shock_wave_size: float = 2.0
 
 func _ready() -> void:
-	camera = get_tree().get_first_node_in_group("camera")
+	camera = Globals.game_camera
 	EventManager.on_shock_wave.connect(start_shock_wave)
 
 func start_shock_wave(node) -> void:
 	shock_wave_size = -0.1
 	target = node
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not camera:
+		return
 	
 	if shock_wave_size < 2:
 		var target_screen_coords : Vector2 = get_viewport().get_canvas_transform() * target.global_position

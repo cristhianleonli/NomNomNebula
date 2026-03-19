@@ -13,8 +13,9 @@ var can_control: bool = true
 var target_size: float = 0.5
 var velocity: Vector2 = Vector2.ZERO
 var color_amount: int = 1
-var escaping_timer_factor: float = 1
-var absorption_speed_factor: float = 1
+var escaping_timer_factor: float = 1.0
+var absorption_speed_factor: float = 1.0
+var increase_size_factor: float = 0.15
 
 func _ready() -> void:
 	animation.play("main")
@@ -54,17 +55,17 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	color_amount += 1
 	var buff_debuff: Dictionary = data.buff_debuff
 	
-	# FIXME: Remove
+	# FIXME: Remove debug
 	#buff_debuff = BuffDebuffPool.buffs[0]
 	#buff_debuff = BuffDebuffPool.buffs[0]
 	#buff_debuff = BuffDebuffPool.pool["debuffs"][4]
 	#print(buff_debuff)
 	
-	# reset all temporary modifications
-	target_size = 0.5
+	target_size += increase_size_factor
 	player_movement.set_control_type(PlayerMovement.ControlType.NORMAL)
 	dash_component.reset_buffs()
 	stabilization_component.reset_buffs()
+	stabilization_component.add_time(data.stability_buff)
 	
 	apply_buff_debuff(buff_debuff)
 	EventManager.on_buff_applied.emit(buff_debuff)
@@ -73,15 +74,13 @@ func apply_buff_debuff(buff: Dictionary) -> void:
 	var HANDLERS: Dictionary = {
 		BuffDebuffKey.EXTRA_DASHES: _apply_extra_dashes,
 		BuffDebuffKey.DASH_FORCE_FACTOR: _apply_dash_force_factor,
-		BuffDebuffKey.DASH_RECHARGE_FACTOR: _apply_dash_recharge_factor,
-		BuffDebuffKey.STABILITY_TIME: _apply_stability_time,
-		BuffDebuffKey.SIZE_CHANGE_FACTOR: _apply_size_change_factor,
-		BuffDebuffKey.CONTROL_TYPE: _apply_control_type,
-		BuffDebuffKey.STABILITY_MAX: _apply_stability_max,
-		BuffDebuffKey.STABILITY_DRAIN_FACTOR: _apply_stability_drain_factor,
 		BuffDebuffKey.ESCAPING_TIME: _apply_escaping_time,
+		BuffDebuffKey.DASH_RECHARGE_FACTOR: _apply_dash_recharge_factor,
+		BuffDebuffKey.MOVEMENT_WARP_FACTOR: _apply_movement_speed_factor,
+		BuffDebuffKey.INTERACTION_RADIUS_FACTOR: _apply_interaction_radius_factor,
 		BuffDebuffKey.ABSORPTION_SPEED_FACTOR: _apply_absorption_speed_factor,
-		BuffDebuffKey.MOVEMENT_SPEED_FACTOR: _apply_movement_speed_factor,
+		BuffDebuffKey.STABILITY_MAX: _apply_stability_max,
+		BuffDebuffKey.CONTROL_TYPE: _apply_control_type,
 	}
 
 	for key in buff.keys():
@@ -102,8 +101,6 @@ func _on_game_state_changed(state: GameWorld.GameState) -> void:
 			can_move = false
 
 #region buff debuff handlers
-func _apply_size_change_factor(value: float) -> void:
-	target_size *= (1.0 + value)
 
 func _apply_control_type(value: int) -> void:
 	player_movement.set_control_type(PlayerMovement.ControlType.values()[value])
@@ -117,14 +114,8 @@ func _apply_dash_force_factor(value: float) -> void:
 func _apply_dash_recharge_factor(value: float) -> void:
 	dash_component.apply_recharge_factor(value)
 	
-func _apply_stability_time(value: float) -> void:
-	stabilization_component.add_time(value)
-
 func _apply_stability_max(value: int) -> void:
 	stabilization_component.modify_max_time(value)
-
-func _apply_stability_drain_factor(value: float) -> void:
-	stabilization_component.apply_drain_factor(value)
 
 func _apply_escaping_time(value: float) -> void:
 	escaping_timer_factor = value
@@ -134,4 +125,14 @@ func _apply_absorption_speed_factor(value: float) -> void:
 
 func _apply_movement_speed_factor(value: float) -> void:
 	player_movement.apply_movement_factor_speed(value)
+
+func _apply_interaction_radius_factor(value: float) -> void:
+	pass
+
+#func _apply_size_change_factor(value: float) -> void:
+	#target_size *= (1.0 + value)
+#func _apply_stability_time(value: float) -> void:
+	#stabilization_component.add_time(value)
+#func _apply_stability_drain_factor(value: float) -> void:
+	#stabilization_component.apply_drain_factor(value)
 #endregion

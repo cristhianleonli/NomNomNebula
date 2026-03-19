@@ -3,16 +3,17 @@ extends State
 
 @export var galaxy: Galaxy
 @export var attraction_area: Area2D
-@export var absorption_time_required: float
 @onready var target: Node2D = get_node("Target")
 
 var was_inside_inner_radius: bool = false
 var absorbing_timer: float
-var inner_radius: float = 50
-var absorbing_speed : float = 1
+var inner_radius: float = 50.0
+var absorbing_speed: float = 1.0
+var absorption_time_required: float = 3.0
+var base_strength: float = 2.0
 
 func enter() -> void:
-	galaxy.charge_player.play()
+	galaxy.charge_player.play(0)
 	attraction_area.area_exited.connect(end_attraction_state)
 	EventManager.on_attracting_player.emit()
 	
@@ -31,7 +32,6 @@ func update(delta: float) -> void:
 
 	if not is_inside:
 		absorbing_timer -= delta * absorbing_speed*(Globals.player.absorption_speed_factor*Globals.player.target_size)
-		print(absorbing_timer)
 	else:
 		absorbing_timer = absorption_time_required
 	
@@ -45,7 +45,7 @@ func update(delta: float) -> void:
 func calc_force(_delta: float) -> Vector2:
 	var offset: Vector2 = _get_offset_to_player()
 	var dir: Vector2 = offset.normalized()
-	var outer_force: float = galaxy.data.strength
+	var outer_force: float = base_strength
 	
 	return dir * outer_force
 	
@@ -61,3 +61,4 @@ func exit() -> void:
 	attraction_area.area_exited.disconnect(end_attraction_state)
 	absorbing_timer = absorption_time_required
 	galaxy.charge_player.stop()
+	galaxy.timer_label.text = str(absorption_time_required)

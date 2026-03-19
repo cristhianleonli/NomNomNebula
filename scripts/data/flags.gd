@@ -4,7 +4,7 @@ class_name Flags
 const SKIP_SCENE_MANAGER: int = 1
 const AUTOSTART: int = 1
 const MOVE_GALAXIES: int = 0
-const OVERRIDE_STABILIZATION: int = 1
+const OVERRIDE_STABILIZATION: int = 0
 #endregion
 
 #region Functions
