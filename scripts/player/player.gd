@@ -66,17 +66,12 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	EventManager.on_reset_galaxy_size.emit()
 	
 	apply_buff_debuff(buff_debuff)
-	
-	# exotic matter works differenly, cause it's permanent
-	if buff_debuff.keys().has(BuffDebuffKey.STABILITY_MAX):
-		exotic_matter_count += 1
-	buff_debuff["stability_max_count"] = exotic_matter_count
-	
 	EventManager.on_buffs_applied.emit(buff_debuff)
 
 func apply_buff_debuff(buff: Dictionary) -> void:
 	var HANDLERS: Dictionary = {
 		BuffDebuffKey.EXTRA_DASHES: _apply_extra_dashes,
+		BuffDebuffKey.LIMIT_DASH: _apply_extra_dashes,
 		BuffDebuffKey.DASH_FORCE_FACTOR: _apply_dash_force_factor,
 		BuffDebuffKey.ESCAPING_TIME: _apply_escaping_time,
 		BuffDebuffKey.DASH_RECHARGE_FACTOR: _apply_dash_recharge_factor,

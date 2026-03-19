@@ -55,7 +55,7 @@ func _on_buffs_applied(data: Dictionary) -> void:
 func _process(_delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("debug"):
 		var r = GalaxyData.new()
-		r.buff_debuff = BuffDebuffPool.buffs[6].duplicate()
+		r.buff_debuff = BuffDebuffPool.debuffs[0].duplicate()
 		EventManager.on_galaxy_absorbed.emit(r)
 		
 	if Input.is_action_just_pressed("pause") and current_state != GameState.FINISHED:
