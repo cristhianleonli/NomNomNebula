@@ -41,36 +41,51 @@ func _set_tooltip_title(key: String) -> void:
 	tooltip_label.text = BuffDebuffKey.DESCRIPTIONS.get(key, "-")
 	
 func _set_icon(key: String) -> void:
-	var new_region: Rect2 = atlas.region
 	var tile_size: float = 24
+	var y: float = 0.0
+	var frames: int = 8 
 	
 	match key:
 		BuffDebuffKey.EXTRA_DASHES:
-			new_region.position.y = tile_size * 3.0
+			y = tile_size * 3.0
+			frames = 4
 		BuffDebuffKey.LIMIT_DASH:
-			new_region.position.y = tile_size * 10.0
+			y = tile_size * 10.0
+			frames = 4
 		BuffDebuffKey.DASH_FORCE_FACTOR:
-			new_region.position.y = tile_size * 5.0
+			y = tile_size * 5.0
+			frames = 5
 		BuffDebuffKey.ESCAPING_TIME:
-			new_region.position.y = tile_size * 6.0
+			y = tile_size * 6.0
+			frames = 4
 		BuffDebuffKey.DASH_RECHARGE_FACTOR:
-			new_region.position.y = tile_size * 0.0
+			y = tile_size * 0.0
+			frames = 4
 		BuffDebuffKey.DASH_RECHARGE_FACTOR_INCREASED:
-			new_region.position.y = tile_size * 8.0
+			y = tile_size * 8.0
+			frames = 8
 		BuffDebuffKey.MOVEMENT_WARP_FACTOR:
-			new_region.position.y = tile_size * 1.0
+			y = tile_size * 1.0
+			frames = 4
 		BuffDebuffKey.INTERACTION_RADIUS_FACTOR:
-			new_region.position.y = tile_size * 2.0
+			y = tile_size * 2.0
+			frames = 4
 		BuffDebuffKey.ABSORPTION_SPEED_FACTOR:
-			new_region.position.y = tile_size * 4.0
+			y = tile_size * 4.0
+			frames = 3
 		BuffDebuffKey.STABILITY_MAX:
-			new_region.position.y = tile_size * 9.0
+			y = tile_size * 9.0
+			frames = 8
 		BuffDebuffKey.CONTROL_TYPE_TANK:
-			new_region.position.y = tile_size * 7.0
+			y = tile_size * 7.0
+			frames = 8
 		BuffDebuffKey.CONTROL_TYPE_INVERTED:
-			new_region.position.y = tile_size * 11.0
+			y = tile_size * 11.0
+			frames = 8
 	
-	atlas.region = new_region
+	texture_rect.hframes = frames
+	texture_rect.y = int(y)
+	texture_rect.play_animation()
 
 func _get_title(key: String, value: Variant) -> String:
 	match key:
