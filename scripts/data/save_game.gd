@@ -14,5 +14,5 @@ extends Resource
 @export var is_first_time: bool = true
 
 @export_category("Audio")
-@export_range(0, 10, 1) var music_level: int = 5
-@export_range(0, 10, 1) var sfx_level: int = 5
+@export_range(0, 10, 1) var music_level: int = 10
+@export_range(0, 10, 1) var sfx_level: int = 10
