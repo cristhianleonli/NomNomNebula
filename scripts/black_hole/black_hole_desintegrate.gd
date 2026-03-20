@@ -8,8 +8,9 @@ extends State
 var tween: Tween
 
 func enter() -> void:
+	black_hole.animation.play("idle")
 	black_hole.set_process(false)
-	AudioManager.play_sfx(AudioManager.tracks.galaxy_desintegrated)
+	AudioManager.play_sfx(AudioManager.tracks.galaxy_desintegrated, 0.6)
 	
 	for child in black_hole.get_children():
 		if child is Area2D:
@@ -17,10 +18,13 @@ func enter() -> void:
 			child.set_deferred("monitorable", false)
 
 	_play_disintegration_tween()
-	var timer = get_tree().create_timer(1)
 	Globals.player.apply_force((Globals.player.global_position - black_hole.global_position).normalized() * 250)
-	timer.timeout.connect(_free_black_hole)
 	EventManager.on_black_hole_desintegrated.emit(black_hole.data)
+	Globals.game_camera.set_target(Globals.player.camera_target)
+	
+	await get_tree().create_timer(1).timeout
+	tween.kill()
+	black_hole.queue_free()
 
 func _play_disintegration_tween() -> void:
 	tween = black_hole.create_tween()
@@ -56,7 +60,3 @@ func _play_disintegration_tween() -> void:
 
 	tween.set_parallel(false)
 	tween.chain()
-
-func _free_black_hole() -> void:
-	tween.kill()
-	black_hole.queue_free()

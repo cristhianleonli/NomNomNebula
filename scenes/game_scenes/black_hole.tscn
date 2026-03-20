@@ -227,8 +227,7 @@ bus = &"SFX"
 
 [node name="Animation" type="AnimatedSprite2D" parent="." unique_id=836438354]
 sprite_frames = SubResource("SpriteFrames_q3qfo")
-animation = &"appear"
-frame = 11
+animation = &"main"
 frame_progress = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=188034298]

@@ -17,7 +17,6 @@ func _on_center_area_entered(_area: Area2D) -> void:
 	EventManager.on_player_absorbed.emit(self)
 	EventManager.on_camera_shake.emit(4.0)
 	Globals.game_camera.target = self
-	audio_player.stop()
 	
 	state_machine.current_state.change_state.emit("tugofwar")
 
@@ -38,3 +37,7 @@ func play_appear() -> void:
 func play_dissappear() -> void:
 	animation.speed_scale = -1
 	animation.play("appear")
+
+func play_idle() -> void:
+	animation.speed_scale = -1
+	animation.play("idle")

@@ -1,9 +1,9 @@
 class_name MainCamera
 extends Camera2D
 
-@export var player : Player
-@export var follow_speed : float = 1.5
-@export var zoom_speed : float = 1
+@export var player: Player
+@export var follow_speed: float = 1.5
+@export var zoom_speed: float = 1
 
 var target : Node2D
 var rng = RandomNumberGenerator.new()
