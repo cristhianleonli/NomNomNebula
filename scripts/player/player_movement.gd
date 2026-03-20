@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 	player.scale = lerp(player.scale, Vector2(player.target_size, player.target_size), 0.1)
 
 func _inverted_movement(delta):
-	var input_dir: Vector2 = _get_input_direction() * -1
+	var input_dir: Vector2 = _get_input_direction()
 	if input_dir != Vector2.ZERO:
 		player.velocity += input_dir * acceleration * movement_speed_factor * delta
 		try_dash(input_dir)
@@ -85,7 +85,7 @@ func _get_input_direction() -> Vector2:
 	dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	dir.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 
-	return (dir*axes_direction).normalized()
+	return (dir * axes_direction).normalized()
 
 func apply_movement_factor_speed(factor: float) -> void:
 	movement_speed_factor = movement_speed_factor * (1 + factor)

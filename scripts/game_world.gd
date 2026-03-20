@@ -56,7 +56,7 @@ func _on_buffs_applied(data: Dictionary) -> void:
 var i = 0
 func _get_buff() -> Dictionary:
 	var options: Array = BuffDebuffPool.buffs + BuffDebuffPool.debuffs
-	var data: Dictionary = options[i].duplicate()
+	var data: Dictionary = options[9].duplicate()
 	i = (i + 1) % options.size()
 	return data
 	
