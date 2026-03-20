@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjw5784ro20c4"
-path="res://.godot/imported/buff_icons.png-cc6f6808c516238d04b827797b8e60c6.ctex"
+uid="uid://dc6evfgquytc8"
+path="res://.godot/imported/Good Condition Icons Sprite Sheets.png-08c90b2c3bffab4abfa0e2423726ba36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Art/icons/buff_icons.png"
-dest_files=["res://.godot/imported/buff_icons.png-cc6f6808c516238d04b827797b8e60c6.ctex"]
+source_file="res://resources/Art/icons/Good Condition Icons Sprite Sheets.png"
+dest_files=["res://.godot/imported/Good Condition Icons Sprite Sheets.png-08c90b2c3bffab4abfa0e2423726ba36.ctex"]
 
 [params]
 

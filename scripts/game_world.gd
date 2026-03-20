@@ -82,10 +82,12 @@ func _on_track_finished() -> void:
 func _on_buffs_applied(data: Dictionary) -> void:
 	conditions_panel.set_data(data)
 
+var i = 0
 func _process(delta: float) -> void:
 	if OS.is_debug_build() and Input.is_action_just_pressed("debug"):
 		var r = GalaxyData.new()
-		r.buff_debuff = BuffDebuffPool.debuffs[0].duplicate()
+		r.buff_debuff = BuffDebuffPool.buffs[i].duplicate()
+		i = (i+1) % 5
 		EventManager.on_galaxy_absorbed.emit(r)
 	
 	if current_state == GameState.ONGOING:

@@ -12,8 +12,8 @@
 [ext_resource type="Shader" uid="uid://c52bjppebwpn2" path="res://shaders/shock_wave.gdshader" id="11_0y38y"]
 [ext_resource type="PackedScene" uid="uid://deemgxdklxpvu" path="res://scenes/ui/pause_menu.tscn" id="11_odt01"]
 [ext_resource type="Texture2D" uid="uid://bwgjk5vsqnrxm" path="res://resources/Art/icons/gear.png" id="11_ph1f2"]
+[ext_resource type="Texture2D" uid="uid://dc6evfgquytc8" path="res://resources/Art/icons/Good Condition Icons Sprite Sheets.png" id="16_gqenn"]
 [ext_resource type="Script" uid="uid://mswum8c7a70x" path="res://scripts/ui/conditions_panel.gd" id="16_y5rsn"]
-[ext_resource type="Texture2D" uid="uid://cjw5784ro20c4" path="res://resources/Art/icons/buff_icons.png" id="17_kbri5"]
 [ext_resource type="Shader" uid="uid://br1gbhg6xop70" path="res://shaders/displace_uv.gdshader" id="18_eto5o"]
 [ext_resource type="Texture2D" uid="uid://y71y2r5t4km7" path="res://resources/UI/score_star.png" id="18_mtxny"]
 [ext_resource type="PackedScene" uid="uid://jgiwhntmki7w" path="res://scenes/ui/stabilization_panel.tscn" id="18_xxaiy"]
@@ -61,8 +61,8 @@ shader_parameter/offset = Vector2(0, 0)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbri5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbri5"]
-atlas = ExtResource("17_kbri5")
-region = Rect2(0, 0, 32, 32)
+atlas = ExtResource("16_gqenn")
+region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mtxny"]
 
@@ -265,9 +265,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = -2
+theme_override_constants/separation = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConditionsPanel/HBoxContainer" unique_id=1457533625]
 layout_mode = 2

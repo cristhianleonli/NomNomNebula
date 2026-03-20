@@ -42,33 +42,33 @@ func _set_tooltip_title(key: String) -> void:
 	
 func _set_icon(key: String) -> void:
 	var new_region: Rect2 = atlas.region
-	var tile_size: float = 32
+	var tile_size: float = 24
 	
 	match key:
 		BuffDebuffKey.EXTRA_DASHES:
-			new_region.position.y = tile_size * 6.0
-		BuffDebuffKey.LIMIT_DASH:
-			new_region.position.y = tile_size * 6.0 # FIXME: new icon
-		BuffDebuffKey.DASH_FORCE_FACTOR:
-			new_region.position.y = tile_size * 4.0
-		BuffDebuffKey.ESCAPING_TIME:
-			new_region.position.y = tile_size * 2.0
-		BuffDebuffKey.DASH_RECHARGE_FACTOR:
 			new_region.position.y = tile_size * 3.0
-		BuffDebuffKey.DASH_RECHARGE_FACTOR_INCREASED:
-			new_region.position.y = tile_size * 3.0 # FIXME: new icon
-		BuffDebuffKey.MOVEMENT_WARP_FACTOR:
-			new_region.position.y = tile_size * 0.0
-		BuffDebuffKey.INTERACTION_RADIUS_FACTOR:
-			new_region.position.y = tile_size * 1.0
-		BuffDebuffKey.ABSORPTION_SPEED_FACTOR:
+		BuffDebuffKey.LIMIT_DASH:
+			new_region.position.y = tile_size * 10.0
+		BuffDebuffKey.DASH_FORCE_FACTOR:
 			new_region.position.y = tile_size * 5.0
+		BuffDebuffKey.ESCAPING_TIME:
+			new_region.position.y = tile_size * 6.0
+		BuffDebuffKey.DASH_RECHARGE_FACTOR:
+			new_region.position.y = tile_size * 0.0
+		BuffDebuffKey.DASH_RECHARGE_FACTOR_INCREASED:
+			new_region.position.y = tile_size * 8.0
+		BuffDebuffKey.MOVEMENT_WARP_FACTOR:
+			new_region.position.y = tile_size * 1.0
+		BuffDebuffKey.INTERACTION_RADIUS_FACTOR:
+			new_region.position.y = tile_size * 2.0
+		BuffDebuffKey.ABSORPTION_SPEED_FACTOR:
+			new_region.position.y = tile_size * 4.0
 		BuffDebuffKey.STABILITY_MAX:
-			new_region.position.y = tile_size * 5.0 # FIXME: new icon
+			new_region.position.y = tile_size * 9.0
 		BuffDebuffKey.CONTROL_TYPE_TANK:
-			new_region.position.y = tile_size * 5.0 # FIXME: new icon
+			new_region.position.y = tile_size * 7.0
 		BuffDebuffKey.CONTROL_TYPE_INVERTED:
-			new_region.position.y = tile_size * 5.0 # FIXME: new icon
+			new_region.position.y = tile_size * 11.0
 	
 	atlas.region = new_region
 
