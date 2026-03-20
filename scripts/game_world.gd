@@ -13,6 +13,7 @@ const POINTER_C: Resource = preload("uid://b085nphr6bvo4")
 @onready var minimap_markers: MinimapMarkers = $MinimapViewport/MinimapMarkers
 @onready var conditions_panel: ConditionsPanel = $CanvasLayer/ConditionsPanel
 @onready var score_panel: ScorePanel = $CanvasLayer/ScorePanel
+@onready var radar_texture: RadarWrap = $CanvasLayer/MinimapPanel/RadarTexture
 
 enum GameState {
 	ONGOING, PAUSED, FINISHED
@@ -119,8 +120,7 @@ func _handle_toggle_pause() -> void:
 
 func _on_game_over_animation():
 	current_state = GameState.FINISHED
-	# wait
-	# shader del radar se remueve
+	radar_texture.stop_shader()
 	_on_game_over()
 
 func _on_game_over() -> void:

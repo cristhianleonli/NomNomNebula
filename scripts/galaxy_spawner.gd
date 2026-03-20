@@ -21,7 +21,7 @@ var black_hole_spawn_timer: float = 0.0
 var base_galaxy_interval: float = 2.0
 var base_black_hole_interval: float = 8.0  # black holes on their own slower clock
 
-var max_galaxies: int = 6
+var max_galaxies: int = 10
 var max_black_holes: int = 2
 
 var spawn_radius: float = 600.0

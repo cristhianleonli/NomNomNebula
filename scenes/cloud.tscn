@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ruadlq2l3he5"]
+
+[ext_resource type="Script" uid="uid://bdn5wwk8euqnf" path="res://scripts/cloud.gd" id="1_vlwrh"]
+[ext_resource type="Texture2D" uid="uid://erjtem4mk5p4" path="res://resources/Art/Background tile and assets.png" id="2_2kyfr"]
+
+[node name="Cloud" type="Node2D" unique_id=1116363372]
+script = ExtResource("1_vlwrh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=175509730]
+modulate = Color(1, 1, 1, 0.4117647)
+texture = ExtResource("2_2kyfr")
+vframes = 19

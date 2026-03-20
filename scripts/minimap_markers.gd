@@ -23,6 +23,11 @@ func _sync_markers() -> void:
 		if not galaxy_markers.has(id):
 			var marker: Sprite2D = _make_marker()
 			galaxy_markers[id] = marker
+			
+			if g.is_good_galaxy():
+				marker.modulate = Color.GREEN
+			else:
+				marker.modulate = Color.RED
 	
 	# remove outdated markers
 	var current_ids: Array = galaxies\

@@ -78,8 +78,10 @@ func uid() -> String:
 func set_good():
 	var buff: Dictionary = BuffDebuffFactory.generate_buff()
 	self.data.buff_debuff = buff
+	self.data.is_good_galaxy = true
 
 func set_bad():
 	var debuff: Dictionary = BuffDebuffFactory.generate_debuff()
 	self.data.buff_debuff = debuff
+	self.data.is_good_galaxy = false
 	

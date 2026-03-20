@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bc4t2ev56ebnm" path="res://scripts/game_world.gd" id="1_0biqy"]
 [ext_resource type="PackedScene" uid="uid://ot3b6jppp04d" path="res://scenes/game_scenes/player.tscn" id="2_47u71"]
+[ext_resource type="Texture2D" uid="uid://d04u8hqdqtefk" path="res://resources/Art/Background tilemap clear.png" id="2_i45ps"]
 [ext_resource type="Script" uid="uid://bo0y5ea02unt7" path="res://scripts/animation_component.gd" id="2_odt01"]
+[ext_resource type="Script" uid="uid://bmwkjhgoqdjh4" path="res://scripts/cloud_spawner.gd" id="2_vbm8o"]
 [ext_resource type="Script" uid="uid://7amxt2ic65vm" path="res://scripts/minimap_markers.gd" id="3_5nmku"]
 [ext_resource type="PackedScene" uid="uid://exsf0igc7o8v" path="res://scenes/ui/dash_panel.tscn" id="3_ywgp6"]
 [ext_resource type="Texture2D" uid="uid://c08sriydsk3fv" path="res://resources/Art/Background tilemap.png" id="5_iokjm"]
@@ -45,9 +47,9 @@ tonemap_mode = 2
 tonemap_exposure = 1.5
 tonemap_white = 3.75
 glow_enabled = true
-glow_intensity = 2.0
-glow_strength = 0.7
-glow_bloom = 0.22
+glow_intensity = 2.78
+glow_strength = 0.46
+glow_bloom = 0.26
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0y38y"]
 
@@ -98,13 +100,21 @@ script = ExtResource("1_0biqy")
 
 [node name="BackgroundContainer" type="Node2D" parent="." unique_id=538398810]
 
+[node name="Background2" type="Sprite2D" parent="BackgroundContainer" unique_id=881594914]
+texture_repeat = 2
+texture = ExtResource("2_i45ps")
+region_enabled = true
+region_rect = Rect2(0, 0, 5760, 5760)
+
 [node name="Background" type="Sprite2D" parent="BackgroundContainer" unique_id=1831694540]
+modulate = Color(1, 1, 1, 0.11764706)
 texture_repeat = 2
 texture = ExtResource("5_iokjm")
 region_enabled = true
 region_rect = Rect2(0, 0, 1920, 1920)
 
 [node name="BgL" type="Sprite2D" parent="BackgroundContainer" unique_id=2056241051]
+modulate = Color(1, 1, 1, 0.11764706)
 texture_repeat = 2
 position = Vector2(-1920, 0)
 texture = ExtResource("5_iokjm")
@@ -112,6 +122,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1920, 1920)
 
 [node name="BgR" type="Sprite2D" parent="BackgroundContainer" unique_id=1902507707]
+modulate = Color(1, 1, 1, 0.11764706)
 texture_repeat = 2
 position = Vector2(1920, 0)
 texture = ExtResource("5_iokjm")
@@ -119,6 +130,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1920, 1920)
 
 [node name="BgU" type="Sprite2D" parent="BackgroundContainer" unique_id=1255667699]
+modulate = Color(1, 1, 1, 0.11764706)
 texture_repeat = 2
 position = Vector2(0, -1920)
 texture = ExtResource("5_iokjm")
@@ -126,11 +138,15 @@ region_enabled = true
 region_rect = Rect2(0, 0, 5760, 1920)
 
 [node name="BgD" type="Sprite2D" parent="BackgroundContainer" unique_id=1531849693]
+modulate = Color(1, 1, 1, 0.11764706)
 texture_repeat = 2
 position = Vector2(0, 1920)
 texture = ExtResource("5_iokjm")
 region_enabled = true
 region_rect = Rect2(0, 0, 5760, 1920)
+
+[node name="CloudSpawner" type="Node2D" parent="." unique_id=1539143856]
+script = ExtResource("2_vbm8o")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=442388193]
 amount = 700
