@@ -32,23 +32,6 @@ color_ramp = SubResource("GradientTexture1D_7iota")
 turbulence_noise_strength = 2.0
 turbulence_noise_scale = 1.296
 
-[sub_resource type="Gradient" id="Gradient_7iota"]
-colors = PackedColorArray(0.7294118, 0.7882353, 0.8039216, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bk2f8"]
-gradient = SubResource("Gradient_7iota")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nphj3"]
-particle_flag_disable_z = true
-emission_shape = 2
-emission_sphere_radius = 46.02
-inherit_velocity_ratio = 0.8
-orbit_velocity_min = -1.961
-orbit_velocity_max = -0.58799994
-gravity = Vector3(0, 0, 0)
-scale_max = 1.1999999
-color_ramp = SubResource("GradientTexture1D_bk2f8")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yy8oa"]
 atlas = ExtResource("6_bk2f8")
 region = Rect2(0, 96, 32, 32)
@@ -678,13 +661,6 @@ current_movement_type = 0
 [node name="MovementWrap" type="Node2D" parent="." unique_id=1647192220]
 script = ExtResource("4_0lqrc")
 move_camera = true
-
-[node name="SurroundingParticles" type="GPUParticles2D" parent="." unique_id=1008313077]
-visible = false
-position = Vector2(0, -2)
-amount = 15
-lifetime = 0.2
-process_material = SubResource("ParticleProcessMaterial_nphj3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1057678827]
 rotation = 1.5707964

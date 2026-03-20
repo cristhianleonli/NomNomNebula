@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhlotgbyppyj6" path="res://resources/Art/godot_logo.png" id="2_vv0q1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vv0q1"]
-bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
+bg_color = Color(0, 0.019607844, 0.06666667, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vv0q1"]
 

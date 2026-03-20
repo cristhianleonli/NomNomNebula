@@ -7,7 +7,6 @@ extends Node2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_target: Node2D = $CameraTarget
 @onready var dash_particles: GPUParticles2D = $DashParticles
-@onready var surrounding_particles: GPUParticles2D = $SurroundingParticles
 
 var can_move: bool = true
 var can_control: bool = true
@@ -25,11 +24,9 @@ func _ready() -> void:
 	
 	dash_particles.one_shot = true
 	dash_particles.emitting = false
-	surrounding_particles.top_level = true
 
 func _process(_delta: float) -> void:
 	set_target_camera_position()
-	surrounding_particles.global_position = global_position
 	
 func set_target_camera_position():
 	var target_position : Vector2
@@ -66,7 +63,6 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	player_movement.set_control_type(PlayerMovement.ControlType.NORMAL)
 	player_movement.apply_movement_factor_speed(0)
 	animation.play(data.animation)
-	_update_particles_color(data.halo_color1)
 	dash_component.reset_buffs()
 	stabilization_component.reset_buffs()
 	stabilization_component.add_time(data.stability_buff)
@@ -75,15 +71,6 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	
 	apply_buff_debuff(buff_debuff)
 	EventManager.on_buffs_applied.emit(buff_debuff)
-
-func _update_particles_color(color: Color) -> void:
-	var particles_material: ParticleProcessMaterial = surrounding_particles.process_material as ParticleProcessMaterial
-	var gradient: Gradient = Gradient.new()
-	gradient.add_point(0.5, color)
-	gradient.add_point(1.0, Color("#ffffff"))
-	var gradient_texture: GradientTexture1D = GradientTexture1D.new()
-	gradient_texture.gradient = gradient
-	particles_material.color_ramp = gradient_texture
 	
 func apply_buff_debuff(buff: Dictionary) -> void:
 	var HANDLERS: Dictionary = {

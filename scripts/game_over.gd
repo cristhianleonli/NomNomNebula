@@ -48,10 +48,10 @@ func _setup_data() -> void:
 		highest_score_2.text = str(save.highest_score)
 
 func _format_time(seconds: float) -> String:
-	var mins: int = int(seconds) / 60
+	var mins: int = int(seconds / 60.0)
 	var secs: float = fmod(seconds, 60.0)
 	
 	if mins > 0:
-		return "%d:%05.2f" % [mins, secs]
+		return "%d:%df" % [mins, int(secs)]
 	else:
 		return "%.2fs" % secs

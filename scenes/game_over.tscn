@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://dbbkcf55bocy6" path="res://resources/UI/panel_solid.png" id="3_racf3"]
 [ext_resource type="PackedScene" uid="uid://datwf23lf12kx" path="res://scenes/menu_particles.tscn" id="3_tbwuq"]
 [ext_resource type="PackedScene" uid="uid://dmhkwqvc0qyc7" path="res://scenes/ui/main_button.tscn" id="4_7m3ot"]
-[ext_resource type="Texture2D" uid="uid://y71y2r5t4km7" path="res://resources/UI/score_star.png" id="4_v3hpu"]
 [ext_resource type="Texture2D" uid="uid://v2wqh5k5gep3" path="res://resources/UI/WinStar.png" id="6_2jtsn"]
 [ext_resource type="Texture2D" uid="uid://clmrwxytod5dq" path="res://resources/UI/WinBorder.png" id="6_irg28"]
 
@@ -71,57 +70,6 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 14
 text = "Game Over"
 horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SummaryPanel/NormalPanel" unique_id=1641199783]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = -16.0
-offset_right = 52.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SummaryPanel/NormalPanel/VBoxContainer" unique_id=1342325134]
-layout_mode = 2
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/SummaryPanel/NormalPanel/VBoxContainer/HBoxContainer3" unique_id=1753534711]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "NEW HIGHEST SCORE"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SummaryPanel/NormalPanel/VBoxContainer" unique_id=885884109]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="ScoreStar2" type="TextureRect" parent="CanvasLayer/SummaryPanel/NormalPanel/VBoxContainer/HBoxContainer" unique_id=281704116]
-layout_mode = 2
-texture = ExtResource("4_v3hpu")
-stretch_mode = 5
-
-[node name="HighestScore" type="Label" parent="CanvasLayer/SummaryPanel/NormalPanel/VBoxContainer/HBoxContainer" unique_id=728368313]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.89411765, 0.85882354, 0.28235295, 1)
-theme_override_font_sizes/font_size = 8
-text = "99"
-horizontal_alignment = 1
-
-[node name="ScoreStar" type="TextureRect" parent="CanvasLayer/SummaryPanel/NormalPanel/VBoxContainer/HBoxContainer" unique_id=395833735]
-layout_mode = 2
-texture = ExtResource("4_v3hpu")
-stretch_mode = 5
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/SummaryPanel/NormalPanel" unique_id=561760449]
 layout_mode = 1
@@ -228,57 +176,6 @@ theme_override_colors/font_color = Color(0.9843137, 0.9490196, 0.21176471, 1)
 theme_override_font_sizes/font_size = 14
 text = "New High Score!"
 horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SummaryPanel/WinPanel" unique_id=721539399]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = -16.0
-offset_right = 52.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SummaryPanel/WinPanel/VBoxContainer" unique_id=1582614485]
-layout_mode = 2
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/SummaryPanel/WinPanel/VBoxContainer/HBoxContainer3" unique_id=995741234]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "NEW HIGHEST SCORE"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SummaryPanel/WinPanel/VBoxContainer" unique_id=386855145]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="ScoreStar2" type="TextureRect" parent="CanvasLayer/SummaryPanel/WinPanel/VBoxContainer/HBoxContainer" unique_id=488066]
-layout_mode = 2
-texture = ExtResource("4_v3hpu")
-stretch_mode = 5
-
-[node name="HighestScore" type="Label" parent="CanvasLayer/SummaryPanel/WinPanel/VBoxContainer/HBoxContainer" unique_id=807251317]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.89411765, 0.85882354, 0.28235295, 1)
-theme_override_font_sizes/font_size = 8
-text = "99"
-horizontal_alignment = 1
-
-[node name="ScoreStar" type="TextureRect" parent="CanvasLayer/SummaryPanel/WinPanel/VBoxContainer/HBoxContainer" unique_id=1719497692]
-layout_mode = 2
-texture = ExtResource("4_v3hpu")
-stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SummaryPanel/WinPanel" unique_id=944518470]
 layout_mode = 0
