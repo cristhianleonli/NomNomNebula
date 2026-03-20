@@ -61,7 +61,7 @@ The mini-map is your primary tool for reading the field. Incoming galaxies are c
 
 | Galaxy | Color | Shape | Condition Type |
 |--------|-------|-------|----------------|
-| Small 1 | Orange | Barred (inspired) | Varies |
+| Small 1 | Orange | Barred Spiral | Varies |
 | Small 2 | Purple | Spiral | Varies |
 | Small 3 | Green | Irregular | Varies |
 
@@ -162,4 +162,5 @@ Nom Nom Nebula was created for *My First Game Jam*, due March 20, 2026.
 - Music: Original chiptune/synth-pop soundtrack with building gameplay tracks and distinct menu music
 
 ---
+
 
