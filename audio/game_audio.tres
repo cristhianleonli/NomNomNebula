@@ -124,12 +124,13 @@ metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 [sub_resource type="Resource" id="Resource_fcyoq"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("15_o54tp")
+volume_db = -3.0
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_o54tp"]
 script = ExtResource("1_ixyf6")
 source = ExtResource("17_ohw5w")
-volume_db = -5.0
+volume_db = -6.0
 metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_jnt4g"]
