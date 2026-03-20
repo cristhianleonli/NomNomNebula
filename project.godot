@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="NomNomNebula"
-config/version="pre_0.0.12"
+config/name="Nom Nom Nebula"
+config/version="r_0.0.1"
 run/main_scene="uid://bsxgfcqbim072"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="NomNomNebula"
