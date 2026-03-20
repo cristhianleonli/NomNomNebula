@@ -18,7 +18,8 @@ func _on_center_area_entered(_area: Area2D) -> void:
 	EventManager.on_camera_shake.emit(4.0)
 	Globals.game_camera.target = self
 	Globals.player.can_move = false
-
+	audio_player.stop()
+	AudioManager.play_sfx(AudioManager.tracks.blackhole_consume)
 	EventManager.on_black_hole_expanded.emit()
 	get_tree().create_timer(1.2).timeout.connect(_on_game_over_emit)
 

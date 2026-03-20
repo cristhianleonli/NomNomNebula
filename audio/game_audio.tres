@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cjikpvjnra8yr" path="res://audio/audio_setting.gd" id="1_ixyf6"]
 [ext_resource type="Script" uid="uid://qkqrrmo7u8ws" path="res://audio/audio_table.gd" id="1_nflnj"]
 [ext_resource type="AudioStream" uid="uid://b110a8113hg6b" path="res://audio/sounds/Device Toggle 04.wav" id="2_7rb6b"]
+[ext_resource type="AudioStream" uid="uid://n32ddjjt2c62" path="res://audio/sounds/Scifi Explosive Impact.mp3" id="2_o54tp"]
 [ext_resource type="AudioStream" uid="uid://b8y0qfprmgxp3" path="res://audio/sounds/dash_v1.wav" id="3_lqfd0"]
 [ext_resource type="AudioStream" uid="uid://bw7ryiieicpwa" path="res://audio/sounds/Device 5 Stop.wav" id="4_lelip"]
 [ext_resource type="AudioStream" uid="uid://r01so3ds2i34" path="res://audio/sounds/Spark 18.wav" id="5_lelip"]
@@ -20,6 +21,13 @@
 [ext_resource type="AudioStream" uid="uid://beteij734fvqh" path="res://audio/sounds/phase 1 main.mp3" id="15_lqfd0"]
 [ext_resource type="AudioStream" uid="uid://q53cqck51biu" path="res://audio/sounds/track_4.mp3" id="15_o54tp"]
 [ext_resource type="AudioStream" uid="uid://bhg2v6uef02dq" path="res://audio/sounds/track_5.mp3" id="17_ohw5w"]
+
+[sub_resource type="Resource" id="Resource_cmi2d"]
+script = ExtResource("1_ixyf6")
+source = ExtResource("2_o54tp")
+volume_db = -15.0
+pitch_scale = 0.6
+metadata/_custom_type_script = "uid://cjikpvjnra8yr"
 
 [sub_resource type="Resource" id="Resource_a6wuk"]
 script = ExtResource("1_ixyf6")
@@ -138,6 +146,7 @@ dash_error = SubResource("Resource_xqoq0")
 dash_empty = SubResource("Resource_w1bj7")
 dash_recovered = SubResource("Resource_d16nq")
 galaxy_repel = SubResource("Resource_lqfd0")
+blackhole_consume = SubResource("Resource_cmi2d")
 galaxy_info = SubResource("Resource_nagqu")
 galaxy_desintegrated = SubResource("Resource_qbjt1")
 title_music = SubResource("Resource_va0tg")
