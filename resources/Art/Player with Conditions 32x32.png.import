@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://43825t84jvkq"
-path="res://.godot/imported/Smaller Galaxy 2.0.png-c505d80d97d678a0af3091a36b66ed41.ctex"
+uid="uid://bxiobx8a0vn60"
+path="res://.godot/imported/Player with Conditions 32x32.png-2870588973694938d9cd34c4af0608f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Art/Galaxy Sprite Sheets/Smaller Galaxy 2.0.png"
-dest_files=["res://.godot/imported/Smaller Galaxy 2.0.png-c505d80d97d678a0af3091a36b66ed41.ctex"]
+source_file="res://resources/Art/Player with Conditions 32x32.png"
+dest_files=["res://.godot/imported/Player with Conditions 32x32.png-2870588973694938d9cd34c4af0608f6.ctex"]
 
 [params]
 

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_jcxts")
-uid = "g3"
+uid = "blue"
 strength = 2
 stability_buff = 4.0
 animation = "blue"

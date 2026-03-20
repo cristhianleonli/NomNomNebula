@@ -6,11 +6,11 @@ const VORTEX_MATERIAL: Resource = preload("uid://jske8d54cs0g")
 @export var data: GalaxyData
 @export var scaling_speed: float = 1
 
-@onready var charge_player: AudioStreamPlayer2D = $ChargePlayer
 @onready var animation: AnimatedSprite2D = get_node("Animation")
 @onready var interaction_collision_shape: CollisionShape2D = $InteractionArea/CollisionShape2D
 @onready var vortex_effect: Sprite2D = $VortexEffect
 @onready var repel_particles: GPUParticles2D = $RepelParticles
+@onready var audio_player: AudioStreamPlayer2D = $AudioPlayer
 
 var size: float
 var velocity: Vector2 = Vector2.ZERO
@@ -30,7 +30,7 @@ func _ready() -> void:
 	repel_particles.one_shot = true
 	repel_particles.emitting = false
 	
-	#apply shader parameters
+	# apply shader parameters
 	var halo: Gradient = Gradient.new()
 	halo.set_color(0, data.halo_color1)
 	halo.set_color(1, data.halo_color2)
@@ -63,11 +63,11 @@ func _on_center_area_entered(_area: Area2D) -> void:
 func _on_game_state_changed(state: GameWorld.GameState) -> void:
 	match state:
 		GameWorld.GameState.ONGOING:
-			charge_player.stream_paused = false
+			audio_player.stream_paused = false
 		GameWorld.GameState.PAUSED:
-			charge_player.stream_paused = true
+			audio_player.stream_paused = true
 		GameWorld.GameState.FINISHED:
-			charge_player.stream_paused = true
+			audio_player.stream_paused = true
 
 func is_good_galaxy() -> bool:
 	return data.is_good_galaxy

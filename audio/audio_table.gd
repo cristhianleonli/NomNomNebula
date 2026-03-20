@@ -27,3 +27,4 @@ extends Resource
 @export var music_track_2: AudioSetting
 @export var music_track_3: AudioSetting
 @export var music_track_4: AudioSetting
+@export var music_track_5: AudioSetting

@@ -13,7 +13,7 @@ var absorption_time_required: float = 3.0
 var base_strength: float = 200.0
 
 func enter() -> void:
-	galaxy.charge_player.play(0)
+	galaxy.audio_player.play(0)
 	attraction_area.area_exited.connect(end_attraction_state)
 	EventManager.on_attracting_player.emit()
 	
@@ -57,4 +57,4 @@ func exit() -> void:
 	Globals.game_camera.set_target(Globals.player.camera_target)
 	attraction_area.area_exited.disconnect(end_attraction_state)
 	absorption_timer = absorption_time_required
-	galaxy.charge_player.stop()
+	galaxy.audio_player.stop()

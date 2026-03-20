@@ -4,19 +4,18 @@ extends Node2D
 @onready var dash_component: DashComponent = $DashComponent
 @onready var stabilization_component: StabilizationComponent = $StabilizationComponent
 @onready var player_movement: PlayerMovement = $PlayerMovement
-@onready var animation : AnimatedSprite2D = $AnimatedSprite2D
-@onready var camera_target : Node2D = $CameraTarget
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var camera_target: Node2D = $CameraTarget
 @onready var dash_particles: GPUParticles2D = $DashParticles
+@onready var surrounding_particles: GPUParticles2D = $SurroundingParticles
 
 var can_move: bool = true
 var can_control: bool = true
 var target_size: float = 0.5
 var velocity: Vector2 = Vector2.ZERO
-var color_amount: int = 1
-
 var escaping_timer_factor: float = 1.0
 var absorption_speed_factor: float = 1.0
-var increase_size_factor: float = 0.15
+var increase_size_factor: float = 0.10
 var can_be_absorbed : bool = true
 var exotic_matter_count: int = 0
 
@@ -49,9 +48,6 @@ func apply_force(force: Vector2) -> void:
 	velocity += force
 
 func absorb_galaxy(data: GalaxyData) -> void:
-	$Sprite2D.material.set_shader_parameter("color_count", color_amount + 1)
-	color_amount += 1
-	
 	var buff_debuff: Dictionary = data.buff_debuff
 	buff_debuff.duplicate()
 	
@@ -59,6 +55,8 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	target_size += increase_size_factor
 	player_movement.set_control_type(PlayerMovement.ControlType.NORMAL)
 	player_movement.apply_movement_factor_speed(0)
+	animation.play(data.animation)
+	_update_particles_color(data.halo_color1)
 	dash_component.reset_buffs()
 	stabilization_component.reset_buffs()
 	stabilization_component.add_time(data.stability_buff)
@@ -68,6 +66,15 @@ func absorb_galaxy(data: GalaxyData) -> void:
 	apply_buff_debuff(buff_debuff)
 	EventManager.on_buffs_applied.emit(buff_debuff)
 
+func _update_particles_color(color: Color) -> void:
+	var particles_material: ParticleProcessMaterial = surrounding_particles.process_material as ParticleProcessMaterial
+	var gradient: Gradient = Gradient.new()
+	gradient.add_point(0.5, color)
+	gradient.add_point(1.0, Color("#ffffff"))
+	var gradient_texture: GradientTexture1D = GradientTexture1D.new()
+	gradient_texture.gradient = gradient
+	particles_material.color_ramp = gradient_texture
+	
 func apply_buff_debuff(buff: Dictionary) -> void:
 	var HANDLERS: Dictionary = {
 		BuffDebuffKey.EXTRA_DASHES: _apply_extra_dashes,

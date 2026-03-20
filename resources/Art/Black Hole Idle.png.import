@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beoqwyrtowg88"
-path="res://.godot/imported/Comet UI Sprite Sheet.png-345dee8fba29f7d26553f5fffe510092.ctex"
+uid="uid://cjg3xweq5mab8"
+path="res://.godot/imported/Black Hole Idle.png-b582ea9e21affee856e5ee632f4dc532.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Art/Comet UI Sprite Sheet.png"
-dest_files=["res://.godot/imported/Comet UI Sprite Sheet.png-345dee8fba29f7d26553f5fffe510092.ctex"]
+source_file="res://resources/Art/Black Hole Idle.png"
+dest_files=["res://.godot/imported/Black Hole Idle.png-b582ea9e21affee856e5ee632f4dc532.ctex"]
 
 [params]
 

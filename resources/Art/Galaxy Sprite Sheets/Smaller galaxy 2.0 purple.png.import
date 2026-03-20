@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqqm3gsucj7e6"
-path="res://.godot/imported/keyboard_d.png-9b14925b44c5c2baf506bab664a74913.ctex"
+uid="uid://bxkxhs3tk2w4m"
+path="res://.godot/imported/Smaller galaxy 2.0 purple.png-ad6cfbb638c162e809bfb65750d3895f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Art/icons/keyboard_d.png"
-dest_files=["res://.godot/imported/keyboard_d.png-9b14925b44c5c2baf506bab664a74913.ctex"]
+source_file="res://resources/Art/Galaxy Sprite Sheets/Smaller galaxy 2.0 purple.png"
+dest_files=["res://.godot/imported/Smaller galaxy 2.0 purple.png-ad6cfbb638c162e809bfb65750d3895f.ctex"]
 
 [params]
 

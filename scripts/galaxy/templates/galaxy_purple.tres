@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GalaxyData" format=3 uid="uid://d3pqhf4o3i6n4"]
+
+[ext_resource type="Script" uid="uid://bp640lhsn8ukq" path="res://scripts/data/galaxy_data.gd" id="1_gvreo"]
+
+[resource]
+script = ExtResource("1_gvreo")
+uid = "purple"
+strength = 2
+stability_buff = 2.0
+animation = "purple"
+halo_color1 = Color(0.63529414, 0.24313726, 0.54901963, 1)
+halo_color2 = Color(0.2784314, 0.18431373, 0.34509805, 1)
+metadata/_custom_type_script = "uid://bp640lhsn8ukq"

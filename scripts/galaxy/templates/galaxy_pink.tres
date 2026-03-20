@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="GalaxyData" format=3 uid="uid://53lwckvnjlyy"]
 
-[ext_resource type="Script" uid="uid://bp640lhsn8ukq" path="res://scripts/data/galaxy_data.gd" id="1_rn6uk"]
+[ext_resource type="Script" uid="uid://bp640lhsn8ukq" path="res://scripts/data/galaxy_data.gd" id="1_6kip5"]
 
 [resource]
-script = ExtResource("1_rn6uk")
-uid = "g4"
+script = ExtResource("1_6kip5")
+uid = "pink"
 strength = 2
 stability_buff = 5.0
 animation = "pink"

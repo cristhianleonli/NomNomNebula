@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpg3xbl6c0p0a"
-path="res://.godot/imported/player galaxy third absorption with larrge blue.png-060bc356b196f232c6abe896e7939261.ctex"
+uid="uid://post4rb1ee80"
+path="res://.godot/imported/black hole expand.png-b617e35f40df214ab07a4287e3431921.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Art/Galaxy Sprite Sheets/player galaxy third absorption with larrge blue.png"
-dest_files=["res://.godot/imported/player galaxy third absorption with larrge blue.png-060bc356b196f232c6abe896e7939261.ctex"]
+source_file="res://resources/Art/black hole expand.png"
+dest_files=["res://.godot/imported/black hole expand.png-b617e35f40df214ab07a4287e3431921.ctex"]
 
 [params]
 
