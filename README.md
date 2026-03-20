@@ -148,7 +148,7 @@ Nom Nom Nebula was created for *My First Game Jam*, due March 20, 2026.
 | Name | Role | Responsibilities |
 |------|------|-----------------|
 | Savannah Griffiths | Game Designer, 2D Pixel Artist, UI Artist, Creative Director | Concept, GDD, sprite sheets, animations, environment art, UI assets, art direction, color palettes, visual style guide |
-| Brandon Klotz | 2D Pixel Artist, UI Artist | 2D UI assets and configuration |
+| Brandon Klotz | 2D Pixel Artist, UI Artist | 2D UI assets, configuration, and environment |
 | Greyber Torrealba | Programmer | Engine, mechanics, player movement, galaxy interactions |
 | Cristhian Leonardo Leon | Programmer | UI, navigation, backend |
 | Boliverse | Composer | SFX and music |
@@ -162,5 +162,4 @@ Nom Nom Nebula was created for *My First Game Jam*, due March 20, 2026.
 - Music: Original chiptune/synth-pop soundtrack with building gameplay tracks and distinct menu music
 
 ---
-
 
