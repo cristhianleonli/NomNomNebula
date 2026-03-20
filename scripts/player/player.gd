@@ -25,9 +25,11 @@ func _ready() -> void:
 	
 	dash_particles.one_shot = true
 	dash_particles.emitting = false
+	surrounding_particles.top_level = true
 
 func _process(_delta: float) -> void:
 	set_target_camera_position()
+	surrounding_particles.global_position = global_position
 	
 func set_target_camera_position():
 	var target_position : Vector2
