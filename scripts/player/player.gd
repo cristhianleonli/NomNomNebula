@@ -11,7 +11,7 @@ extends Node2D
 
 var can_move: bool = true
 var can_control: bool = true
-var target_size: float = 2.0
+var target_size: float = 0.2
 var velocity: Vector2 = Vector2.ZERO
 var escaping_timer_factor: float = 1.0
 var absorption_speed_factor: float = 1.0
