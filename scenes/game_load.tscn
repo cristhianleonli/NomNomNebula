@@ -2,11 +2,19 @@
 
 [ext_resource type="Script" uid="uid://ctooacr6lwlcv" path="res://scripts/game_load.gd" id="1_1q2qr"]
 [ext_resource type="Texture2D" uid="uid://dhlotgbyppyj6" path="res://resources/Art/godot_logo.png" id="2_vv0q1"]
+[ext_resource type="Texture2D" uid="uid://d4fkwmmv3h2t4" path="res://resources/UI/Game Logo with title.png" id="3_u2csm"]
+[ext_resource type="Script" uid="uid://bhrxdvpaofu68" path="res://scripts/ui/animated_atlas.gd" id="4_re1m4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vv0q1"]
-bg_color = Color(0, 0.019607844, 0.06666667, 1)
+bg_color = Color(0.015686275, 0.07058824, 0.1254902, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2csm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vv0q1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isq1c"]
+atlas = ExtResource("3_u2csm")
+region = Rect2(0, 0, 64, 64)
 
 [node name="GameLoad" type="Node2D" unique_id=747436028]
 script = ExtResource("1_1q2qr")
@@ -21,7 +29,59 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vv0q1")
 
-[node name="LogoPanel" type="Panel" parent="CanvasLayer/Panel" unique_id=369578432]
+[node name="GodotPanel" type="Panel" parent="CanvasLayer/Panel" unique_id=369578432]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -46.5
+offset_right = 78.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u2csm")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/GodotPanel" unique_id=1144429829]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 7
+text = "Made with
+Godot"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/GodotPanel" unique_id=66978814]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -41.0
+offset_right = 24.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("2_vv0q1")
+stretch_mode = 5
+
+[node name="LogoPanel" type="Panel" parent="CanvasLayer/Panel" unique_id=1017447169]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -37,32 +97,20 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vv0q1")
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/LogoPanel" unique_id=1144429829]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -32.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 10
-text = "Made with
-Godot"
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/LogoPanel" unique_id=66978814]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/LogoPanel" unique_id=1276303814]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = -39.0
-offset_right = 23.0
-offset_bottom = 11.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_vv0q1")
+texture = SubResource("AtlasTexture_isq1c")
+script = ExtResource("4_re1m4")
+hframes = 10
+duration = 2.0
