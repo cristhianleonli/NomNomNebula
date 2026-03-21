@@ -71,7 +71,7 @@ func _show_tutorial_if_needed() -> void:
 		current_state = GameState.PAUSED
 		EventManager.on_game_state_changed.emit(current_state)
 		
-		await get_tree().create_timer(4.0).timeout
+		await get_tree().create_timer(6.0).timeout
 		
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(tutorial_panel, "modulate:a", 0.0, 0.5)

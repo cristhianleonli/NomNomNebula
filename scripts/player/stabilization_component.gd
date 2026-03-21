@@ -9,11 +9,27 @@ var current_time: float
 var warning_triggered: bool = false
 var drain_multiplier: float = 1.0
 
+var is_active: bool = true
+
 func _ready() -> void:
 	current_time = max_time
 	_emit_change()
+	
+	EventManager.on_game_state_changed.connect(_on_state_changed)
+
+func _on_state_changed(state: GameWorld.GameState) -> void:
+	match state:
+		GameWorld.GameState.ONGOING:
+			is_active = true
+		GameWorld.GameState.PAUSED:
+			is_active = false
+		GameWorld.GameState.FINISHED:
+			is_active = false
 
 func _process(delta: float) -> void:
+	if not is_active:
+		return
+		
 	if current_time <= 0:
 		return
 	

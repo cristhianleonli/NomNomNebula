@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://post4rb1ee80" path="res://resources/Art/black hole expand.png" id="28_gqenn"]
 [ext_resource type="Script" uid="uid://bhrxdvpaofu68" path="res://scripts/ui/animated_atlas.gd" id="29_vbm8o"]
 [ext_resource type="Texture2D" uid="uid://bg0r1wykhqe4c" path="res://resources/UI/SpaceBarSheet.png" id="33_durro"]
-[ext_resource type="Texture2D" uid="uid://bsb1owilv6atm" path="res://resources/UI/Gameplay_Tutoral_Panel_Sprite_Sheet.png" id="35_2lekn"]
+[ext_resource type="Texture2D" uid="uid://djaspoxxsgdo6" path="res://resources/UI/Gameplay_Tutoral_Screen_Overlay_Sprite_Sheet.png" id="34_i5k1u"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gqenn"]
 particle_flag_disable_z = true
@@ -105,7 +105,7 @@ region = Rect2(0, 0, 34, 34)
 bg_color = Color(0.015686275, 0.07058824, 0.1254902, 0.7647059)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vu5a2"]
-atlas = ExtResource("35_2lekn")
+atlas = ExtResource("34_i5k1u")
 region = Rect2(0, 0, 320, 180)
 
 [node name="GameWorld" type="Node2D" unique_id=1299650942]
@@ -497,6 +497,7 @@ duration = 0.1
 visible = false
 
 [node name="TutorialPanel" type="Panel" parent="CanvasLayer" unique_id=1338669090]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -513,5 +514,5 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_vu5a2")
 script = ExtResource("29_vbm8o")
-hframes = 8
+hframes = 9
 duration = 2.0

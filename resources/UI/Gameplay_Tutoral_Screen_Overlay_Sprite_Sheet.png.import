@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsb1owilv6atm"
-path="res://.godot/imported/Gameplay_Tutoral_Panel_Sprite_Sheet.png-a622ab78e15457dd28f51119083c1672.ctex"
+uid="uid://djaspoxxsgdo6"
+path="res://.godot/imported/Gameplay_Tutoral_Screen_Overlay_Sprite_Sheet.png-fccac863a977ca49e0c36aba6bc490df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/UI/Gameplay_Tutoral_Panel_Sprite_Sheet.png"
-dest_files=["res://.godot/imported/Gameplay_Tutoral_Panel_Sprite_Sheet.png-a622ab78e15457dd28f51119083c1672.ctex"]
+source_file="res://resources/UI/Gameplay_Tutoral_Screen_Overlay_Sprite_Sheet.png"
+dest_files=["res://.godot/imported/Gameplay_Tutoral_Screen_Overlay_Sprite_Sheet.png-fccac863a977ca49e0c36aba6bc490df.ctex"]
 
 [params]
 
