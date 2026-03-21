@@ -25,7 +25,6 @@ enum GameState {
 
 var tooltip_duration: float = 2.0
 var current_state: GameState = GameState.ONGOING
-var tutorial_tween: Tween
 
 func _ready() -> void:
 	Globals.player = player
@@ -43,7 +42,7 @@ func _ready() -> void:
 	)
 	
 	help_button.pressed.connect(func() -> void:
-		_show_tutorial()
+		_show_tutorial(false, true)
 		AudioManager.play_sfx(AudioManager.tracks.click)
 		animation_component.subtle_wobble(help_button)
 	)
@@ -83,37 +82,23 @@ func _show_tutorial_first_time() -> void:
 	if is_first_time:
 		Globals.current_save.is_first_time = false
 		DataManager.write_save(Globals.current_save)
-		_show_tutorial(true)
+		_show_tutorial(true, false)
 
-func _show_tutorial(autohide: bool = false) -> void:
-	tutorial_panel.modulate.a = 0.0
+func _show_tutorial(autohide: bool, freeze: bool) -> void:
 	tutorial_panel.visible = true
+	_change_state(GameState.PAUSED)
 	
-	if tutorial_tween:
-		tutorial_tween.kill()
-		
-	tutorial_tween = get_tree().create_tween()
-	tutorial_tween.tween_property(tutorial_panel, "modulate:a", 1.0, 0.3)
-	tutorial_tween.tween_callback(func() -> void:
-		_change_state(GameState.PAUSED)
-	)
+	if freeze:
+		Engine.time_scale = 0.0
 	
 	if autohide:
 		await get_tree().create_timer(6.0).timeout
 		_hide_tutorial()
 
 func _hide_tutorial() -> void:
-	if tutorial_tween:
-		tutorial_tween.kill()
-	
-	tutorial_tween = get_tree().create_tween()
-	tutorial_tween.tween_property(tutorial_panel, "modulate:a", 0.0, 0.3)
-	tutorial_tween.tween_callback(func() -> void:
-		Engine.time_scale = 1.0
-		tutorial_panel.visible = false
-		tutorial_panel.modulate.a = 1.0
-		_change_state(GameState.ONGOING)
-	)
+	Engine.time_scale = 1.0
+	tutorial_panel.visible = false
+	_change_state(GameState.ONGOING)
 
 #region debug
 var i = 0

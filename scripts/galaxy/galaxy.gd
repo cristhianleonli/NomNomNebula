@@ -15,6 +15,7 @@ const VORTEX_MATERIAL: Resource = preload("uid://jske8d54cs0g")
 var size: float
 var velocity: Vector2 = Vector2.ZERO
 var base_interaction_radius: float = 55.0
+var is_active: bool = true
 
 func _ready() -> void:
 	EventManager.on_increment_galaxy_size.connect(_on_increment_interaction_radius)
@@ -64,10 +65,13 @@ func _on_center_area_entered(_area: Area2D) -> void:
 func _on_game_state_changed(state: GameWorld.GameState) -> void:
 	match state:
 		GameWorld.GameState.ONGOING:
+			is_active = true
 			audio_player.stream_paused = false
 		GameWorld.GameState.PAUSED:
+			is_active = false
 			audio_player.stream_paused = true
 		GameWorld.GameState.FINISHED:
+			is_active = false
 			audio_player.stream_paused = true
 
 func is_good_galaxy() -> bool:

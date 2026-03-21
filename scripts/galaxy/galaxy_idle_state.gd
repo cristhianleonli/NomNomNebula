@@ -10,19 +10,9 @@ var is_active: bool = true
 
 func enter() -> void:
 	attraction_area.area_entered.connect(start_attraction_state)
-	EventManager.on_game_state_changed.connect(_on_state_changed)
-
-func _on_state_changed(state: GameWorld.GameState) -> void:
-	match state:
-		GameWorld.GameState.ONGOING:
-			is_active = true
-		GameWorld.GameState.PAUSED:
-			is_active = false
-		GameWorld.GameState.FINISHED:
-			is_active = false
 			
 func update(_delta: float) -> void:
-	if not is_active:
+	if not galaxy.is_active:
 		return
 	
 	add_random_velocity()
@@ -39,4 +29,3 @@ func add_random_velocity() -> void:
 
 func exit() -> void:
 	attraction_area.area_entered.disconnect(start_attraction_state)
-	EventManager.on_game_state_changed.disconnect(_on_state_changed)
