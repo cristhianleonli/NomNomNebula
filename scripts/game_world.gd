@@ -79,7 +79,7 @@ func _on_buffs_applied(data: Dictionary) -> void:
 
 func _show_tutorial_first_time() -> void:
 	var is_first_time: bool = Globals.current_save.is_first_time
-
+	
 	if is_first_time:
 		Globals.current_save.is_first_time = false
 		DataManager.write_save(Globals.current_save)
@@ -95,8 +95,7 @@ func _show_tutorial(autohide: bool = false) -> void:
 	tutorial_tween = get_tree().create_tween()
 	tutorial_tween.tween_property(tutorial_panel, "modulate:a", 1.0, 0.3)
 	tutorial_tween.tween_callback(func() -> void:
-		current_state = GameState.PAUSED
-		EventManager.on_game_state_changed.emit(current_state)
+		_change_state(GameState.PAUSED)
 	)
 	
 	if autohide:
@@ -110,6 +109,7 @@ func _hide_tutorial() -> void:
 	tutorial_tween = get_tree().create_tween()
 	tutorial_tween.tween_property(tutorial_panel, "modulate:a", 0.0, 0.3)
 	tutorial_tween.tween_callback(func() -> void:
+		Engine.time_scale = 1.0
 		tutorial_panel.visible = false
 		tutorial_panel.modulate.a = 1.0
 		_change_state(GameState.ONGOING)
@@ -144,13 +144,6 @@ func _process(delta: float) -> void:
 
 func _change_state(new_state: GameState) -> void:
 	current_state = new_state
-	
-	match current_state:
-		GameState.ONGOING:
-			Engine.time_scale = 1.0
-		GameState.PAUSED:
-			Engine.time_scale = 0.0
-		
 	EventManager.on_game_state_changed.emit(new_state)
 
 func _on_player_wrapped(offset: Vector2) -> void:
@@ -160,9 +153,11 @@ func _on_player_wrapped(offset: Vector2) -> void:
 func _handle_toggle_pause() -> void:
 	if pause_menu.visible:
 		pause_menu.dismiss()
+		Engine.time_scale = 1.0
 		_change_state(GameState.ONGOING)
 	else:
 		pause_menu.present()
+		Engine.time_scale = 0.0
 		_change_state(GameState.PAUSED)
 
 func _on_game_over_animation():
