@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bxwpenyw8iyku" path="res://resources/Art/radar.png" id="22_5nmku"]
 [ext_resource type="Script" uid="uid://2bqc4b10ula4" path="res://scripts/game_vfx.gd" id="23_eto5o"]
 [ext_resource type="Texture2D" uid="uid://6yo25fpoqpne" path="res://resources/Art/minimap_marker.png" id="24_0y38y"]
+[ext_resource type="Texture2D" uid="uid://d176cxe3bj7rv" path="res://resources/Art/icons/information.png" id="24_2lekn"]
 [ext_resource type="Script" uid="uid://c4u4i0c0aw3dp" path="res://scripts/shock_wave.gd" id="25_5nmku"]
 [ext_resource type="Shader" uid="uid://dwat4244mpgov" path="res://shaders/chromatic_aberration.gdshader" id="26_y5rsn"]
 [ext_resource type="Script" uid="uid://vntyq0qk1e48" path="res://scripts/ui/score_panel.gd" id="27_kbri5"]
@@ -34,6 +35,7 @@
 [ext_resource type="Script" uid="uid://bhrxdvpaofu68" path="res://scripts/ui/animated_atlas.gd" id="29_vbm8o"]
 [ext_resource type="Texture2D" uid="uid://bg0r1wykhqe4c" path="res://resources/UI/SpaceBarSheet.png" id="33_durro"]
 [ext_resource type="Texture2D" uid="uid://djaspoxxsgdo6" path="res://resources/UI/Gameplay_Tutoral_Screen_Overlay_Sprite_Sheet.png" id="34_i5k1u"]
+[ext_resource type="PackedScene" uid="uid://dmhkwqvc0qyc7" path="res://scenes/ui/main_button.tscn" id="35_vu5a2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gqenn"]
 particle_flag_disable_z = true
@@ -380,10 +382,10 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=398200875]
-offset_left = 10.0
-offset_top = 8.0
-offset_right = 24.0
-offset_bottom = 22.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 18.0
+offset_bottom = 18.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 focus_mode = 0
 
@@ -392,9 +394,36 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_ph1f2")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HelpButton" type="Button" parent="CanvasLayer" unique_id=1283915283]
+offset_left = 22.0
+offset_top = 4.0
+offset_right = 36.0
+offset_bottom = 18.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HelpButton" unique_id=1734845364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_2lekn")
 expand_mode = 1
 stretch_mode = 4
 
@@ -493,9 +522,6 @@ script = ExtResource("29_vbm8o")
 hframes = 3
 duration = 0.1
 
-[node name="PauseMenu" parent="CanvasLayer" unique_id=1110686936 instance=ExtResource("11_odt01")]
-visible = false
-
 [node name="TutorialPanel" type="Panel" parent="CanvasLayer" unique_id=1338669090]
 visible = false
 anchors_preset = 15
@@ -516,3 +542,18 @@ texture = SubResource("AtlasTexture_vu5a2")
 script = ExtResource("29_vbm8o")
 hframes = 9
 duration = 2.0
+
+[node name="CloseTutorialButton" parent="CanvasLayer/TutorialPanel" unique_id=287327500 instance=ExtResource("35_vu5a2")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -18.0
+offset_right = 46.0
+offset_bottom = -3.0
+grow_vertical = 0
+custom_title = "close"
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1110686936 instance=ExtResource("11_odt01")]
+visible = false

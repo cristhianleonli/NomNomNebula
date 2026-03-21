@@ -16,6 +16,8 @@ const POINTER_C: Resource = preload("uid://b085nphr6bvo4")
 @onready var radar_texture: RadarWrap = $CanvasLayer/MinimapPanel/RadarTexture
 @onready var burst_panel: Panel = $CanvasLayer/BurstPanel
 @onready var tutorial_panel: Node = $CanvasLayer/TutorialPanel
+@onready var help_button: Button = $CanvasLayer/HelpButton
+@onready var close_tutorial_button: MainButton = $CanvasLayer/TutorialPanel/CloseTutorialButton
 
 enum GameState {
 	ONGOING, PAUSED, FINISHED
@@ -23,6 +25,7 @@ enum GameState {
 
 var tooltip_duration: float = 2.0
 var current_state: GameState = GameState.ONGOING
+var tutorial_tween: Tween
 
 func _ready() -> void:
 	Globals.player = player
@@ -39,6 +42,18 @@ func _ready() -> void:
 		animation_component.subtle_wobble(pause_button)
 	)
 	
+	help_button.pressed.connect(func() -> void:
+		_show_tutorial()
+		AudioManager.play_sfx(AudioManager.tracks.click)
+		animation_component.subtle_wobble(help_button)
+	)
+	
+	close_tutorial_button.pressed.connect(func() -> void:
+		_hide_tutorial()
+		AudioManager.play_sfx(AudioManager.tracks.click)
+		animation_component.subtle_wobble(help_button)
+	)
+	
 	EventManager.on_game_over.connect(_on_game_over_animation)
 	EventManager.on_galaxy_absorbed.connect(_on_galaxy_absorbed)
 	EventManager.on_black_hole_desintegrated.connect(_on_black_hole_desintegrated)
@@ -53,7 +68,8 @@ func _ready() -> void:
 	AudioManager.start_playlist()
 	Input.set_custom_mouse_cursor(POINTER_C)
 	SceneManager.fade_in()
-	_show_tutorial_if_needed()
+	
+	_show_tutorial_first_time()
 
 func _on_tug_of_war(value: bool) -> void:
 	burst_panel.visible = value
@@ -61,25 +77,43 @@ func _on_tug_of_war(value: bool) -> void:
 func _on_buffs_applied(data: Dictionary) -> void:
 	conditions_panel.set_data(data)
 
-func _show_tutorial_if_needed() -> void:
+func _show_tutorial_first_time() -> void:
 	tutorial_panel.visible = false
-	if Globals.current_save.is_first_time:
+	var is_first_time: bool = Globals.current_save.is_first_time
+	
+	if is_first_time:
 		Globals.current_save.is_first_time = false
 		DataManager.write_save(Globals.current_save)
-		tutorial_panel.visible = true
+		_show_tutorial(true)
+
+func _show_tutorial(autohide: bool = false) -> void:
+	tutorial_panel.modulate.a = 0.0
+	tutorial_panel.visible = true
+	
+	if tutorial_tween:
+		tutorial_tween.kill()
 		
-		current_state = GameState.PAUSED
-		EventManager.on_game_state_changed.emit(current_state)
-		
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(tutorial_panel, "modulate:a", 1.0, 0.3)
+	tween.tween_callback(func() -> void:
+		_change_state(GameState.PAUSED)
+	)
+	
+	if autohide:
 		await get_tree().create_timer(6.0).timeout
-		
-		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(tutorial_panel, "modulate:a", 0.0, 0.5)
-		tween.tween_callback(func() -> void:
-			tutorial_panel.visible = false
-			current_state = GameState.ONGOING
-			EventManager.on_game_state_changed.emit(current_state)
-		)
+		_hide_tutorial()
+
+func _hide_tutorial() -> void:
+	if tutorial_tween:
+		tutorial_tween.kill()
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(tutorial_panel, "modulate:a", 0.0, 0.3)
+	tween.tween_callback(func() -> void:
+		tutorial_panel.visible = false
+		tutorial_panel.modulate.a = 1.0
+		_change_state(GameState.ONGOING)
+	)
 
 #region debug
 var i = 0
@@ -100,8 +134,24 @@ func _process(delta: float) -> void:
 		Globals.elapse_time += delta
 	
 	if Input.is_action_just_pressed("pause") and current_state != GameState.FINISHED:
+		if tutorial_panel.visible:
+			tutorial_panel.visible = false
+			_change_state(GameState.ONGOING)
+		else:
+			_handle_toggle_pause()
+			
 		AudioManager.play_sfx(AudioManager.tracks.show_ui)
-		_handle_toggle_pause()
+
+func _change_state(new_state: GameState) -> void:
+	current_state = new_state
+	
+	match current_state:
+		GameState.ONGOING:
+			Engine.time_scale = 1.0
+		GameState.PAUSED:
+			Engine.time_scale = 0.0
+		
+	EventManager.on_game_state_changed.emit(new_state)
 
 func _on_player_wrapped(offset: Vector2) -> void:
 	var camera: MainCamera = Globals.game_camera
@@ -110,17 +160,13 @@ func _on_player_wrapped(offset: Vector2) -> void:
 func _handle_toggle_pause() -> void:
 	if pause_menu.visible:
 		pause_menu.dismiss()
-		current_state = GameState.ONGOING
-		EventManager.on_game_state_changed.emit(current_state)
-		Engine.time_scale = 1.0
+		_change_state(GameState.ONGOING)
 	else:
 		pause_menu.present()
-		current_state = GameState.PAUSED
-		EventManager.on_game_state_changed.emit(current_state)
-		Engine.time_scale = 0.0
+		_change_state(GameState.PAUSED)
 
 func _on_game_over_animation():
-	current_state = GameState.FINISHED
+	_change_state(GameState.FINISHED)
 	radar_texture.stop_shader()
 	_on_game_over()
 
